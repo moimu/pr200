@@ -9,7 +9,13 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    
+    <?php
+        require '../vendor/autoload.php';
+        use Moi\Zonas\Zona;
+
+        $new = new Zona("cd",4,5,6);
+        echo $new;
+    ?>
     <header>
 
     </header>
