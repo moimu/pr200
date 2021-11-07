@@ -1,0 +1,108 @@
+DAW-IT20018-Proyecto PR200-Fase 1
+Vence el 10 de diciembre de 2021 23:59Se cierra el 12 de diciembre de 2021 23:59
+Instrucciones
+
+Introducción: 
+
+Existe un cliente que nos ha pedido el desarrollo de un proyecto, del que disponemos de poca información, debido a que no le es posible dar a conocer todavía más detalles. 
+
+Lo que sí sabemos es lo siguiente: la empresa dispone de 5 zonas como se detalla a continuación: 
+
+- Zona 1 (Z100): 
+    - A101
+    - B101
+- Zona 2 (Z200):
+    - A201
+    - A202
+    - B201
+- Zona 3 (Z300):
+    - A301
+    - A302
+    - A303
+    - B301
+    - B302
+- Zona 4 (Z400):
+    - A401
+    - A402
+    - B401
+    - B402
+- Zona 5 (Z500):
+    - A501
+    - B501
+    - B502
+
+
+S1) cantidad de pulsaciones realizadas las áreas Axxx
+S2) registro de entrada a algún área Bxxx
+S3) cantidad de luz que incide en la zona (Zxxx), tomando 1 muestra cada minuto
+S4) temperatura y humedad en la zona (Zxxx), tomando 1 muestra cada minuto y medio.
+
+La opción S1) será realizada mediante pulsadores, la opción S2) mediante un lector de RFID, la opción S3) haciendo uso de un sensor de luz y la opción S4) mediante un sensor de temperatura y humedad. 
+
+Se requiere que cada trabajador de DAW, implemente un prototipo a escoger de entre S1) y S2); y otro prototipo a escoger de entre S3) y S4). Dicho prototipo consistirá en el desarrollo electrónico funcional que sea capaz de recabar la información que se solicita y que use un servicio que será encargado de almacenar la siguiente información:
+S1) hora en la que se realizó la pulsación y área
+S2) hora en la que se realizó la entrada y área
+S3) hora en la que se realizó la muestra, área y cantidad de luz
+S4) hora en la que se realizó la muestra, área, temperatura y humedad
+
+Ese mismo trabajador de DAW será el encargado de recabar la información en una única zona que le será asignada.
+
+Cada trabajador, así mismo, deberá preparar el/los servicio/s adecuado/s para poder proporcionar la información recabada. Dicha información tendrá la misma estructura, para el mismo tipo de información de manera (que será un JSON).
+
+Por último deberá crear una aplicación web que consuma TODOS los servicios de TODOS los trabajadores, de tal forma que se muestren todas las zonas y todos los datos, de una forma que sea lo más agradable y entendible posible.
+
+
+Este desarrollo, debe cumplir con el siguiente listado de requisitos no funcionales: 
+
+Orientación a objetos
+RWD
+Bateria de pruebas automatizadas
+Modelado y diseño de base de datos
+Presentación y maquetado profesional
+Uso de herramientas de control de versiones para el desarrollo del proyecto (desde su inicio)
+Publicación y puesta en producción en el subdominio im.tudominio.zzz .
+Estará debidamente documentado con bloques de documentación entendibles por phpDocumentor
+La documentación del código estará generada y desplegada en producción en la carpeta 02-docphp
+Uso de contenedores docker para todos los procesos que se necesiten, debidamente documentados y explicados.
+
+
+
+¿Qué tienes que entregar?
+En el repositorio git:
+Acceso a un repositorio git llamado pr200 donde estarán todos los ficheros necesarios para probar el proyecto (*.php o *.html, *.txt, Dockerfile, docker-compose.yml ...). 
+El acceso se dará añadiendo como colaboradores al repositorio en github a los usuarios jcadaw y mjadaw
+Habrá una rama diferenciada con nombre fase1 
+En la rama estarán los ficheros necesarios para verificar su buen funcionamiento, además de los scripts necesarios para BD (creación BD, tablas) para poder verificar su funcionamiento), ubicados en un directorio llamado 00-bd.
+Los ficheros php estarán debidamente documentados, y estará generada la documentación en una carpeta llamada 02-docphp:
+Crear el usuario en el servidor jca con contraseña daw y que pertenezca al grupo sudo.
+Cargar la clave pública "jca_daw_rsa.pub" suministrada aquí en el ~/.ssh/authorized_keys del usuario jca.
+Crear el usuario jca con acceso a mysql y permisos para poder trabajar en la base de datos donde está el proyecto.
+La aplicación debe estar desplegada y operativa en el servidor de aws academy.
+Documentación (en el directorio 01_doc)
+Documentación técnica. 
+Obligatorio: aparecerá un checklist en la primera página con todos los requisitos establecidos en este proyecto, estando debidamente marcados aquellos que está cubiertos en el proyecto entregado.
+Deberá de explicarse qué solución se ha aportado y cómo se ha resuelto, además de aportar los modelos conceptual, lógico y físico y su debida justificación de por qué se ha optado por esa solución, todo ello en el propio documento, y habiendo utilizado una herramienta para tal fin (por ejemplo draw.io) pero aportando sólo las imágenes de los diagramas en el propio documento.
+Diagramas de Clases del proyecto, debidamente explicado y justificado
+Justificación del diseño de la aplicación web
+Manual de usuario. 
+Cómo utilizar cada uno de los servicios y que quede bien explicado.
+Detalle del dominio para poder acceder al servidor y contraseñas necesarias.
+Manual de instalación:
+Requisitos de sistema
+Scripts que hay que ejecutar y orden
+
+Asignación: 
+
+Andrés, Z100, S1, S3
+Samuel, Z100, S2, S4
+Rafa, Z200, S1, S3
+José María, Z200, S2, S4
+Manu, Z300, S1, S4
+Ballesteros, Z300, S2, S3
+Pablo, Z400, S1, S4
+Moisés, Z400, S2, S3
+Ismael, Z500, S1, S3
+Ocete, Z500, S2, S4
+
+
+La excel recoge todos los criterios de evaluación evaluados en este proyecto. Léelo detenidamente.
