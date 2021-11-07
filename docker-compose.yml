@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  mysql:
+    build: ./mysql
+    image: "daw-mysql:2021.11"
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: mysql-pr200
+    ports: 
+      - "3306:3306"
+    volumes:
+      - "./volmysql:/var/lib/mysql"
+    networks:
+      red-pr200:
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=daw_db
+      - MYSQL_USER=daw_dba
+      - MYSQL_PASSWORD=1234
+    
+  # adminer:
+  #   image: adminer
+  #   container_name: adminer-pr200
+  #   restart: always
+  #   networks:
+  #     red-pr200:
+  #   ports:
+  #     - 8082:8080
+
+  php:
+    build: ./php
+    image: "daw-php:2021.11"
+    container_name: php-pr200
+    volumes:
+      - "./www:/var/www/html"
+    networks:
+      red-pr200:
+    links:
+      - mysql
+
+  apache:
+    build: ./apache
+    image: "daw-apache:2021.11"
+    container_name: apache-pr200
+    ports:
+      - "8080:80"
+    volumes:
+    - "./www:/var/www/html"
+    networks:
+      red-pr200:
+
+networks:
+      red-pr200:
