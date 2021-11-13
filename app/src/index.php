@@ -18,7 +18,7 @@
 
         $server = "mysql-pr200"; 
         $user = "root"; 
-        $password = "root"; 
+        $password = "rpass"; 
         $database = "zonas"; 
         $db = new mysqli($server,$user, $password,$database); 
         if($db->connect_error){ 
