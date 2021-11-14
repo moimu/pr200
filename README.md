@@ -15,7 +15,11 @@ Entorno de desarrollo containers docker para aplicaciones web usando:
 - Ejecutar el fichero docker-compose.yml en docker/ mediante:
 
 $ docker-compose build
-$ docker-compose up -d
+$ docker-compose up 
+
+en el servidor entrar container de php y cargar el fichero composer.json
+$ docker exec -ti php-pr200 sh
+$ composer dump-autoload
 
 Docker generará:
     - container con `Apache` y `certbot` 
