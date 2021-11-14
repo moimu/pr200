@@ -9,6 +9,9 @@ Entorno de desarrollo containers docker para aplicaciones web usando:
 - Instancia de servidor usaré imagen de Ubuntu 20.04
 - Dominio asociado ip de la instacia
 - intalación en servidor: `docker` y  `docker-compose`
+- Habilitar reglas entrada HTTP y HTTPS para IPv4 y para IPv6
+- No tener levantado MySQL di lo trae por defecto la distro del servidor, en ese caso paramos o desistalamos.
+    $ sudo systemctl stop mysql
 - Ejecutar el fichero docker-compose.yml en docker/ mediante:
 
 $ docker-compose build

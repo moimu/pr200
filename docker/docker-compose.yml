@@ -11,7 +11,7 @@ services:
       # volumen para cambios realizados en bd
       - "./volmysql:/var/lib/mysql"
       # volumen para primer build crear bd-boards-inserts
-      - "./mysql/00-bd:/docker-entrypoint-initdb.d"
+      # - "./mysql/00-bd:/docker-entrypoint-initdb.d"
     networks:
       red-pr200:
     restart: always
@@ -61,7 +61,15 @@ services:
       LETS_ENCRYPT_EMAIL: ${LETS_ENCRYPT_EMAIL} 
       LETS_ENCRYPT_DOMINIOS: ${LETS_ENCRYPT_DOMINIOS}
       LETS_ENCRYPT_DIRECTORIO: ${LETS_ENCRYPT_DIRECTORIO}
+    links:
+      - php
 
 networks:
   red-pr200:
     name: red-pr200
+
+volumes:
+  varletsencrypt:
+    name: pr200-varletsencrypt
+  etcletsencrypt:
+    name: pr200-etcletsencrypt
