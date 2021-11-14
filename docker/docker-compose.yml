@@ -47,10 +47,20 @@ services:
     container_name: apache-${COMPOSE_PROJECTNAME}
     ports:
       - "80:80"
+      # puerto por defecto para emitir con SSL
+      - "443:443"
     volumes:
-    - "${DIR_PROYECTO}:/var/www/html"
+      # vol para operar en la aplicación 
+      - "${DIR_PROYECTO}:/var/www/html"
+      # vols almacenaje certificados
+      - etcletsencrypt:/etc/letsencrypt
+      - varletsencrypt:/var/lib/letsencrypt
     networks:
       red-pr200:
+    environment:
+      LETS_ENCRYPT_EMAIL: ${LETS_ENCRYPT_EMAIL} 
+      LETS_ENCRYPT_DOMINIOS: ${LETS_ENCRYPT_DOMINIOS}
+      LETS_ENCRYPT_DIRECTORIO: ${LETS_ENCRYPT_DIRECTORIO}
 
 networks:
   red-pr200:
