@@ -24,5 +24,7 @@ RUN mv composer.phar /usr/local/bin/composer
 
 # RUN cd /var/www/html
 # RUN composer update
-RUN docker exec -ti php-pr200 sh \
-    && composer dump-autoload
+# RUN docker exec -ti php-pr200 sh \
+#     && composer dump-autoload
+
+RUN composer dump-autoload -d /var/www/html/src
