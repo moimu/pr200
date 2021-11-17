@@ -1,0 +1,28 @@
+{
+    "zonas":[
+        {
+        "nombre": "",
+
+        "sensor":[
+            {
+            "tipo":"",
+            "hora":"",
+            "area":"",
+            "valor":[]
+            }
+        ],
+        "areas" :[
+            {
+            "tipo":" ",
+            "nombre":"",
+            "sensor":[
+                { 
+                "hora":"",
+                "valor":""
+                }
+            ]  
+            }
+        ]
+        }
+    ]
+}   
