@@ -1,0 +1,74 @@
+// pines conexion para RFID libreria  MFRC522
+// RST 9
+// MISO 12  MOSI 11
+// SCK 13  SDA 10
+
+// libreria RFID comunicacion
+#include <SPI.h>
+#include <MFRC522.h>
+
+#define RST_PIN  9      // Pin de reset
+#define SS_PIN  10      // Pin de slave select
+
+// Objeto mfrc522 enviando pines de slave select y reset 
+MFRC522 mfrc522( SS_PIN, RST_PIN ); 
+
+byte LecturaUID[4];        
+byte llave[4]= {0xEC, 0x8F, 0x44, 0x4A} ;   
+
+void setup(){
+  //comienza comunicación serie
+  Serial.begin(9600);
+  // inicializa bus SPI 
+  SPI.begin();
+  // inicializa tarjeta lectora MFRC522         
+  mfrc522.PCD_Init();     
+  Serial.println("RFID ON introduce llave:");  
+
+}
+void loop(){
+
+  if ( ! mfrc522.PICC_IsNewCardPresent())   // si no hay una tarjeta presente, resetea el bucle
+    return;                                   
+  if ( ! mfrc522.PICC_ReadCardSerial())      // si no puede obtener datos de tarjeta
+    return;          
+    
+  Serial.print("UID leido : "); 
+  // lectura de los 4 bytes    
+  for (byte i = 0; i < 4; i++) { 
+  
+    if ( mfrc522.uid.uidByte[i] < 0x10 ){   
+      Serial.print(" 0");     
+    }
+    else{           
+      Serial.print(" ");        
+    }
+    // imprime el byte hexadecimal
+    Serial.print( mfrc522.uid.uidByte[i], HEX ); 
+    //guarda byte UID leido   
+    LecturaUID[i] = mfrc522.uid.uidByte[i];    
+  
+  }
+      
+  //Serial.print("\t");              
+  // Verificación de UID
+  if( verificaUID( LecturaUID, llave ) ){   
+    Serial.println(" Acceso permitido");
+  }
+  else {        
+    Serial.println(" Acceso NO permitido");           
+  }  
+  // corta comunicación con la tarjeta RFID  
+  mfrc522.PICC_HaltA();     
+}
+
+boolean verificaUID( byte lectura[] ,byte llave[] ) {
+  // si byte de UID  es distinto al de la llave, no abre cerradura
+  for ( byte i=0; i < 4; i++ ){        
+    if( lectura[i] != llave[i] ){        
+      return (false);          
+    }
+    return (true); 
+  }
+  
+}
