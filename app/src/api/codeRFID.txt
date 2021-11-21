@@ -1,14 +1,18 @@
-// pines conexion para RFID libreria  MFRC522
-// RST 9
-// MISO 12  MOSI 11
-// SCK 13  SDA 10
-
-// libreria RFID comunicacion
+// pines conexion Arduino 1 para RFID libreria  MFRC522
+// RST 9 MISO 12  MOSI 11 SCK 13  SDA 10
 #include <SPI.h>
+// libreria RFID comunicacion
 #include <MFRC522.h>
+// libreria wifi
+#include <WiFiNINA.h>
+#include "arduino_secrets.h" 
 
 #define RST_PIN  9      // Pin de reset
 #define SS_PIN  10      // Pin de slave select
+int valorMaxSensor = 0;
+int valorMinSensor = 1023;
+int valorSensor = 0;
+unsigned long tiempoActual = 0;
 
 // Objeto mfrc522 enviando pines de slave select y reset 
 MFRC522 mfrc522( SS_PIN, RST_PIN ); 
@@ -17,8 +21,26 @@ byte LecturaUID[4];
 byte llave[4]= {0xEC, 0x8F, 0x44, 0x4A} ;   
 
 void setup(){
+    pinMode(2, OUTPUT);
   //comienza comunicación serie
   Serial.begin(9600);
+  // calibrar fotoresistencia
+  tone(2, 440, 6000);
+  while( millis() < 6000 ){
+      valorSensor = analogRead(A0);
+      // captura valor Mínimo y Máximo en sensor fotoresistencia
+      if(valorSensor < valorMinSensor){
+          valorMinSensor = valorSensor;
+        }  
+        if(valorSensor > valorMaxSensor){
+          valorMaxSensor = valorSensor;
+        }  
+    }
+  noTone(2);
+  Serial.print(" MinSensor: ");
+  Serial.print(valorMinSensor);
+  Serial.print(" MaxSensor: ");
+  Serial.print(valorMaxSensor);
   // inicializa bus SPI 
   SPI.begin();
   // inicializa tarjeta lectora MFRC522         
@@ -27,7 +49,12 @@ void setup(){
 
 }
 void loop(){
-
+  if(millis() > tiempoActual + 60000){
+    tiempoActual = millis();
+    // cada minuto lectura de luminosidad
+    Serial.println( analogRead(A0) );
+    }
+  
   if ( ! mfrc522.PICC_IsNewCardPresent())   // si no hay una tarjeta presente, resetea el bucle
     return;                                   
   if ( ! mfrc522.PICC_ReadCardSerial())      // si no puede obtener datos de tarjeta
@@ -49,8 +76,7 @@ void loop(){
     LecturaUID[i] = mfrc522.uid.uidByte[i];    
   
   }
-      
-  //Serial.print("\t");              
+               
   // Verificación de UID
   if( verificaUID( LecturaUID, llave ) ){   
     Serial.println(" Acceso permitido");
@@ -70,5 +96,4 @@ boolean verificaUID( byte lectura[] ,byte llave[] ) {
     }
     return (true); 
   }
-  
 }
