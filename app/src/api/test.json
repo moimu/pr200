@@ -1,0 +1,42 @@
+
+        // COMO DAR LA HORA FORMATO?
+
+{
+    "zonas":[
+        {
+        "nombre": "Z400",
+
+        "sensor":[
+            {
+            "tipo":"Fotoresistencia",
+            "hora":"$horaZ400",
+            "area":"",
+            "valor":["$cantluzZ400"]
+            }
+        ],
+
+        "areas" :[
+            {
+            "tipo":"RFID",
+            "nombre":"B401",
+            "sensor":[
+                { 
+                "hora":"$horaB401",
+                "valor":"$entradaB401"
+                }
+            ]  
+            }
+            {
+            "tipo":"RFID",
+            "nombre":"B402",
+            "sensor":[
+                { 
+                "hora":"$horaB402",
+                "valor":"$entradaB402"
+                }
+            ]  
+            }
+        ]
+        }
+    ]
+}  

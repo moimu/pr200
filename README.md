@@ -28,6 +28,19 @@ Docker generará:
     - container con `PHP`
         -alpine
 
+# Configuración local
+
+> Deshabilitar o comentar la redirección puerto 443
+- "443:443"
+
+> apache/Dockerfile cambiar la conf por local.apache.conf
+
+COPY ./local.apache.conf /usr/local/apache2/conf/
+
+    # Escribir en fichero httpd.conf inclusión del fichero copiado
+RUN echo "Include /usr/local/apache2/conf/local.apache.conf" \
+    >> /usr/local/apache2/conf/httpd.conf
+
 # Estructura de directorios/ficheros
 
 En  directorio `app` estará contenida nuestra aplicación usando composer para generar el proyecto, a fin de realización de tests.
