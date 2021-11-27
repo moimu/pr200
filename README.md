@@ -66,6 +66,12 @@ LETS_ENCRYPT_DIRECTORIO=pr200.newflow.tech
 `LETS_ENCRYPT_DIRECTORIO` subdirectorio donde almacenará los certificados:
 /etc/letsencrypt/live/${LETS_ENCRYPT_DIRECTORIO}/*
 
+## Errores en desarrollo
+Uncaught Error: Class "Moi\Zonas\Api" not found
+
+Ejecutar composer dump-autolad dentro del contenedor php, donde está instalado composer 
+
+
 ## Imágenes de docker usadas
 
 Nos hemos basado en las imágenes oficiales de cada uno de los servicios. Usamos además las distribuciones `alpine`.

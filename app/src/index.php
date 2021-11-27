@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>pr200</title>
     <meta name="description" content="Control Zonas">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,10 +15,8 @@
     <?php
         require '../vendor/autoload.php';
         use Moi\Zonas\Zona;
-
-        $new = new Zona("cd",4,5,6);
-        echo $new;
-
+        // $new = new Zona("cd",4,5,6);
+        // echo $new;
         $server = "mysql-pr200"; 
         $user = "root"; 
         $password = "rpass"; 
@@ -35,6 +33,8 @@
             echo "<br>";
             echo "$idregistro, $fh, $cantluz<br>";
         }
+        $db -> close();
+
     ?>
     <header>
 
