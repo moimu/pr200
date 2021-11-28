@@ -1,9 +1,10 @@
 <?php
 
-require '../../vendor/autoload.php';
-use Moi\Zonas\Api;
-use Moi\Zonas\mysqli;
+    require '../../vendor/autoload.php';
+    use Moi\Zonas\Api;
+    header('Content-Type: application/json');
 
-$api = new Api();
-header('Content-Type: application/json');
-// echo $api -> bd();
+    $api = new Api();
+    $db = $api -> db();
+    $ar = $api -> consultas( $db );
+    echo $api -> json( $ar );
