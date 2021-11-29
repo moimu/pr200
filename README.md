@@ -30,16 +30,41 @@ Docker generará:
 
 # Configuración local
 
-> Deshabilitar o comentar la redirección puerto 443
-- "443:443"
+>  Comentar la redirección puerto 443
+- #"443:443"
 
 > apache/Dockerfile cambiar la conf por local.apache.conf
-
 COPY ./local.apache.conf /usr/local/apache2/conf/
 
     # Escribir en fichero httpd.conf inclusión del fichero copiado
 RUN echo "Include /usr/local/apache2/conf/local.apache.conf" \
     >> /usr/local/apache2/conf/httpd.conf
+
+# Configuración server
+
+>  Descomentar la redirección puerto 443
+- "443:443"
+
+> apache/Dockerfile cambiar la conf por fichero conf servidor y comentar codigo para letsencrypt
+COPY ./pr200.newflow.tech.apache.conf /usr/local/apache2/conf/
+
+RUN echo "Include /usr/local/apache2/conf/pr200.newflow.tech.apache.conf" \
+    >> /usr/local/apache2/conf/httpd.conf
+
+#RUN apk add --no-cache certbot certbot-apache bash
+
+#COPY ./verificar-letsencrypt.sh /usr/local/bin/verificar-letsencrypt.sh
+
+#RUN chmod +x /usr/local/bin/verificar-letsencrypt.sh
+
+#CMD /bin/bash /usr/local/bin/verificar-letsencrypt.sh
+
+## Errores en desarrollo
+
+Uncaught Error: Class "Moi\Zonas\Api" not found
+
+Ejecutar composer dump-autolad dentro del contenedor php, donde está instalado composer 
+
 
 # Estructura de directorios/ficheros
 
@@ -66,10 +91,6 @@ LETS_ENCRYPT_DIRECTORIO=pr200.newflow.tech
 `LETS_ENCRYPT_DIRECTORIO` subdirectorio donde almacenará los certificados:
 /etc/letsencrypt/live/${LETS_ENCRYPT_DIRECTORIO}/*
 
-## Errores en desarrollo
-Uncaught Error: Class "Moi\Zonas\Api" not found
-
-Ejecutar composer dump-autolad dentro del contenedor php, donde está instalado composer 
 
 
 ## Imágenes de docker usadas
