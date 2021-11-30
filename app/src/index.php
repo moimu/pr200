@@ -18,23 +18,24 @@
         use Moi\Zonas\Zona;
         // $new = new Zona("cd",4,5,6);
         // echo $new;
-        $server = "mysql-pr200"; 
-        $user = "root"; 
-        $password = "rpass"; 
-        $database = "zonas"; 
-        $db = new mysqli($server,$user, $password,$database); 
-        if($db->connect_error){ 
-            die("La conexión con la bd ha fallado, error: " . $db->connect_errno . ": ". $db->connect_error); 
-        } 
 
-        $sentencia = $db->prepare(" SELECT * FROM `Z400` ");     
-        $sentencia -> execute();
-        $sentencia -> bind_result($idregistro, $fh, $cantluz);
-        while( $sentencia->fetch() ){
-            echo "<br>";
-            echo "$idregistro, $fh, $cantluz<br>";
-        }
-        $db -> close();
+        // $server = "mysql-pr200"; 
+        // $user = "root"; 
+        // $password = "rpass"; 
+        // $database = "zonas"; 
+        // $db = new mysqli($server,$user, $password,$database); 
+        // if($db->connect_error){ 
+        //     die("La conexión con la bd ha fallado, error: " . $db->connect_errno . ": ". $db->connect_error); 
+        // } 
+
+        // $sentencia = $db->prepare(" SELECT * FROM `Z400` ");     
+        // $sentencia -> execute();
+        // $sentencia -> bind_result($idregistro, $fh, $cantluz);
+        // while( $sentencia->fetch() ){
+        //     echo "<br>";
+        //     echo "$idregistro, $fh, $cantluz<br>";
+        // }
+        // $db -> close();
 
     ?>
     <header>

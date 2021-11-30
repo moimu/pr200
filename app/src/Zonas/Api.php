@@ -78,7 +78,8 @@ class Api {
 
         $db->close();
 
-        return $ar;
+        $array = ["mediciones" => $ar]; 
+        return $array;
     }
     /**
      * Recibe array con datos de las consultas

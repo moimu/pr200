@@ -1,0 +1,26 @@
+{
+    "mediciones":[
+        {
+            "nombreZona": "Z200",
+            "nombreArea": null,
+            "fecha": "2021-11-25 15:30",
+            "magnitud": "luminosidad",
+            "valor": "90"
+        },
+        {
+            "nombreZona": "Z200",
+            "nombreArea": "A201",
+            "fecha": "2021-11-25 15:30",
+            "magnitud": "pulsaciones",
+            "valor": "8"
+        },
+        {
+            "nombreZona": "Z200",
+            "nombreArea": "A202",
+            "fecha": "2021-11-25 15:30",
+            "magnitud": "pulsaciones",
+            "valor": "20"
+        }
+    ]
+}
+

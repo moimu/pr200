@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @coversDefaultClass Moi\Zonas\Api
  */
-class VehiculoTest extends TestCase{
+class ApiTest extends TestCase{
 
     /**
      * @covers ::__construct
