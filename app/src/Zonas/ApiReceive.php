@@ -37,6 +37,7 @@ class ApiReceive {
         $sentencia -> execute();
         echo ( $sentencia -> affected_rows > 0 )?" Entrada RFID registrada ":" Error insercion RFID ";
         $sentencia -> close();
+        $db->close();
     }
     /**
      * Recibe base datos y la variable del Post recibido
@@ -53,13 +54,6 @@ class ApiReceive {
         $sentencia -> execute();
         echo ( $sentencia -> affected_rows > 0 )?" Iluminacion registrada ":" Error insercion iluminacion " ;
         $sentencia -> close();
-
-    }
-    /**
-     * Cierre la base datos 
-     * @return void
-     */
-    public function dbclose(){
         $db->close();
     }
 

@@ -1,7 +1,7 @@
 <?php
 
     require '../../vendor/autoload.php';
-    use Moi\Zonas\Api;
+    use Moi\Zonas\ApiReceive;
 
     echo " Api Receive <br> ";
 
@@ -17,11 +17,9 @@
     }
 
     /**
-     * El registro de iluminacion se almacenada en servidor
+     * El registro de iluminación se almacenada en servidor
      * El servicio devolverá si ha sido insertada con éxito
      */
     if( isset( $_POST['iluminacion'] ) ){
         $apireceive -> iluminacion( $db, $_POST['iluminacion'] );  
     }
-
-    $apireceive -> dbclose();
