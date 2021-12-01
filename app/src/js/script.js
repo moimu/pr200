@@ -9,7 +9,7 @@ const section5 = document.querySelector('section5');
 let jsonObjeto;
 
 //url solicitud y tipo - inicio solicitud y respuesta esperada
-const requestURL = "http://52.204.244.109";
+const requestURL = "https://newflow.tech/pr-200-jsonPruebas/z100-1.json";
 const request = new XMLHttpRequest();
 request.open('GET', requestURL );
 request.responseType = 'json';
@@ -21,3 +21,15 @@ request.onload = function(){
     console.log(jsonObjetoRivas);
     // function(obj);
 }
+
+
+// https://newflow.tech/pr-200-jsonPruebas/z100-1.json
+// https://newflow.tech/pr-200-jsonPruebas/z100-2.json
+// https://newflow.tech/pr-200-jsonPruebas/z200-1.json
+// https://newflow.tech/pr-200-jsonPruebas/z200-2.json
+// https://newflow.tech/pr-200-jsonPruebas/z300-1.json
+// https://newflow.tech/pr-200-jsonPruebas/z300-2.json
+// https://newflow.tech/pr-200-jsonPruebas/z400-1.json
+// https://newflow.tech/pr-200-jsonPruebas/z400-2.json
+// https://newflow.tech/pr-200-jsonPruebas/z500-1.json
+// https://newflow.tech/pr-200-jsonPruebas/z500-2.json
