@@ -1,32 +1,36 @@
-{
+<?php
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+
+echo '{
     "mediciones":[
         {
-            "nombreZona": "Z400",
+            "nombreZona": "Z300",
             "nombreArea": null,
             "fecha": "2021-11-25 15:30",
             "magnitud": "temperatura",
-            "valor": "18"
+            "valor": "12"
         },
         {
-            "nombreZona": "Z400",
+            "nombreZona": "Z300",
             "nombreArea": null,
             "fecha": "2021-11-25 15:30",
             "magnitud": "humedad",
-            "valor": "34"
+            "valor": "25"
         },
         {
-            "nombreZona": "Z400",
-            "nombreArea": "A401",
-            "fecha": "2021-11-25 15:30",
-            "magnitud": "pulsaciones",
-            "valor": "7"
-        },
-        {
-            "nombreZona": "Z400",
-            "nombreArea": "A402",
+            "nombreZona": "Z300",
+            "nombreArea": "A301",
             "fecha": "2021-11-25 15:30",
             "magnitud": "pulsaciones",
             "valor": "2"
+        },
+        {
+            "nombreZona": "Z300",
+            "nombreArea": "A301",
+            "fecha": "2021-11-25 15:30",
+            "magnitud": "pulsaciones",
+            "valor": "14"
         }
     ]
-}
+} ';

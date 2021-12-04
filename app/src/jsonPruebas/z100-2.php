@@ -1,4 +1,7 @@
-{
+<?php
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+echo '{
     "mediciones":[
         {
             "nombreZona": "Z100",
@@ -22,4 +25,4 @@
             "valor": "1"
         }
     ]
-}
+}';
