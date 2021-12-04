@@ -38,17 +38,31 @@
         // $db -> close();
 
     ?>
-    <header>
+    <template id="zona">
+        <section class ="section" id="section1">
+            <h1>  </h1> 
+        </section>
+    </template>
+    <template id="zonaSensor">
+        <fecha> </fecha>
+        <magnitud> </mangitud>
+        <valor> </valor>
+    </template>
+    <template id="areaSensor">
+        <h3>  </h3> 
+        <fecha> </fecha>
+        <magnitud> </mangitud>
+        <valor> </valor>
+    </template>
 
-    </header>
+    <header></header>
 
     <main class="main">
 
-        <section class ="section" id="section1">aaaaaaa</section>
-        <section class ="section" id="section2">bbbbbbb</section>
+        <!-- <section class ="section" id="section2">bbbbbbb</section>
         <section class ="section" id="section3">ccccc</section>
         <section class ="section" id="section4">ddddddd</section>
-        <section class ="section" id="section5">eeeeeee</section>
+        <section class ="section" id="section5">eeeeeee</section> -->
 
     </main>
 

@@ -8,34 +8,57 @@ const section5 = document.querySelector('section5');
 /**
  * Crea array con resultado de varias solicitudes
  * @param {array} solicitudes 
+ * @return {object} con objetos respuesta de la solicitud
  */
-function mostrar( solicitudes ){
+function agrupar( solicitudes ){
     let objects = [];
+
     solicitudes.forEach( (element, index) => {
         promise = fetch(`${element}`);
         promise
-            .then(response=>{
+            .then(response => {
                 return response.json();
             })
-            .then( data =>{
+            .then( data => {
                 objects.push( data );
                 // console.log( data );
             })
-    });
 
-    console.log( objects );
-
+    })
+    return objects;
+    // console.log( objects );
 }
+
+// respu[0].mediciones[0]
+
 let ar1 = ["https://newflow.tech/pr-200-jsonPruebas/z100-1.php","https://newflow.tech/pr-200-jsonPruebas/z100-2.php"];
-mostrar (ar1);
-let ar2 = ["https://newflow.tech/pr-200-jsonPruebas/z200-1.php","https://newflow.tech/pr-200-jsonPruebas/z200-2.php"];
-mostrar (ar2);
-let ar3 = ["https://newflow.tech/pr-200-jsonPruebas/z300-1.php","https://newflow.tech/pr-200-jsonPruebas/z300-2.php"];
-mostrar (ar3);
-let ar4 = ["https://newflow.tech/pr-200-jsonPruebas/z400-1.php","https://newflow.tech/pr-200-jsonPruebas/z400-2.php"];
-mostrar (ar4);
-let ar5 = ["https://newflow.tech/pr-200-jsonPruebas/z500-1.php","https://newflow.tech/pr-200-jsonPruebas/z500-2.php"];
-mostrar (ar5);
+const respu = agrupar( ar1 );
+
+// setInterval(hola, 3000);
+function imprimeObjetos(){
+    objeto.forEach( element,index => {
+        element[index].mediciones.forEach( objmedicion => {
+            console.log( objmedicion.nombreZona );
+            console.log( objmedicion.nombreArea );
+            console.log( objmedicion.fecha );
+            console.log( objmedicion.magnitud );
+            console.log( objmedicion.valor );
+        });
+        //     array.mediciones.forEach( objetomedicion =>{
+        //         console.log( objetomedicion );
+        //     });
+        });
+}
+
+
+// let ar2 = ["https://newflow.tech/pr-200-jsonPruebas/z200-1.php","https://newflow.tech/pr-200-jsonPruebas/z200-2.php"];
+// mostrar (ar2);
+// let ar3 = ["https://newflow.tech/pr-200-jsonPruebas/z300-1.php","https://newflow.tech/pr-200-jsonPruebas/z300-2.php"];
+// mostrar (ar3);
+// let ar4 = ["https://newflow.tech/pr-200-jsonPruebas/z400-1.php","https://newflow.tech/pr-200-jsonPruebas/z400-2.php"];
+// mostrar (ar4);
+// let ar5 = ["https://newflow.tech/pr-200-jsonPruebas/z500-1.php","https://newflow.tech/pr-200-jsonPruebas/z500-2.php"];
+// mostrar (ar5);
 
 
 
