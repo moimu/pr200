@@ -17,7 +17,7 @@ const templateareaSensor = document.querySelector('#templateareaSensor');
  * @param {object} seccion seccion extraida del DOM
  * @return void
  */
-function pintasolicitud1( solicitud, seccion ){
+function pintasolicitud1( solicitud, solicitud2, seccion ){
     promise = fetch(`${solicitud}`);
     promise
         .then( response => {
@@ -36,13 +36,17 @@ function pintasolicitud1( solicitud, seccion ){
                 if( medicion.nombreArea == null ){
                     this[clon+solicitud+index] = templatezonaSensor.content.cloneNode(true);
 
+                    this[clon+solicitud+index].querySelector('#divz').className = medicion.magnitud;
+
                     this[clon+solicitud+index].querySelector('#fechaz').innerHTML = medicion.fecha;
                     this[clon+solicitud+index].querySelector('#magnitudz').innerHTML = medicion.magnitud;
                     this[clon+solicitud+index].querySelector('#valorz').innerHTML = medicion.valor;
-                    seccion.appendChild( this[clon+solicitud+index] );
+                    seccion.firstElementChild.appendChild( this[clon+solicitud+index] );
                 }
                 else{
                     this[clon+solicitud+index] = templateareaSensor.content.cloneNode(true);
+
+                    this[clon+solicitud+index].querySelector('#diva').className = medicion.magnitud;
 
                     this[clon+solicitud+index].querySelector('#areaa').innerHTML = medicion.nombreArea;
                     this[clon+solicitud+index].querySelector('#fechaa').innerHTML = medicion.fecha;
@@ -50,7 +54,11 @@ function pintasolicitud1( solicitud, seccion ){
                     this[clon+solicitud+index].querySelector('#valora').innerHTML = medicion.valor;
                     seccion.appendChild( this[clon+solicitud+index] );
                 }
-            });
+            })
+            // .catch( function(error) {
+            //     console.log(' 1 Hubo un problema con la petición Fetch:' + error.message);
+            // });
+            pintasolicitud2(solicitud2 , seccion);
         })
 }/**
  * Trata la 2nd solicitud con fetch y añade valores a la seccion editada,
@@ -74,6 +82,8 @@ function pintasolicitud2( solicitud, seccion ){
                 if( medicion.nombreArea == null ){
                     this[clon+index] = templatezonaSensor.content.cloneNode(true);
 
+                    this[clon+index].querySelector('#divz').className = medicion.magnitud;
+
                     this[clon+index].querySelector('#fechaz').innerHTML = medicion.fecha;
                     this[clon+index].querySelector('#magnitudz').innerHTML = medicion.magnitud;
                     this[clon+index].querySelector('#valorz').innerHTML = medicion.valor;
@@ -81,6 +91,8 @@ function pintasolicitud2( solicitud, seccion ){
                 }
                 else{
                     this[clon+index] = templateareaSensor.content.cloneNode(true);
+
+                    this[clon+index].querySelector('#diva').className = medicion.magnitud;
 
                     this[clon+index].querySelector('#areaa').innerHTML = medicion.nombreArea;
                     this[clon+index].querySelector('#fechaa').innerHTML = medicion.fecha;
@@ -90,28 +102,29 @@ function pintasolicitud2( solicitud, seccion ){
                 }
             });
         })
+        // .catch( function(error) {
+        //     console.log(' 2 Hubo un problema con la petición Fetch:' + error.message);
+        // });
 }
+// function handleError(){
+//     console.log("PROMISE NO CUMPLIDA");
+// }
 let solicitud1 = "https://newflow.tech/pr-200-jsonPruebas/z100-1.php";
-pintasolicitud1( solicitud1, section1 );
 let solicitud2 = "https://newflow.tech/pr-200-jsonPruebas/z100-2.php";
-pintasolicitud2( solicitud2, section1 );
+pintasolicitud1( solicitud1, solicitud2, section1 );
 
 let solicitud3 = "https://newflow.tech/pr-200-jsonPruebas/z200-1.php";
-pintasolicitud1( solicitud3, section2 );
 let solicitud4 = "https://newflow.tech/pr-200-jsonPruebas/z200-2.php";
-pintasolicitud2( solicitud4, section2 );
+pintasolicitud1( solicitud3, solicitud4, section2 );
 
 let solicitud5 = "https://newflow.tech/pr-200-jsonPruebas/z300-1.php";
-pintasolicitud1( solicitud5, section3 );
 let solicitud6 = "https://newflow.tech/pr-200-jsonPruebas/z300-2.php";
-pintasolicitud2( solicitud6, section3 );
+pintasolicitud1( solicitud5, solicitud6, section3 );
 
 let solicitud7 = "https://newflow.tech/pr-200-jsonPruebas/z400-1.php";
-pintasolicitud1( solicitud7, section4 );
 let solicitud8 = "https://newflow.tech/pr-200-jsonPruebas/z400-2.php";
-pintasolicitud2( solicitud8, section4 );
+pintasolicitud1( solicitud7, solicitud8, section4 );
 
 let solicitud9 = "https://newflow.tech/pr-200-jsonPruebas/z500-1.php";
-pintasolicitud1( solicitud9, section5 );
 let solicitud10 = "https://newflow.tech/pr-200-jsonPruebas/z500-2.php";
-pintasolicitud2( solicitud10, section5 );
+pintasolicitud1( solicitud9, solicitud10, section5 );

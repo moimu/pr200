@@ -39,10 +39,12 @@
 
     ?>
     <template id="templatezona">
-        <h1 id="h1">  </h1> 
+        <section>
+            <h1 id="h1"> </h1> 
+        </section>
     </template>
     <template id="templatezonaSensor">
-        <div>
+        <div id="divz">
             <fecha id="fechaz"> </fecha>
             <magnitud id="magnitudz"> </magnitud>
             <valor id="valorz"> </valor>
@@ -50,15 +52,22 @@
     </template>
     <template id="templateareaSensor">
         <h3 id="areaa">  </h3> 
-        <div>
+        <div id="diva">
             <fecha id="fechaa"> </fecha>
             <magnitud id="magnituda"> </magnitud>
             <valor id="valora"> </valor>
         </div>
     </template>
 
-    <header></header>
-
+    <header class="header">
+        <h1> Control de Zonas </h1>
+        <nav class="headernav">
+            <ul>
+                <li> <a href="index.php">Datos equipo</a> </li>
+                <li> <a href="left-sidebar.html">Datos prueba</a> </li>
+            </ul>
+        </nav>
+    </header>
     <main class="main">
         <section class ="section" id="section1"></section>
         <section class ="section" id="section2"></section>
@@ -66,9 +75,15 @@
         <section class ="section" id="section4"></section>
         <section class ="section" id="section5"></section>
     </main>
-
     <footer>
-
+        <section class="mercadosMateriasPrimas">
+            <a href="#" class="imgfoot"> <img src="" alt="" /> </a>
+            <a href="#" class="imgfoot"> <img src="" alt="" /> </a>
+        </section>
+        <h4>API</h4>
+        <a href="#">Documentación</a>
+        <h4>Redes sociales</h4>
+        <a href="#">Instagram</a>
     </footer>
 
     <!-- <script src="./js/script1.js" language="javascript" type="text/javascript"></script> -->

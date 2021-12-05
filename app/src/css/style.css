@@ -28,6 +28,18 @@
 .body{
     padding: 30px;
 }
+.header {
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.headernav ul{
+    display: flex;
+}
+.headernav ul li{
+    padding: 10px;
+}
 .main{
     display:flex;
     flex-wrap: wrap;
@@ -38,16 +50,58 @@
     border:1px solid black;
     border-radius: 0.5rem;
     box-sizing: border-box;
-    height: 250px;
-    width: 400px;
     padding: 35px;
 }
-#section1{
-
+.luminosidad{
+    background-color: #e0e07f;
+    padding:2px;
+}
+.temperatura{
+    background-color:#ecc782;
+    padding:2px;
+}
+.humedad{
+    background-color: #77e2e2;
+    padding:2px;
+}
+.pulsaciones{
+    background-color: #73d173;
+    padding:2px;
+}
+.entradas{
+    background-color: pink;
+    padding:2px;
+}
+#divz{
+    min-width: 260px;
+    display: flex;
+    justify-content: space-between;
+}
+#diva{
+    min-width: 260px;
+    display: flex;
+    justify-content: space-between;
+}
+#h1{
+    font-size: xx-large;
+    padding: 0px 0px 6px 0px;
+}
+#areaa{
+    font-size: larger;
+    text-align: center;
+    padding: 6px 0px;
 }
 
 /* Layout */
 @media (max-width:1140px){
 }
-@media (max-width:520px){
+@media (max-width:350px){
+    #divz{
+        min-width: 180px;
+        flex-direction: column;
+    }
+    #diva{
+        min-width: 180px;
+        flex-direction: column;
+    }
 }

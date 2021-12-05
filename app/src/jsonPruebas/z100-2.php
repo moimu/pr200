@@ -21,7 +21,7 @@ echo '{
             "nombreZona": "Z100",
             "nombreArea": "B101",
             "fecha": "2021-11-25 15:30",
-            "magnitud": "entrada",
+            "magnitud": "entradas",
             "valor": "1"
         }
     ]

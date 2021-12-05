@@ -22,14 +22,14 @@ echo'{
             "nombreZona": "Z500",
             "nombreArea": "B501",
             "fecha": "2021-11-25 15:30",
-            "magnitud": "entrada",
+            "magnitud": "entradas",
             "valor": "6"
         },
         {
             "nombreZona": "Z500",
             "nombreArea": "B502",
             "fecha": "2021-11-25 15:30",
-            "magnitud": "entrada",
+            "magnitud": "entradas",
             "valor": "9"
         }
     ]
