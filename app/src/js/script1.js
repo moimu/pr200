@@ -25,31 +25,41 @@ function agrupar( solicitudes ){
             })
 
     })
+    // while(objects.length != 2){};
+    
+    // imprimeObjetos ( objects );
     return objects;
     // console.log( objects );
 }
 
+
 // respu[0].mediciones[0]
 
 let ar1 = ["https://newflow.tech/pr-200-jsonPruebas/z100-1.php","https://newflow.tech/pr-200-jsonPruebas/z100-2.php"];
-const respu = agrupar( ar1 );
+let objects = agrupar( ar1 );
+    console.log( objects );
+    imprimeObjetos(objects);
+    
+// setTimeout(function(objects ){
+//     imprimeObjetos ( objects );
+// },2000);
 
 // setInterval(hola, 3000);
-function imprimeObjetos(){
-    objeto.forEach( element,index => {
-        element[index].mediciones.forEach( objmedicion => {
+function imprimeObjetos( objeto ){
+    console.log("hola");
+
+    objeto.forEach( (element,index) => {
+            console.log("pera");
+
+        element.mediciones.forEach( objmedicion => {
             console.log( objmedicion.nombreZona );
             console.log( objmedicion.nombreArea );
             console.log( objmedicion.fecha );
             console.log( objmedicion.magnitud );
             console.log( objmedicion.valor );
         });
-        //     array.mediciones.forEach( objetomedicion =>{
-        //         console.log( objetomedicion );
-        //     });
-        });
+    });
 }
-
 
 // let ar2 = ["https://newflow.tech/pr-200-jsonPruebas/z200-1.php","https://newflow.tech/pr-200-jsonPruebas/z200-2.php"];
 // mostrar (ar2);

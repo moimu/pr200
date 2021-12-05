@@ -38,39 +38,41 @@
         // $db -> close();
 
     ?>
-    <template id="zona">
-        <section class ="section" id="section1">
-            <h1>  </h1> 
-        </section>
+    <template id="templatezona">
+        <h1 id="h1">  </h1> 
     </template>
-    <template id="zonaSensor">
-        <fecha> </fecha>
-        <magnitud> </mangitud>
-        <valor> </valor>
+    <template id="templatezonaSensor">
+        <div>
+            <fecha id="fechaz"> </fecha>
+            <magnitud id="magnitudz"> </magnitud>
+            <valor id="valorz"> </valor>
+        </div>
     </template>
-    <template id="areaSensor">
-        <h3>  </h3> 
-        <fecha> </fecha>
-        <magnitud> </mangitud>
-        <valor> </valor>
+    <template id="templateareaSensor">
+        <h3 id="areaa">  </h3> 
+        <div>
+            <fecha id="fechaa"> </fecha>
+            <magnitud id="magnituda"> </magnitud>
+            <valor id="valora"> </valor>
+        </div>
     </template>
 
     <header></header>
 
     <main class="main">
-
-        <!-- <section class ="section" id="section2">bbbbbbb</section>
-        <section class ="section" id="section3">ccccc</section>
-        <section class ="section" id="section4">ddddddd</section>
-        <section class ="section" id="section5">eeeeeee</section> -->
-
+        <section class ="section" id="section1"></section>
+        <section class ="section" id="section2"></section>
+        <section class ="section" id="section3"></section>
+        <section class ="section" id="section4"></section>
+        <section class ="section" id="section5"></section>
     </main>
 
     <footer>
 
     </footer>
 
-    <script src="./js/script.js" language="javascript" type="text/javascript"></script>
-    
+    <!-- <script src="./js/script1.js" language="javascript" type="text/javascript"></script> -->
+    <script src="./js/script2.js" language="javascript" type="text/javascript"></script>
+
 </body>
 </html>

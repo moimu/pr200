@@ -27,10 +27,18 @@ echo '{
         },
         {
             "nombreZona": "Z300",
-            "nombreArea": "A301",
+            "nombreArea": "A302",
             "fecha": "2021-11-25 15:30",
             "magnitud": "pulsaciones",
             "valor": "14"
+        },
+        {
+            "nombreZona": "Z300",
+            "nombreArea": "A303",
+            "fecha": "2021-11-25 15:30",
+            "magnitud": "pulsaciones",
+            "valor": "81"
         }
+
     ]
 } ';
