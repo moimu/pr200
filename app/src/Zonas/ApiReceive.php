@@ -13,7 +13,7 @@ class ApiReceive {
     /**
      * @param object $db 
      */
-    public function db(){
+    private function db(){
         $server = "mysql-pr200"; 
         $user = "root"; 
         $password = "rpass"; 

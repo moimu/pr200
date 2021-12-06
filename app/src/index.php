@@ -90,9 +90,7 @@
             <a href="#" class="imgfoot"> <img src="" alt="" /> </a>
             <a href="#" class="imgfoot"> <img src="" alt="" /> </a>
         </section>
-        <h4>API</h4>
-        <a href="#">Documentación</a>
-        <h4>Redes</h4>
+        <a href="api/docs/docapi.html">API</a>
         <a href="#">Instagram</a>
     </footer>
 
