@@ -39,7 +39,7 @@
 
     ?>
     <template id="templatezona">
-        <section>
+        <section class="sectionDatos">
             <h1 id="h1"> </h1> 
         </section>
     </template>
@@ -60,29 +60,39 @@
     </template>
 
     <header class="header">
-        <h1> Control de Zonas </h1>
+        <h1> Zonas de Almacenamiento </h1>
         <nav class="headernav">
             <ul>
-                <li> <a href="index.php">Datos equipo</a> </li>
-                <li> <a href="left-sidebar.html">Datos prueba</a> </li>
+                <li> <a href="index.php">Datos equipo ></a> </li>
+                <li> <a href="left-sidebar.html">Datos prueba ></a> </li>
             </ul>
         </nav>
     </header>
     <main class="main">
-        <section class ="section" id="section1"></section>
-        <section class ="section" id="section2"></section>
-        <section class ="section" id="section3"></section>
-        <section class ="section" id="section4"></section>
-        <section class ="section" id="section5"></section>
+        <section class ="section" id="section1">
+            <!-- <img src="images/almendras290x85.png" alt="" class="img"/> -->
+        </section>
+        <section class ="section" id="section2">
+            <!-- <img src="images/cacahuetes290x85.png" alt="" class="img"/> -->
+        </section>
+        <section class ="section" id="section3">
+            <!-- <img src="images/habas290x85.png" alt="" class="img"/> -->
+        </section>
+        <section class ="section" id="section4">
+            <!-- <img src="images/nueces290x85.png" alt="" class="img"/> -->
+        </section>
+        <section class ="section" id="section5">
+            <!-- <img src="images/pistachos290x85.png" alt="" class="img"/> -->
+        </section>
     </main>
-    <footer>
+    <footer class="footer">
         <section class="mercadosMateriasPrimas">
             <a href="#" class="imgfoot"> <img src="" alt="" /> </a>
             <a href="#" class="imgfoot"> <img src="" alt="" /> </a>
         </section>
         <h4>API</h4>
         <a href="#">Documentación</a>
-        <h4>Redes sociales</h4>
+        <h4>Redes</h4>
         <a href="#">Instagram</a>
     </footer>
 

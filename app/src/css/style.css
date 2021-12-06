@@ -10,7 +10,14 @@
     --Grayish-Blue: #A3A5AE;
     --Very-Light-Gray: #FAFAFA;
     --black: #0000;
-    --white:#FFFF;
+    --white:#FFFFFF;
+    /* Basicos */
+    --grey-sombra:#999999;
+    --blanco-roto: #F5F5F7;
+    --blanco-grey:#FBFBFD;
+    --negro-grey:#32283B;
+    --negro-texto:#1D1D1F;
+    --azul-link:#2997FF;
 }
 *{
     margin: 0;
@@ -27,18 +34,39 @@
 }
 .body{
     padding: 30px;
+    background-color: var(--blanco-grey);
+    color: var(--negro-texto);
 }
 .header {
-    height: 10vh;
+    height: 15vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+.header h1{
+    font-weight: 500;
+    font-size: xx-large;
+}
+.headernav{
+    margin: 15px 0px;
+}
 .headernav ul{
     display: flex;
+    font-size: larger;
+
 }
 .headernav ul li{
-    padding: 10px;
+    padding: 8px;
+    /* border: 1px solid black;
+    border-radius: 0.3em; */
+    margin-left: 20px; 
+}
+.headernav ul li a{
+    color: var(--azul-link);
+    font-size: 21px;
+}
+a:hover, a:focus {
+    text-decoration-line: underline;
 }
 .main{
     display:flex;
@@ -47,10 +75,18 @@
     gap: 20px 20px;
 }
 .section{
-    border:1px solid black;
+    border:1px solid var(--negro-grey);
     border-radius: 0.5rem;
     box-sizing: border-box;
     padding: 35px;
+    background-color: var(--white);
+    box-shadow: 2px 2px 5px var(--grey-sombra);
+
+}
+.img{
+    width: 280px;
+    height: 80px;
+    border-radius: 0.3em;
 }
 .luminosidad{
     background-color: #e0e07f;
@@ -91,11 +127,31 @@
     text-align: center;
     padding: 6px 0px;
 }
+.footer{
+    display: flex;
+    height: 50px;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+}
 
 /* Layout */
 @media (max-width:1140px){
+    
 }
-@media (max-width:350px){
+
+@media (max-width:660px){
+    header h1{
+        font-size: x-large;
+    }
+}
+@media (max-width:660px){
+    .headernav ul li a {
+        font-size: 17px;
+    }
+}
+
+@media (max-width:370px){
     #divz{
         min-width: 180px;
         flex-direction: column;
@@ -103,5 +159,12 @@
     #diva{
         min-width: 180px;
         flex-direction: column;
+    }
+    
+    .headernav ul li a {
+        font-size: 15px;
+    }
+    .headernav ul li {
+        padding: 2px;
     }
 }
