@@ -2,13 +2,12 @@
 declare(strict_types=1);
 
 namespace Moi\Zonas;
-use mysqli;
 
-class Api {
+class Api extends Bd{
 
     /** Constructor para la clase Api */
     public function __construct(){
-
+        parent::__construct();
     }
     /**
      * Conexion a la base de datos y la retorna como objeto 
@@ -16,32 +15,32 @@ class Api {
      * string del último error de una sentencia connect_error
      * @return object database
      */
-    public function db(){
-        $server = "mysql-pr200"; 
-        $user = "root"; 
-        $password = "rpass"; 
-        $database = "zonas"; 
-        $db = new mysqli($server,$user, $password,$database); 
-        if($db->connect_error){ 
-            // throw new ErrorException('conexión bd falló');
-            die("conexión bd ha fallado, error: ".$db->connect_errno . ": ". $db->connect_error); 
-        }
-        return $db;
-    }
+    // public function db(){
+    //     $server = "mysql-pr200"; 
+    //     $user = "root"; 
+    //     $password = "rpass"; 
+    //     $database = "zonas"; 
+    //     $db = new mysqli($server,$user, $password,$database); 
+    //     if($db->connect_error){ 
+    //         // throw new ErrorException('conexión bd falló');
+    //         die("conexión bd ha fallado, error: ".$db->connect_errno . ": ". $db->connect_error); 
+    //     }
+    //     return $db;
+    // }
     /**
      * Conexión a bd, consultas y creacción de json
      * 
      * @param object $db
      * @return array $array que contendrá tres arrays con datos de consultas
      */
-    public function consultas( $db ){
+    public function consultas( ){
         $ar = [];
         $dia = date("Y-m-d H:i:s"); 
-        $sentencia1 = $db->prepare(" SELECT `fh`,`cantluz` FROM `Z400` ORDER BY `idregistro` DESC LIMIT 1"); 
+        $sentencia1 = $this -> db ->prepare(" SELECT `fh`,`cantluz` FROM `Z400` ORDER BY `idregistro` DESC LIMIT 1"); 
         $sentencia1 -> execute(); 
         $sentencia1 -> bind_result( $fhZ400, $cantluzZ400 );
         // int $mysqli_stmt->num_rows;6666666666666666666666
-        while( $sentencia1->fetch() ){  
+        while( $sentencia1 -> fetch() ){  
             // echo "Zona Z400 - hora: $fhZ400, cantluz: $cantluzZ400 <br><br>";
             // defino array con datos de consulta, y guardo en $ar[]
             $ar[] = array( "nombreZona"=>"Z400",
@@ -51,10 +50,10 @@ class Api {
             "valor"=>"$cantluzZ400" );
         }
         $sentencia1 -> close();
-        $sentencia2 = $db->prepare(" SELECT count(`entrada`) FROM `B401` "); 
+        $sentencia2 = $this -> db->prepare(" SELECT count(`entrada`) FROM `B401` "); 
         $sentencia2 -> execute(); 
         $sentencia2 -> bind_result( $entradaB401 );
-        while( $sentencia2->fetch() ){  
+        while( $sentencia2 -> fetch() ){  
             // echo "Area B401 -  Total entradas: $entradaB401 <br><br>"; 
             $ar[] = array( "nombreZona"=>"Z400",
             "nombreArea"=>"B401",
@@ -63,10 +62,10 @@ class Api {
             "valor"=>"$entradaB401" ); 
         }
         $sentencia2 -> close();
-        $sentencia3 = $db->prepare(" SELECT count(`entrada`) FROM `B402` "); 
+        $sentencia3 = $this -> db->prepare(" SELECT count(`entrada`) FROM `B402` "); 
         $sentencia3 -> execute(); 
         $sentencia3 -> bind_result(  $entradaB402 );
-        while( $sentencia3->fetch() ){  
+        while( $sentencia3 -> fetch() ){  
             // echo "Area B402 - Total entradas: $entradaB402 <br><br>";
             $ar[] = array( "nombreZona"=>"Z400",
             "nombreArea"=>"B402",
@@ -76,7 +75,7 @@ class Api {
         }
         $sentencia3 -> close();
 
-        $db->close();
+        $this -> db -> close();
 
         $array = ["mediciones" => $ar]; 
         return $array;

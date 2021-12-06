@@ -7,6 +7,5 @@
     // header('Access-Control-Allow-Origin');
 
     $api = new Api();
-    $db = $api -> db();
-    $ar = $api -> consultas( $db );
+    $ar = $api -> consultas( );
     echo $api -> json( $ar );

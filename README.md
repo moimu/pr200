@@ -59,10 +59,11 @@ RUN echo "Include /usr/local/apache2/conf/pr200.newflow.tech.apache.conf" \
 
 ## Errores en desarrollo
 
-Uncaught Error: Class "Moi\Zonas\Api" not found
+- Uncaught Error: Class "Moi\Zonas\Api" not found
 
 Ejecutar composer dump-autolad dentro del contenedor php, donde está instalado composer 
 
+- net::ERR_ABORTED 404 (Not Found)
 
 # Estructura de directorios/ficheros
 

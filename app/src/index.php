@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="body">
     <?php
@@ -64,7 +64,7 @@
         <nav class="headernav">
             <ul>
                 <li> <a href="index.php">Datos equipo ></a> </li>
-                <li> <a href="left-sidebar.html">Datos prueba ></a> </li>
+                <li> <a href="#">Datos prueba ></a> </li>
             </ul>
         </nav>
     </header>
@@ -95,7 +95,11 @@
     </footer>
 
     <!-- <script src="./js/script1.js" language="javascript" type="text/javascript"></script> -->
-    <script src="./js/script2.js" language="javascript" type="text/javascript"></script>
-
+    <script src="js/script2.js" language="javascript" type="text/javascript"></script>
+    
+<!-- ~/proyectos/pr200/app/src/js/script2.js -->
+<!-- /home/moi/proyectos/pr200/app/src/js/script2.js -->
+<!-- /proyectos_cuatrohoras/pr200/app/src -->
+<!-- /home/ubuntu/proyectos_cuatrohoras/pr200/app/src -->
 </body>
 </html>
