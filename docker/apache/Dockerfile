@@ -21,3 +21,19 @@ COPY ./verificar-letsencrypt.sh /usr/local/bin/verificar-letsencrypt.sh
 RUN chmod +x /usr/local/bin/verificar-letsencrypt.sh
 
 CMD /bin/bash /usr/local/bin/verificar-letsencrypt.sh
+
+#Primero se crea el container de mysql asi que a esta altura,
+#podemos crear los user autorizados a bd en dicho container
+
+RUN docker exec -ti mysql-pr200 sh
+RUN mysql -u root -p
+RUN rpass
+RUN CREATE USER `moidb` IDENTIFIED BY 'moidbpass';
+RUN GRANT ALL ON zonas.* TO 'moidb'@'%';
+RUN FLUSH PRIVILEGES;
+
+RUN CREATE USER `jca` IDENTIFIED BY 'jca';
+RUN GRANT ALL ON zonas.* TO 'jca'@'%';
+RUN FLUSH PRIVILEGES;
+
+RUN exit
