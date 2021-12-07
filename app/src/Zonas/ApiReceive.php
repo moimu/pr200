@@ -8,25 +8,18 @@ class ApiReceive extends Bd{
 
     /** 
      * Constructor para la clase ApiReceive
+     * encargada de recibir datos recopilados por el prototipo
+     * @return object
      */
     public function __construct(){
         parent::__construct();
     }
-    // public function db(){
-    //     $server = "mysql-pr200"; 
-    //     $user = "root"; 
-    //     $password = "rpass"; 
-    //     $database = "zonas"; 
-    //     $db = new mysqli($server,$user, $password,$database); 
-    //     if($db->connect_error){ 
-    //     die("conexión bd ha fallado, error: ".$db->connect_errno . ": ". $db->connect_error); 
-    //     }
-    //     return $db;
-    // }
     /**
-     * Recibe base datos y la variable del Post recibido
+     * Uso de base datos y la variable del Post recibido
      * inserta un registro en entrada por RFID
+     * @param $valorPost
      * @param object $db 
+     * @return void (imprime en cliente prototipo, si inserción dato es correcta)
      */
     public function entradas( $valorPost ){
 
@@ -39,9 +32,11 @@ class ApiReceive extends Bd{
         $this -> db -> close();
     }
     /**
-     * Recibe base datos y la variable del Post recibido
+     * Uso de base datos y la variable del Post recibido
      * inserta un registro con dato Luminosidad del área
+     * @param $valorPost
      * @param object $db 
+     * @return void (imprime en cliente prototipo, si inserción dato es correcta)
      */
     public function iluminacion( $valorPost ){
 

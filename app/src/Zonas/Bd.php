@@ -4,6 +4,13 @@ declare(strict_types=1);
 namespace Moi\Zonas;
 use mysqli;
 
+/**
+ * Instancia objeto base de datos, y es contenido protected object $db
+ * para uso de clases hijas.
+ * código de error sentencia más reciente connect_errno
+ * string del último error de una sentencia connect_error
+ * @return object $db
+ */
 class Bd {
 
     private string $server;
@@ -23,7 +30,7 @@ class Bd {
         die("conexión bd ha fallado, error: ".$db->connect_errno . ": ". $db->connect_error); 
         }
         $this -> db = $db;
-        // return $db;
+        return $this -> db;
     }
 
 }

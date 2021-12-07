@@ -5,35 +5,21 @@ namespace Moi\Zonas;
 
 class Api extends Bd{
 
-    /** Constructor para la clase Api */
+    /**
+     * Constructor para la clase Api servidora de datos
+     * @return object 
+     */
     public function __construct(){
         parent::__construct();
     }
     /**
-     * Conexion a la base de datos y la retorna como objeto 
-     * código de error sentencia más reciente connect_errno
-     * string del último error de una sentencia connect_error
-     * @return object database
-     */
-    // public function db(){
-    //     $server = "mysql-pr200"; 
-    //     $user = "root"; 
-    //     $password = "rpass"; 
-    //     $database = "zonas"; 
-    //     $db = new mysqli($server,$user, $password,$database); 
-    //     if($db->connect_error){ 
-    //         // throw new ErrorException('conexión bd falló');
-    //         die("conexión bd ha fallado, error: ".$db->connect_errno . ": ". $db->connect_error); 
-    //     }
-    //     return $db;
-    // }
-    /**
-     * Conexión a bd, consultas y creacción de json
+     * Uso de base datos, consultas y construcción de array 
+     * con datos de las consultas
      * 
-     * @param object $db
-     * @return array $array que contendrá tres arrays con datos de consultas
+     * @param object $this -> db (parent)
+     * @return array $array contenedor de 3 arrays (datos de consultas)
      */
-    public function consultas( ){
+    public function consultas(){
         $ar = [];
         $dia = date("Y-m-d H:i:s"); 
         $sentencia1 = $this -> db ->prepare(" SELECT `fh`,`cantluz` FROM `Z400` ORDER BY `idregistro` DESC LIMIT 1"); 
@@ -76,7 +62,6 @@ class Api extends Bd{
         $sentencia3 -> close();
 
         $this -> db -> close();
-
         $array = ["mediciones" => $ar]; 
         return $array;
     }
@@ -89,5 +74,4 @@ class Api extends Bd{
     public function json( $array ){
         return json_encode( $array );
     }
-
 }

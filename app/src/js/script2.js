@@ -25,8 +25,6 @@ function pintasolicitud1( solicitud, solicitud2, seccion ){
         })
         .then( data => {
             let clon ="clon";
-            console.log( data );
-            console.log( data.mediciones[0].nombreZona );
             this[solicitud] = templatezona.content.cloneNode(true);
             this[solicitud].querySelector('#h1').innerHTML = data.mediciones[0].nombreZona;
             seccion.appendChild( this[solicitud] );

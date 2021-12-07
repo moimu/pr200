@@ -11,5 +11,15 @@ use PHPUnit\Framework\TestCase;
  */
 class ApiReceiveTest extends TestCase{
 
+    /**
+     * @covers ::__construct
+     */
+    public function testDevuelveTrueSiClassApiReceiveRetornaObj(){
+        //given when
+        $sut = new ApiReceive();
+        //then
+        $this -> assertIsObject($sut, "Class Api no retona Objeto");
+
+    }
 
 }
