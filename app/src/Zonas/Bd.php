@@ -22,8 +22,8 @@ class Bd {
     public function __construct(){
 
         $this -> server = "mysql-pr200"; 
-        $this -> user = "root"; 
-        $this -> password = "rpass"; 
+        $this -> user = "moidb"; 
+        $this -> password = "moidbpass"; 
         $this -> database = "zonas"; 
         $db = new mysqli($this->server,$this->user, $this->password,$this->database); 
         if($db->connect_error){ 
@@ -34,3 +34,4 @@ class Bd {
     }
 
 }
+
