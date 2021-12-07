@@ -102,7 +102,7 @@ void loop(){
     tiempoActual = millis();
     Serial.println( analogRead(A0) );
     postVariable = "iluminacion=";
-    float magnitudValor = map(analogRead(A0),valorMinSensor,valorMaxSensor,100,0);
+    float magnitudValor = map(analogRead(A0),valorMinSensor,valorMaxSensor,100.00,0.00);
     postData = postVariable + magnitudValor;
     ingresarEnBd = 1;     
     }

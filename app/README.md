@@ -35,3 +35,20 @@ EJEMPLO:
         .
     ]
 }
+
+
+Configuración users base de datos en Servidor de producción.
+
+$ docker exec -ti mysql-pr200 sh
+$ mysql -u root -p
+$ rpass
+$ CREATE USER `moidb` IDENTIFIED BY 'moidbpass';
+$ GRANT ALL ON zonas.* TO 'moidb'@'%';
+$ FLUSH PRIVILEGES;
+$ CREATE USER `jca` IDENTIFIED BY 'jca';
+$ GRANT ALL ON zonas.* TO 'jca'@'%';
+$ FLUSH PRIVILEGES;
+$ exit
+
+- Establecer el usuario gestor de la base de datos para la aplicación.
+path  -  pr200/app/src/Zonas/Bd.php
