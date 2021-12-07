@@ -53,11 +53,12 @@ function pintasolicitud1( solicitud, solicitud2, seccion ){
                     seccion.appendChild( this[clon+solicitud+index] );
                 }
             })
-            // .catch( function(error) {
-            //     console.log(' 1 Hubo un problema con la petición Fetch:' + error.message);
-            // });
+            
             pintasolicitud2(solicitud2 , seccion);
         })
+        .catch( function(error) {
+                console.log(' 1 Hubo un problema con la petición Fetch:' + error.message);
+            });
 }/**
  * Trata la 2nd solicitud con fetch y añade valores a la seccion editada,
  * con la funcion pintasolicitud1()

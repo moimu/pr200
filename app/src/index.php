@@ -99,7 +99,7 @@
     
 <!-- ~/proyectos/pr200/app/src/js/script2.js -->
 <!-- /home/moi/proyectos/pr200/app/src/js/script2.js -->
-<!-- /proyectos_cuatrohoras/pr200/app/src -->
-<!-- /home/ubuntu/proyectos_cuatrohoras/pr200/app/src -->
+<!-- ~/proyectos_cuatrohoras/pr200/app/src/js/script2.js -->
+<!-- /home/ubuntu/proyectos_cuatrohoras/pr200/app/src/js/script2.js -->
 </body>
 </html>
