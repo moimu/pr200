@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 namespace Moi\Zonas;
-// use mysqli;
 
 class ApiReceive extends Bd{
 
@@ -25,11 +24,16 @@ class ApiReceive extends Bd{
 
         echo "Recibida entrada RFID : ".$valorPost;
 
-        $sentencia = $this -> db -> prepare(" INSERT INTO `B401` VALUES () "); 
+        $sentencia = $this -> db -> prepare(" INSERT INTO `mediciones`(`idzona`,`idarea`,`idmagnitud`) VALUES (?,?,?) "); 
+        $sentencia -> bind_param('sss', $param1, $param2, $param3);
+        $param1 = "4"; 
+        $param2 = "14";
+        $param3 = "2";
         $sentencia -> execute();
         echo ( $sentencia -> affected_rows > 0 )?" Entrada RFID registrada ":" Error insercion RFID ";
         $sentencia -> close();
         $this -> db -> close();
+       
     }
     /**
      * Uso de base datos y la variable del Post recibido
@@ -42,9 +46,12 @@ class ApiReceive extends Bd{
 
         echo "Recibido dato Luminosidad : ".$valorPost;
 
-        $sentencia = $this -> db -> prepare(" INSERT INTO `Z400`(`cantluz`)  VALUES (?) ");
-        $sentencia -> bind_param('i', $param1);
+        $sentencia = $this -> db -> prepare(" INSERT INTO `mediciones`(`valor`,`idzona`,`idarea`,`idmagnitud`) VALUES (?,?,?,?) ");
+        $sentencia -> bind_param('isss', $param1, $param2, $param3, $param4);
         $param1 = $valorPost; 
+        $param2 = "4";
+        $param3 = "1";
+        $param4 = "3";
         $sentencia -> execute();
         echo ( $sentencia -> affected_rows > 0 )?" Iluminacion registrada ":" Error insercion iluminacion " ;
         $sentencia -> close();
@@ -52,3 +59,4 @@ class ApiReceive extends Bd{
     }
 
 }
+

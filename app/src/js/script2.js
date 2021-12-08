@@ -56,7 +56,7 @@ function pintasolicitud1( solicitud, solicitud2, seccion ){
             
             pintasolicitud2(solicitud2 , seccion);
         })
-        .catch( function(error) {
+        .catch( function ( error ) {
                 console.log(' 1 Hubo un problema con la petición Fetch:' + error.message);
             });
 }/**
@@ -101,13 +101,14 @@ function pintasolicitud2( solicitud, seccion ){
                 }
             });
         })
-        // .catch( function(error) {
-        //     console.log(' 2 Hubo un problema con la petición Fetch:' + error.message);
-        // });
+        .catch( function ( error ) {
+            console.log(' 2 Hubo un problema con la petición Fetch:' + error.message);
+        });
 }
-// function handleError(){
-//     console.log("PROMISE NO CUMPLIDA");
-// }
+
+
+const promiseUrlBase = fetch(`${solicitud}`);
+
 let solicitud1 = "https://newflow.tech/pr-200-jsonPruebas/z100-1.php";
 let solicitud2 = "https://newflow.tech/pr-200-jsonPruebas/z100-2.php";
 pintasolicitud1( solicitud1, solicitud2, section1 );

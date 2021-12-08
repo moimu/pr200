@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pr200</title>
+    <title>pr200|JSasinc</title>
     <meta name="description" content="Control Zonas">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,32 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="body">
-    <?php
     
-        require '../vendor/autoload.php';
-        use Moi\Zonas\Zona;
-        // $new = new Zona("cd",4,5,6);
-        // echo $new;
-
-        // $server = "mysql-pr200"; 
-        // $user = "root"; 
-        // $password = "rpass"; 
-        // $database = "zonas"; 
-        // $db = new mysqli($server,$user, $password,$database); 
-        // if($db->connect_error){ 
-        //     die("La conexión con la bd ha fallado, error: " . $db->connect_errno . ": ". $db->connect_error); 
-        // } 
-
-        // $sentencia = $db->prepare(" SELECT * FROM `Z400` ");     
-        // $sentencia -> execute();
-        // $sentencia -> bind_result($idregistro, $fh, $cantluz);
-        // while( $sentencia->fetch() ){
-        //     echo "<br>";
-        //     echo "$idregistro, $fh, $cantluz<br>";
-        // }
-        // $db -> close();
-
-    ?>
     <template id="templatezona">
         <section class="sectionDatos">
             <h1 id="h1"> </h1> 
@@ -97,9 +72,5 @@
     <!-- <script src="./js/script1.js" language="javascript" type="text/javascript"></script> -->
     <script src="js/script2.js" language="javascript" type="text/javascript"></script>
     
-<!-- ~/proyectos/pr200/app/src/js/script2.js -->
-<!-- /home/moi/proyectos/pr200/app/src/js/script2.js -->
-<!-- ~/proyectos_cuatrohoras/pr200/app/src/js/script2.js -->
-<!-- /home/ubuntu/proyectos_cuatrohoras/pr200/app/src/js/script2.js -->
 </body>
 </html>
