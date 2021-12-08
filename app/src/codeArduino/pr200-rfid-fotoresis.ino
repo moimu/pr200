@@ -83,7 +83,7 @@ if ( WiFi.status() == WL_NO_MODULE ) {
 void loop(){
 
   if( ingresarEnBd == 1 ){
-    client.println("POST /api/clientdatos.php HTTP/1.1"); 
+    client.println("POST /api/apiReceive.php HTTP/1.1"); 
     client.println("Host: pr200.newflow.tech");
     client.println("Content-Type: application/x-www-form-urlencoded");
     client.print("Content-Length: ");

@@ -41,7 +41,7 @@ CREATE TABLE `mediciones`(
 CREATE TABLE `servicios`(
     `idservicio` SMALLINT UNSIGNED AUTO_INCREMENT,
     `url` VARCHAR(1000),
-    PRIMARY KEY (idservicio),
+    PRIMARY KEY (idservicio)
 );
 
 INSERT INTO `zonas`(`nombre`)

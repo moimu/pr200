@@ -24,14 +24,14 @@ class Urls extends Bd{
         $sentencia -> bind_param('i', $param1);
         $param1 = 11; 
         $sentencia -> execute();
-        $sentencia1 -> bind_result( $url );
-        while( $sentencia1 -> fetch() ){  
+        $sentencia -> bind_result( $url );
+        while( $sentencia -> fetch() ){  
             $arUrls[] = $url;
         }
         $sentencia -> close();
         $this -> db -> close();
-        return  $arUrls; 
-       
+
+        return  json_encode($arUrls); 
     }
     /**
      * Uso de base datos y consulta de urls Apis de Colaboradores
@@ -44,14 +44,14 @@ class Urls extends Bd{
         $param1 = 10; 
         $param2 = 21; 
         $sentencia -> execute();
-        $sentencia1 -> bind_result( $url );
-        while( $sentencia1 -> fetch() ){  
+        $sentencia -> bind_result( $url );
+        while( $sentencia -> fetch() ){  
             $arUrls[] = $url;
         }
         $sentencia -> close();
         $this -> db -> close();
-        return  $arUrls; 
        
+        return  json_encode($arUrls); 
     }
 
 }

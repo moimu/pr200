@@ -13,48 +13,48 @@ const templateareaSensor = document.querySelector('#templateareaSensor');
  * Trata la 1era solicitud con fetch crea encabezado con nombreZona,
  * añade sensores de zona, además de areas de la zona y sensores.
  * 
- * @param {string} solicitud url servidor para solicitud
+ * @param {array} solicitudes urls servidor para solicitud
  * @param {object} seccion seccion extraida del DOM
  * @return void
  */
-function pintasolicitud1( solicitud, solicitud2, seccion ){
-    promise = fetch(`${solicitud}`);
+function pintasolicitud1( solicitudes, seccion ){
+    promise = fetch(`${solicitudes[0]}`);
     promise
         .then( response => {
             return response.json();
         })
         .then( data => {
             let clon ="clon";
-            this[solicitud] = templatezona.content.cloneNode(true);
-            this[solicitud].querySelector('#h1').innerHTML = data.mediciones[0].nombreZona;
-            seccion.appendChild( this[solicitud] );
+            this[solicitudes[0]] = templatezona.content.cloneNode(true);
+            this[solicitudes[0]].querySelector('#h1').innerHTML = data.mediciones[0].nombreZona;
+            seccion.appendChild( this[solicitudes[0]] );
 
             data.mediciones.forEach( (medicion,index) => {
                 // console.log(medicion);
                 if( medicion.nombreArea == null ){
-                    this[clon+solicitud+index] = templatezonaSensor.content.cloneNode(true);
+                    this[clon+solicitudes[0]+index] = templatezonaSensor.content.cloneNode(true);
 
-                    this[clon+solicitud+index].querySelector('#divz').className = medicion.magnitud;
+                    this[clon+solicitudes[0]+index].querySelector('#divz').className = medicion.magnitud;
 
-                    this[clon+solicitud+index].querySelector('#fechaz').innerHTML = medicion.fecha;
-                    this[clon+solicitud+index].querySelector('#magnitudz').innerHTML = medicion.magnitud;
-                    this[clon+solicitud+index].querySelector('#valorz').innerHTML = medicion.valor;
-                    seccion.firstElementChild.appendChild( this[clon+solicitud+index] );
+                    this[clon+solicitudes[0]+index].querySelector('#fechaz').innerHTML = medicion.fecha;
+                    this[clon+solicitudes[0]+index].querySelector('#magnitudz').innerHTML = medicion.magnitud;
+                    this[clon+solicitudes[0]+index].querySelector('#valorz').innerHTML = medicion.valor;
+                    seccion.firstElementChild.appendChild( this[clon+solicitudes[0]+index] );
                 }
                 else{
-                    this[clon+solicitud+index] = templateareaSensor.content.cloneNode(true);
+                    this[clon+solicitudes[0]+index] = templateareaSensor.content.cloneNode(true);
 
-                    this[clon+solicitud+index].querySelector('#diva').className = medicion.magnitud;
+                    this[clon+solicitudes[0]+index].querySelector('#diva').className = medicion.magnitud;
 
-                    this[clon+solicitud+index].querySelector('#areaa').innerHTML = medicion.nombreArea;
-                    this[clon+solicitud+index].querySelector('#fechaa').innerHTML = medicion.fecha;
-                    this[clon+solicitud+index].querySelector('#magnituda').innerHTML = medicion.magnitud;
-                    this[clon+solicitud+index].querySelector('#valora').innerHTML = medicion.valor;
-                    seccion.appendChild( this[clon+solicitud+index] );
+                    this[clon+solicitudes[0]+index].querySelector('#areaa').innerHTML = medicion.nombreArea;
+                    this[clon+solicitudes[0]+index].querySelector('#fechaa').innerHTML = medicion.fecha;
+                    this[clon+solicitudes[0]+index].querySelector('#magnituda').innerHTML = medicion.magnitud;
+                    this[clon+solicitudes[0]+index].querySelector('#valora').innerHTML = medicion.valor;
+                    seccion.appendChild( this[clon+solicitudes[0]+index] );
                 }
             })
             
-            pintasolicitud2(solicitud2 , seccion);
+            pintasolicitud2( solicitudes[1] , seccion);
         })
         .catch( function ( error ) {
                 console.log(' 1 Hubo un problema con la petición Fetch:' + error.message);
@@ -106,25 +106,34 @@ function pintasolicitud2( solicitud, seccion ){
         });
 }
 
+let sol = "https://newflow.tech/pr-200-jsonPruebas/allurl.php"
+promiseUrlBase = fetch(`${sol}`);
+promiseUrlBase
+    .then( response => {
+        return response.json();
+    })
+    .then( data => {
+        // console.log(data);
+        let cont = 0;
+        const section = "section";
+        let contSection = 1;
+        let solicitudes = [];
 
-const promiseUrlBase = fetch(`${solicitud}`);
+        data.forEach( url =>{
+            // console.log(url);
+            if( cont == 2 ){
+                console.log(solicitudes);
+                pintasolicitud1( solicitudes, this[section+contSection] );
+                contSection++;
+                cont = 0;
+                solicitudes.length = 0;
+            }
+            solicitudes.push(url);
+            cont++;
+        });
+        pintasolicitud1( solicitudes, this[section+contSection] );
 
-let solicitud1 = "https://newflow.tech/pr-200-jsonPruebas/z100-1.php";
-let solicitud2 = "https://newflow.tech/pr-200-jsonPruebas/z100-2.php";
-pintasolicitud1( solicitud1, solicitud2, section1 );
-
-let solicitud3 = "https://newflow.tech/pr-200-jsonPruebas/z200-1.php";
-let solicitud4 = "https://newflow.tech/pr-200-jsonPruebas/z200-2.php";
-pintasolicitud1( solicitud3, solicitud4, section2 );
-
-let solicitud5 = "https://newflow.tech/pr-200-jsonPruebas/z300-1.php";
-let solicitud6 = "https://newflow.tech/pr-200-jsonPruebas/z300-2.php";
-pintasolicitud1( solicitud5, solicitud6, section3 );
-
-let solicitud7 = "https://newflow.tech/pr-200-jsonPruebas/z400-1.php";
-let solicitud8 = "https://newflow.tech/pr-200-jsonPruebas/z400-2.php";
-pintasolicitud1( solicitud7, solicitud8, section4 );
-
-let solicitud9 = "https://newflow.tech/pr-200-jsonPruebas/z500-1.php";
-let solicitud10 = "https://newflow.tech/pr-200-jsonPruebas/z500-2.php";
-pintasolicitud1( solicitud9, solicitud10, section5 );
+    })
+    .catch( function ( error ) {
+        console.log(' Problema con la petición Fetch total urls:' + error.message);
+    });
