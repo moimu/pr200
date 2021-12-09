@@ -57,6 +57,25 @@ RUN echo "Include /usr/local/apache2/conf/pr200.newflow.tech.apache.conf" \
 
 #CMD /bin/bash /usr/local/bin/verificar-letsencrypt.sh
 
+# Configuración users base de datos en Servidor de producción.
+
+$ docker exec -ti mysql-pr200 sh
+$ mysql -u root -p
+$ rpass
+$ CREATE USER `moidb` IDENTIFIED BY 'moidbpass';
+$ GRANT ALL ON zonas.* TO 'moidb'@'%';
+$ FLUSH PRIVILEGES;
+$ CREATE USER `jca` IDENTIFIED BY 'jca';
+$ GRANT ALL ON zonas.* TO 'jca'@'%';
+$ FLUSH PRIVILEGES;
+$ exit
+
+Importante: 
+
+- Establecer el usuario gestor de la base de datos para la aplicación.
+
+path  -  pr200/app/src/Zonas/Bd.php
+
 ## Errores en desarrollo
 
 - Uncaught Error: Class "Moi\Zonas\Api" not found
@@ -64,6 +83,12 @@ RUN echo "Include /usr/local/apache2/conf/pr200.newflow.tech.apache.conf" \
 Ejecutar composer dump-autolad dentro del contenedor php, donde está instalado composer 
 
 - net::ERR_ABORTED 404 (Not Found)
+
+Problema no fichero no encontrado, se solucionó
+estableciendo como DocumentRoot en configuración del
+servidor apachea al directorio src/
+
+DocumentRoot /var/www/html/src
 
 # Estructura de directorios/ficheros
 

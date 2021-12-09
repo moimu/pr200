@@ -86,7 +86,7 @@ VALUES ('4','15','2'),('4','15','2'),('4','15','2'),
 ('4','15','2'),('4','15','2'),('4','15','2'),
 ('4','15','2'),('4','15','2');
 
--- url para APIs usadas
+-- url para APIs usadas  pruebas respaldo + colaborativas
 INSERT INTO `servicios`(`url`)
 VALUES ('https://newflow.tech/pr-200-jsonPruebas/z100-1.php'),
 ('https://newflow.tech/pr-200-jsonPruebas/z100-2.php'),
@@ -94,7 +94,17 @@ VALUES ('https://newflow.tech/pr-200-jsonPruebas/z100-1.php'),
 ('https://newflow.tech/pr-200-jsonPruebas/z200-2.php'),
 ('https://newflow.tech/pr-200-jsonPruebas/z300-1.php'),
 ('https://newflow.tech/pr-200-jsonPruebas/z300-2.php'),
-('https://newflow.tech/pr-200-jsonPruebas/z400-1.php'),
+('https://newflow.tech/pr-200-jsonPruebas/z400-1.php'), 
 ('https://newflow.tech/pr-200-jsonPruebas/z400-2.php'),
 ('https://newflow.tech/pr-200-jsonPruebas/z500-1.php'),
-('https://newflow.tech/pr-200-jsonPruebas/z500-2.php');
+('https://newflow.tech/pr-200-jsonPruebas/z500-2.php')
+('http://arduino.proyectos-andres.tech/zonas/pr200/'),
+('http://samuel080.me'),
+('http://pr200.rafadaw.software/app/mediciones/'),
+('https://pr200.jose-velazquez-daw.rocks/api.php'),
+('manu.......'),
+('ballesteros.......'),
+('pablo.........'),
+('https://pr200.newflow.tech/api/api.php'),
+('http://ismaeldaw080.me/apiIsmael.php'),
+('ocete.......');

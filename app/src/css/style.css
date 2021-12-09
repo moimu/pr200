@@ -28,6 +28,7 @@
 	vertical-align: baseline; 
     /* font-weight: 600; */
     list-style:none;
+    line-height: 1.5;
     outline: none;
     text-decoration: none; 
     font-family: 'Roboto', -apple-system, Ubuntu, sans-serif;
@@ -38,7 +39,7 @@
     color: var(--negro-texto);
 }
 .header {
-    height: 15vh;
+    height: 20vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,7 +75,7 @@ a:hover, a:focus {
     justify-content: center;
     gap: 20px 20px;
 }
-.section{
+.article{
     border:1px solid var(--negro-grey);
     border-radius: 0.5rem;
     box-sizing: border-box;
@@ -103,6 +104,11 @@ a:hover, a:focus {
 .pulsaciones{
     background-color: #73d173;
     padding:2px;
+}
+.smsError{
+    border : 1px solid red;
+    padding: 1px;
+    text-align: center;
 }
 .entradas{
     background-color: pink;

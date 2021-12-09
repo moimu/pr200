@@ -1,84 +1,64 @@
-// // obtengo la secciones para imprimir en ellas
-// const section1 = document.querySelector('section1');
-// const section2 = document.querySelector('section2');
-// const section3 = document.querySelector('section3');
-// const section4 = document.querySelector('section4');
-// const section5 = document.querySelector('section5');
+// obtengo la articlos para imprimir en ellos
+const article1 = document.querySelector('#article1');
+const article2 = document.querySelector('#article2');
+const article3 = document.querySelector('#article3');
+const article4 = document.querySelector('#article4');
+const article5 = document.querySelector('#article5');
 
-// /**
-//  * Crea array con resultado de varias solicitudes
-//  * @param {array} solicitudes 
-//  * @return {object} con objetos respuesta de la solicitud
-//  */
-// function agrupar( solicitudes ){
-//     let objects = [];
+const templatezonaSensor = document.querySelector('#templatezonaSensor');
+const templateareaSensor = document.querySelector('#templateareaSensor');
 
-//     solicitudes.forEach( (element, index) => {
-//         promise = fetch(`${element}`);
-//         promise
-//             .then(response => {
-//                 return response.json();
-//             })
-//             .then( data => {
-//                 objects.push( data );
-//                 // console.log( data );
-//             })
+/**
+ * Trata la 2 solicitudes con fetch crea encabezado con nombreZona,
+ * añade sensores de zona, además de areas de la zona y sensores.
+ * 
+ * @param {array} solicitudes urls servidor para solicitudes
+ * @param {object} article articulo extraida del DOM
+ * @return void
+ */
+function pintasolicitudes( solicitudes, article ){
 
-//     })
-//     // while(objects.length != 2){};
-    
-//     // imprimeObjetos ( objects );
-//     return objects;
-//     // console.log( objects );
-// }
+    for( let i = 0; i < 2; i++ ){
+        promise = fetch(`${solicitudes[i]}`);
+        promise
+        .then( response => {
+            return response.json();
+        })
+        .then( data => {
+            let clon ="clon";
 
+            data.mediciones.forEach( (medicion,index) => {
+                // console.log(medicion);
+                if( medicion.nombreArea == null ){
+                    this[clon+solicitudes[0]+index] = templatezonaSensor.content.cloneNode(true);
 
-// // respu[0].mediciones[0]
+                    this[clon+solicitudes[0]+index].querySelector('#divz').className = medicion.magnitud;
 
-// let ar1 = ["https://newflow.tech/pr-200-jsonPruebas/z100-1.php","https://newflow.tech/pr-200-jsonPruebas/z100-2.php"];
-// let objects = agrupar( ar1 );
-//     console.log( objects );
-//     imprimeObjetos(objects);
-    
-// // setTimeout(function(objects ){
-// //     imprimeObjetos ( objects );
-// // },2000);
+                    this[clon+solicitudes[0]+index].querySelector('#fechaz').innerHTML = medicion.fecha;
+                    this[clon+solicitudes[0]+index].querySelector('#magnitudz').innerHTML = medicion.magnitud;
+                    this[clon+solicitudes[0]+index].querySelector('#valorz').innerHTML = medicion.valor;
+                    article.firstElementChild.appendChild( this[clon+solicitudes[0]+index] );
+                }
+                else{
+                    this[clon+solicitudes[0]+index] = templateareaSensor.content.cloneNode(true);
 
-// // setInterval(hola, 3000);
-// function imprimeObjetos( objeto ){
-//     console.log("hola");
+                    this[clon+solicitudes[0]+index].querySelector('#diva').className = medicion.magnitud;
 
-//     objeto.forEach( (element,index) => {
-//             console.log("pera");
-
-//         element.mediciones.forEach( objmedicion => {
-//             console.log( objmedicion.nombreZona );
-//             console.log( objmedicion.nombreArea );
-//             console.log( objmedicion.fecha );
-//             console.log( objmedicion.magnitud );
-//             console.log( objmedicion.valor );
-//         });
-//     });
-// }
-
-// // let ar2 = ["https://newflow.tech/pr-200-jsonPruebas/z200-1.php","https://newflow.tech/pr-200-jsonPruebas/z200-2.php"];
-// // mostrar (ar2);
-// // let ar3 = ["https://newflow.tech/pr-200-jsonPruebas/z300-1.php","https://newflow.tech/pr-200-jsonPruebas/z300-2.php"];
-// // mostrar (ar3);
-// // let ar4 = ["https://newflow.tech/pr-200-jsonPruebas/z400-1.php","https://newflow.tech/pr-200-jsonPruebas/z400-2.php"];
-// // mostrar (ar4);
-// // let ar5 = ["https://newflow.tech/pr-200-jsonPruebas/z500-1.php","https://newflow.tech/pr-200-jsonPruebas/z500-2.php"];
-// // mostrar (ar5);
-
-
-
-
-// // baseEndpoint = "https://newflow.tech/pr-200-jsonPruebas/z100-2.php";
-// // promise1 = fetch(`${baseEndpoint}`);
-// // promise1
-// //     .then( response =>{
-// //         return response.json();
-// //     })
-// //     .then( data =>{
-// //         console.log( data );
-// //     })
+                    this[clon+solicitudes[0]+index].querySelector('#areaa').innerHTML = medicion.nombreArea;
+                    this[clon+solicitudes[0]+index].querySelector('#fechaa').innerHTML = medicion.fecha;
+                    this[clon+solicitudes[0]+index].querySelector('#magnituda').innerHTML = medicion.magnitud;
+                    this[clon+solicitudes[0]+index].querySelector('#valora').innerHTML = medicion.valor;
+                    article.appendChild( this[clon+solicitudes[0]+index] );
+                }
+            })
+        })
+        .catch( function ( error ) {
+            const pError = document.createElement("p");
+            const smsError = document.createTextNode("Solicitud datos inaccesible.");
+            pError.appendChild(smsError);
+            pError.className = "smsError";
+            article.firstElementChild.appendChild( pError );
+            console.log(' Problema con la petición Fetch:' + error.message);
+        });
+    }
+}
