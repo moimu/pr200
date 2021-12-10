@@ -1,0 +1,3 @@
+[ZoneTransfer]
+ZoneId=3
+HostUrl=https://s3.us-west-2.amazonaws.com/temporary.notion-static.com/Export-c9c97342-d883-43e5-ac99-d320c8819b8c/pr200_Manual_Usuario.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20211210%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20211210T194418Z&X-Amz-Expires=604800&X-Amz-Signature=0a412e3fd0c29a8391cfb0f5fa916b0244a0bea24a09af6f9b2d399d20ea7a3c&X-Amz-SignedHeaders=host&x-id=GetObject

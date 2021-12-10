@@ -1,0 +1,28 @@
+@startuml Zonas
+
+class Bd{
+    - string server
+    - string user
+    - string password
+    - string database
+    # object db
+}
+class Api{
+    + consultas()
+    + json()
+}
+class ApiReceive{
+    + entradas( float $valorPost )
+    + iluminacion( float $valorPost )
+}
+class Urls{
+    + urlsPrueba()
+    + urlsColaboraciones()
+}
+
+Api *-- Bd
+ApiReceive *-- Bd
+Urls *-- Bd
+
+
+@endunml

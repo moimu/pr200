@@ -1,5 +1,8 @@
 
-
+/**
+ * llamada a la funcion pintasolicitudes
+ * con urls con datos de prueba
+ */
 pintasolicitudes ( ["https://newflow.tech/pr-200-jsonPruebas/z100-1.php","https://newflow.tech/pr-200-jsonPruebas/z100-2.php"] , article1 );
 pintasolicitudes ( ["https://newflow.tech/pr-200-jsonPruebas/z200-1.php","https://newflow.tech/pr-200-jsonPruebas/z200-2.php"] , article2 );
 pintasolicitudes ( ["https://newflow.tech/pr-200-jsonPruebas/z300-1.php","https://newflow.tech/pr-200-jsonPruebas/z300-2.php"] , article3 );

@@ -97,7 +97,7 @@ VALUES ('https://newflow.tech/pr-200-jsonPruebas/z100-1.php'),
 ('https://newflow.tech/pr-200-jsonPruebas/z400-1.php'), 
 ('https://newflow.tech/pr-200-jsonPruebas/z400-2.php'),
 ('https://newflow.tech/pr-200-jsonPruebas/z500-1.php'),
-('https://newflow.tech/pr-200-jsonPruebas/z500-2.php')
+('https://newflow.tech/pr-200-jsonPruebas/z500-2.php'),
 ('http://arduino.proyectos-andres.tech/zonas/pr200/'),
 ('http://samuel080.me'),
 ('http://pr200.rafadaw.software/app/mediciones/'),

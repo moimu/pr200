@@ -39,10 +39,10 @@ class Urls extends Bd{
      */
     public function urlsColaboraciones( ){
 
-        $sentencia = $this -> db -> prepare(" SELECT `url` FROM `servicios` WHERE `idservicio` > ? AND `idservicio` < ? "); 
-        $sentencia -> bind_param('i', $param1);
+        $sentencia = $this -> db -> prepare(" SELECT `url` FROM `servicios` WHERE `idservicio` >= ? AND `idservicio` <= ? "); 
+        $sentencia -> bind_param('ii', $param1, $param2);
         $param1 = 10; 
-        $param2 = 21; 
+        $param2 = 20; 
         $sentencia -> execute();
         $sentencia -> bind_result( $url );
         while( $sentencia -> fetch() ){  

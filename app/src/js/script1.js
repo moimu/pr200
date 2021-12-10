@@ -1,16 +1,24 @@
-// obtengo la articlos para imprimir en ellos
+// 
+/**
+ * obtengo la articlos para imprimir en ellos datos recabados
+ */
 const article1 = document.querySelector('#article1');
 const article2 = document.querySelector('#article2');
 const article3 = document.querySelector('#article3');
 const article4 = document.querySelector('#article4');
 const article5 = document.querySelector('#article5');
-
+/**
+ * obtención de los templates del documento
+ */
 const templatezonaSensor = document.querySelector('#templatezonaSensor');
 const templateareaSensor = document.querySelector('#templateareaSensor');
 
 /**
- * Trata la 2 solicitudes con fetch crea encabezado con nombreZona,
- * añade sensores de zona, además de areas de la zona y sensores.
+ * Trata dos solicitudes con fetch,
+ * añade valores a los templates de los sensores de zona
+ * y las areas contenidas.
+ * Trata las peticiones no resueltas imprimiendo en documento
+ * mensaje.
  * 
  * @param {array} solicitudes urls servidor para solicitudes
  * @param {object} article articulo extraida del DOM
