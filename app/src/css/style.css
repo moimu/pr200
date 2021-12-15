@@ -37,6 +37,8 @@
     padding: 30px;
     background-color: var(--blanco-grey);
     color: var(--negro-texto);
+    height: 100vh;
+    box-sizing: border-box;
 }
 .header {
     height: 20vh;
@@ -82,7 +84,7 @@ a:hover, a:focus {
     padding: 35px;
     background-color: var(--white);
     box-shadow: 2px 2px 5px var(--grey-sombra);
-
+    min-width: 340px;
 }
 .img{
     width: 280px;
@@ -90,6 +92,10 @@ a:hover, a:focus {
     border-radius: 0.3em;
 }
 .iluminacion{
+    background-color: #e0e07f;
+    padding:2px;
+}
+.luminosidad{
     background-color: #e0e07f;
     padding:2px;
 }
@@ -136,7 +142,7 @@ a:hover, a:focus {
 .footer{
     display: flex;
     height: 50px;
-    margin-top: 30px;
+    margin-top: 100px;
     align-items: center;
     justify-content: center;
 }

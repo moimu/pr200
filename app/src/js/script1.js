@@ -37,14 +37,31 @@ function pintasolicitudes( solicitudes, article ){
 
             data.mediciones.forEach( (medicion,index) => {
                 // console.log(medicion);
+                unidad = "";
+                switch(medicion.magnitud){
+                    case "luminosidad":
+                        unidad = "%";
+                        break;
+                    case "iluminacion":
+                        unidad = "%";
+                        break;
+                    case "temperatura":
+                        unidad = "º";
+                        break;
+                    case "humedad":
+                        unidad = "%";
+                        break;
+                    default:
+                        unidad = "";
+                }
                 if( medicion.nombreArea == null ){
                     this[clon+solicitudes[0]+index] = templatezonaSensor.content.cloneNode(true);
 
                     this[clon+solicitudes[0]+index].querySelector('#divz').className = medicion.magnitud;
 
                     this[clon+solicitudes[0]+index].querySelector('#fechaz').innerHTML = medicion.fecha;
-                    this[clon+solicitudes[0]+index].querySelector('#magnitudz').innerHTML = medicion.magnitud;
-                    this[clon+solicitudes[0]+index].querySelector('#valorz').innerHTML = medicion.valor;
+                    this[clon+solicitudes[0]+index].querySelector('#magnitudz').innerHTML = medicion.magnitud
+                    this[clon+solicitudes[0]+index].querySelector('#valorz').innerHTML = medicion.valor+unidad;
                     article.firstElementChild.appendChild( this[clon+solicitudes[0]+index] );
                 }
                 else{
@@ -55,7 +72,7 @@ function pintasolicitudes( solicitudes, article ){
                     this[clon+solicitudes[0]+index].querySelector('#areaa').innerHTML = medicion.nombreArea;
                     this[clon+solicitudes[0]+index].querySelector('#fechaa').innerHTML = medicion.fecha;
                     this[clon+solicitudes[0]+index].querySelector('#magnituda').innerHTML = medicion.magnitud;
-                    this[clon+solicitudes[0]+index].querySelector('#valora').innerHTML = medicion.valor;
+                    this[clon+solicitudes[0]+index].querySelector('#valora').innerHTML = medicion.valor+unidad;
                     article.appendChild( this[clon+solicitudes[0]+index] );
                 }
             })

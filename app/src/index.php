@@ -77,8 +77,8 @@
         <a href="api/docs/docapi.html">API</a>
     </footer>
 
-    <script src="js/script1.js" language="javascript" type="text/javascript"></script>
-    <script src="js/script3.js" language="javascript" type="text/javascript"></script>
+    <script src="js/script1.js" language="javascript" ></script>
+    <script src="js/script3.js" language="javascript" ></script>
     
 </body>
 </html>

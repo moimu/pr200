@@ -20,7 +20,7 @@ esta parte sirve como ejemplo de funcionamiento, gestión, y tratamiento relaliz
         {
             "nombreZona": [string: nombre de la zona con la letra en mayúscula],
             "nombreArea": [string: nombre del area con la letra en mayúscula],
-            "magnitud": [string: pulsaciones|entradas|iluminacion|temperatura|humedad],
+            "magnitud": [string: pulsaciones|entradas|luminosidad|temperatura|humedad],
             "valor": [float: valor medido más reciente y sin unidad. 
             Para pulsaciones y entradas RFID es la suma de todos los registros de esas magnitudes en la bd],
             "fecha": [datetime: fecha de la medición más reciente con formato "AAAA-MM-DD HH:MM".

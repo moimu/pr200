@@ -25,20 +25,18 @@ int ingresarEnBd = 0;
 #define RST_PIN  12      // Pin de reset  (RST)
 #define SS_PIN  11       // Pin de slave select  (SDA)
 
-int valorMaxSensor = 0;
-int valorMinSensor = 1023;
-int valorSensor = 0;
 unsigned long tiempoActual = 0;
 
 MFRC522 mfrc522( SS_PIN, RST_PIN ); // Objeto mfrc522 enviando pins slave select y reset 
 byte LecturaUID[4];        
-byte llave[4]= {0xEC, 0x8F, 0x44, 0x4A} ;   
+byte llave[2][4]= {{0xEC, 0x8F, 0x44, 0x4A},{0xB3, 0xA2, 0x90, 0x06}} ;   
+int cont = 0;  
 
 void setup(){
-  pinMode(5, OUTPUT);
   Serial.begin(9600);   //comienza comunicación serie
-
+  
 // *** WEB CLIENT ***
+
 if ( WiFi.status() == WL_NO_MODULE ) {
     Serial.println(" ¡La comunicación con el módulo WiFi falló! ");
     while (true);
@@ -60,20 +58,8 @@ if ( WiFi.status() == WL_NO_MODULE ) {
  if ( client.connect(server, 443) ) {   // 80 o 443
   Serial.println(" Conectado al servidor "); // si obtiene una conexión, informa
  }
-  // *** SENSORES ***
-  tone(5, 440, 6000);   // calibrar fotoresistencia 6 seg
-  while( millis() < 6000 ){
-      valorSensor = analogRead(A0); // valores Mínimo y Máximo fotoresistencia
-      if(valorSensor < valorMinSensor){
-          valorMinSensor = valorSensor;
-        }  
-        if(valorSensor > valorMaxSensor){
-          valorMaxSensor = valorSensor;
-        }  
-    }
-  noTone(5);
-  Serial.print(" MinSensor: "); Serial.print(valorMinSensor);
-  Serial.print(" MaxSensor: "); Serial.print(valorMaxSensor);
+  
+  // *** SENSOR RFID ***
   
   SPI.begin(); // inicializa bus SPI     
   mfrc522.PCD_Init();   // inicializa MFRC522 (RFID)
@@ -102,7 +88,7 @@ void loop(){
     tiempoActual = millis();
     Serial.println( analogRead(A0) );
     postVariable = "iluminacion=";
-    float magnitudValor = map(analogRead(A0),valorMinSensor,valorMaxSensor,100.00,0.00);
+    float magnitudValor = map(analogRead(A0),0,1023,100.00,0.00);
     postData = postVariable + magnitudValor;
     ingresarEnBd = 1;     
     }
@@ -112,7 +98,7 @@ void loop(){
   if ( ! mfrc522.PICC_ReadCardSerial() )      // si no puede obtener datos de tarjeta
     return;          
     
-  Serial.print("UID leido : "); 
+  Serial.print("UID leido : ");  // lectura de los 4 bytes de la llave
   // lectura de los 4 bytes    
   for (byte i = 0; i < 4; i++) { 
     if ( mfrc522.uid.uidByte[i] < 0x10 ){   
@@ -121,10 +107,8 @@ void loop(){
     else{           
       Serial.print(" ");        
     }
-    // imprime el byte hexadecimal
-    Serial.print( mfrc522.uid.uidByte[i], HEX ); 
-    //guarda byte UID leido   
-    LecturaUID[i] = mfrc522.uid.uidByte[i];    
+    Serial.print( mfrc522.uid.uidByte[i], HEX );  // imprime el byte hexadecimal  
+    LecturaUID[i] = mfrc522.uid.uidByte[i];       //guarda byte UID leido 
   }           
   if( verificaUID( LecturaUID, llave ) ){    // Verificación de UID
     Serial.println(" Acceso permitido");
@@ -138,15 +122,21 @@ void loop(){
   }  
   mfrc522.PICC_HaltA();  // corta comunicación con la tarjeta RFID  
 }
-boolean verificaUID( byte lectura[] ,byte llave[] ) {
-  // si byte de UID  es distinto al de la llave, no abre cerradura
-  for ( byte i=0; i < 4; i++ ){        
-    if( lectura[i] != llave[i] ){        
-      return (false);          
+boolean verificaUID( byte lectura[] ,byte llave[2][4] ) {
+  // si byte de UID  es distinto al de la llave, no abre cerradura: return false
+  for ( byte j=0;  j< 2; j++ ){ 
+    cont = 0;
+    for ( byte i=0; i < 4; i++ ){     
+        if( lectura[i] != llave[j][i] ){  
+          cont++;
+          if(cont == 4){
+              return (true); 
+          }           
+        }
+      }
     }
-    return (true); 
+    return (false);  
   }
-}
 void printWifiStatus() {
   // imprime el SSID de la red a la que estás conectado:
   Serial.print("SSID: ");
