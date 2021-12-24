@@ -20,9 +20,9 @@ class Urls{
     + urlsColaboraciones()
 }
 
-Api *-- Bd
-ApiReceive *-- Bd
-Urls *-- Bd
+Api <|-- Bd
+ApiReceive <|-- Bd
+Urls <|-- Bd
 
 
 @endunml

@@ -1,0 +1,22 @@
+Diseño de clases:
+ modelos
+ clases
+ tests
+ readme dev json
+
+Diseño de BBDD:
+ modelos
+ diagrama
+ Dev api recepcion monitor serie Doc
+
+Implementación Código:
+ Uso Arduino   /api (uso de clases)	
+ js
+ index pruebas 
+ images
+ readme docker
+
+Interfaz de usuario:
+ pr en server
+ Doc técnica
+ doc code
