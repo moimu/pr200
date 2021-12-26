@@ -21,7 +21,7 @@ class Api extends Bd{
      */
     public function consultas(){
         $ar = [];
-        $dia = date("Y-m-d H:i:s"); 
+        $fh = date("Y-m-d H:i:s"); 
 
         // Calcularé la media de los valores de luminosidad de la ultima media hora
         // la consulta retornará NULL si no hay mediciones para este intervalo
@@ -31,7 +31,7 @@ class Api extends Bd{
         // WHERE  med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?)
         // ORDER BY med.`idmedicion` DESC LIMIT 1
 
-        $sentencia1 = $this -> db ->prepare(" SELECT AVG(`valor`) as `mediaLuminosidad` FROM `mediciones` 
+        $sentencia1 = $this -> db ->prepare(" SELECT ROUND(AVG(`valor`), 2) as `mediaLuminosidad` FROM `mediciones` 
         WHERE `fh`>= DATE_SUB(NOW(), INTERVAL 30 MINUTE)
         AND `idzona` = (?) AND `idarea` = (?) AND idmagnitud = (?) "); 
 
@@ -40,13 +40,13 @@ class Api extends Bd{
         $param2 = "1";
         $param3 = "3";
         $sentencia1 -> execute(); 
-        $sentencia1 -> bind_result( $fhZ400, $cantluzZ400 );
+        $sentencia1 -> bind_result( $mediaLuminosidadZ400 );
         while( $sentencia1 -> fetch() ){  
             $ar[] = array( "nombreZona"=>"Z400",
             "nombreArea"=>null,
-            "fecha"=>"$fhZ400",
+            "fecha"=>"$fh",
             "magnitud"=>"luminosidad",
-            "valor"=>$cantluzZ400, 
+            "valor"=>floatval($mediaLuminosidadZ400), 
             "cliente"=>null );
         }
         $sentencia1 -> close();
@@ -62,25 +62,24 @@ class Api extends Bd{
         AND med.`idzona` = (?) AND med.`idarea` >= (?) AND med.`idarea` <= (?) AND med.`idmagnitud` = (?) 
         GROUP BY med.`idcliente` "); 
 
-        $sentencia2 -> bind_param( 'sss', $param1, $param2, $param3, $param4, $param5 );
+        $sentencia2 -> bind_param( 'sssss', $param1, $param2, $param3, $param4, $param5 );
         $param1 = "nulo";
         $param2 = "4";
         $param3 = "14";
         $param4 = "15";
         $param5 = "2";
         $sentencia2 -> execute(); 
-        $sentencia2 -> bind_result( $uidCliente, $entradasDosmeses );
+        $sentencia2 -> bind_result( $uidCliente, $entradasDosmesesCliente );
         // Por cada cliente se generá un objeto con su UID y total de entradas en últimos 2 meses
         while( $sentencia2 -> fetch() ){  
             $ar[] = array( "nombreZona"=>"Z400",
             "nombreArea"=>"fidelidad",
-            "fecha"=>"$dia",
+            "fecha"=>"$fh",
             "magnitud"=>"entradas",
-            "valor"=>$entradasDosmeses,
+            "valor"=>$entradasDosmesesCliente,
             "cliente"=>"$uidCliente" ); 
         }
         $sentencia2 -> close();
-
 
         $this -> db -> close();
         $array = ["mediciones" => $ar]; 

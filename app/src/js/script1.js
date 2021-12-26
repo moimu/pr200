@@ -62,6 +62,7 @@ function pintasolicitudes( solicitudes, article ){
                     article.firstElementChild.appendChild( this[clon+solicitudes[0]+index] );
                 }
                 else{
+                    // valores uid Cliente y puntos fidelidad en cada Zona serán guardardas en array $calcFidelidad 
                     this[clon+solicitudes[0]+index] = templateareaSensor.content.cloneNode(true);
 
                     this[clon+solicitudes[0]+index].querySelector('#diva').className = medicion.magnitud;
