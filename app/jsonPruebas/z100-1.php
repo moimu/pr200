@@ -8,7 +8,7 @@ echo' {
             "nombreZona": "Z100",
             "nombreArea": null,
             "fecha": "2021-11-25 15:30",
-            "magnitud": "iluminacion",
+            "magnitud": "luminosidad",
             "valor": "20"
         },
         {

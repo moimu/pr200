@@ -42,9 +42,6 @@ function pintasolicitudes( solicitudes, article ){
                     case "luminosidad":
                         unidad = "%";
                         break;
-                    case "iluminacion":
-                        unidad = "%";
-                        break;
                     case "temperatura":
                         unidad = "º";
                         break;
@@ -68,7 +65,7 @@ function pintasolicitudes( solicitudes, article ){
                     this[clon+solicitudes[0]+index] = templateareaSensor.content.cloneNode(true);
 
                     this[clon+solicitudes[0]+index].querySelector('#diva').className = medicion.magnitud;
-
+                    // nombre de Area > Area == densidad (Densidad de Zona) Area == fidelidad (usosTarjetacliente)
                     this[clon+solicitudes[0]+index].querySelector('#areaa').innerHTML = medicion.nombreArea;
                     this[clon+solicitudes[0]+index].querySelector('#fechaa').innerHTML = medicion.fecha;
                     this[clon+solicitudes[0]+index].querySelector('#magnituda').innerHTML = medicion.magnitud;

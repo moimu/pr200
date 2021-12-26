@@ -14,13 +14,16 @@
 <body class="body">
     
     <template id="templatezonaSensor">
+        <!-- Media de luz, humedad y temperatura -->
         <div id="divz">
             <fecha id="fechaz"> </fecha>
             <magnitud id="magnitudz"> </magnitud>
             <valor id="valorz"> </valor>
         </div>
     </template>
+
     <template id="templateareaSensor">
+        <!-- densidad y fidelidad -->
         <h3 id="areaa">  </h3> 
         <div id="diva">
             <fecha id="fechaa"> </fecha>
