@@ -41,7 +41,7 @@
     box-sizing: border-box;
 }
 .header {
-    height: 20vh;
+    height: 10vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -86,10 +86,16 @@ a:hover, a:focus {
     box-shadow: 2px 2px 5px var(--grey-sombra);
     min-width: 340px;
 }
-.img{
+/* .img{
     width: 280px;
     height: 80px;
     border-radius: 0.3em;
+} */
+.mapa{
+    max-width: 100%;
+}
+.imgmap{
+    max-width: 580px;
 }
 .iluminacion{
     background-color: #e0e07f;
