@@ -1,12 +1,8 @@
-// 
 /**
- * obtengo la articlos para imprimir en ellos datos recabados
+ * obtengo nodeList con articulos para imprimir en ellos datos recabados
  */
-const article1 = document.querySelector('#article1');
-const article2 = document.querySelector('#article2');
-const article3 = document.querySelector('#article3');
-const article4 = document.querySelector('#article4');
-const article5 = document.querySelector('#article5');
+const articles = document.querySelectorAll('article');
+
 /**
  * obtención de los templates del documento
  */
@@ -24,6 +20,7 @@ const templateareaSensor = document.querySelector('#templateareaSensor');
  * @param {object} article articulo extraida del DOM
  * @return void
  */
+const calcFidelidad = [];
 function pintasolicitudes( solicitudes, article ){
 
     for( let i = 0; i < 2; i++ ){
@@ -34,7 +31,7 @@ function pintasolicitudes( solicitudes, article ){
         })
         .then( data => {
             let clon ="clon";
-
+            
             data.mediciones.forEach( (medicion,index) => {
                 // console.log(medicion);
                 unidad = "";
@@ -42,36 +39,56 @@ function pintasolicitudes( solicitudes, article ){
                     case "luminosidad":
                         unidad = "%";
                         break;
+                    case "medLuminosidad":
+                        unidad = "%";
+                        break;
                     case "temperatura":
+                        unidad = "º";
+                        break;
+                    case "medTemperatura":
                         unidad = "º";
                         break;
                     case "humedad":
                         unidad = "%";
                         break;
+                    case "medHumedad":
+                        unidad = "%";
+                        break;
+                    case "densidad":
+                        unidad = "%";
+                        break;
                     default:
                         unidad = "";
                 }
-                if( medicion.nombreArea == null ){
+                if( medicion.magnitud === "fidelidad" ){
+                    // Guardo objetos con valores uid Cliente y puntos fidelidad array calcFidelidad 
+                    calcFidelidad.push(medicion);
+                }
+                else if ( medicion.magnitud == "medLuminosidad" || medicion.magnitud == "medTemperatura"
+                           || medicion.magnitud == "medHumedad" || medicion.magnitud == "densidad"  ){
                     this[clon+solicitudes[0]+index] = templatezonaSensor.content.cloneNode(true);
 
-                    this[clon+solicitudes[0]+index].querySelector('#divz').className = medicion.magnitud;
-
-                    this[clon+solicitudes[0]+index].querySelector('#fechaz').innerHTML = medicion.fecha;
+                    this[clon+solicitudes[0]+index].querySelector('.divz').classList.add(medicion.magnitud);
+                    
+                    // this[clon+solicitudes[0]+index].querySelector('#fechaz').innerHTML = medicion.fecha;
                     this[clon+solicitudes[0]+index].querySelector('#magnitudz').innerHTML = medicion.magnitud
                     this[clon+solicitudes[0]+index].querySelector('#valorz').innerHTML = medicion.valor+unidad;
-                    article.firstElementChild.appendChild( this[clon+solicitudes[0]+index] );
+
+                    article.querySelector(".sectionZona").appendChild( this[clon+solicitudes[0]+index] );
                 }
-                else{
-                    // valores uid Cliente y puntos fidelidad en cada Zona serán guardardas en array $calcFidelidad 
+                else if ( medicion.tituloArea != null ){
+                    
                     this[clon+solicitudes[0]+index] = templateareaSensor.content.cloneNode(true);
 
-                    this[clon+solicitudes[0]+index].querySelector('#diva').className = medicion.magnitud;
+                    this[clon+solicitudes[0]+index].querySelector('.diva').classList.add(medicion.magnitud);
                     // nombre de Area > Area == densidad (Densidad de Zona) Area == fidelidad (usosTarjetacliente)
-                    this[clon+solicitudes[0]+index].querySelector('#areaa').innerHTML = medicion.nombreArea;
-                    this[clon+solicitudes[0]+index].querySelector('#fechaa').innerHTML = medicion.fecha;
-                    this[clon+solicitudes[0]+index].querySelector('#magnituda').innerHTML = medicion.magnitud;
-                    this[clon+solicitudes[0]+index].querySelector('#valora').innerHTML = medicion.valor+unidad;
-                    article.appendChild( this[clon+solicitudes[0]+index] );
+                    this[clon+solicitudes[0]+index].querySelector('#areaa').innerHTML = medicion.tituloArea;
+                    // this[clon+solicitudes[0]+index].querySelector('#fechaa').innerHTML = medicion.fecha;
+
+                    // this[clon+solicitudes[0]+index].querySelector('#magnituda').innerHTML = medicion.magnitud;
+                    // this[clon+solicitudes[0]+index].querySelector('#valora').innerHTML = medicion.valor+unidad;
+
+                    article.querySelector(".sectionArea").appendChild( this[clon+solicitudes[0]+index] );
                 }
             })
         })
@@ -84,4 +101,29 @@ function pintasolicitudes( solicitudes, article ){
             console.log(' Problema con la petición Fetch:' + error.message);
         });
     }
+}
+
+
+const tituloZonas = document.querySelectorAll(".tituloZonas");
+const seccionesOcultas = document.querySelectorAll(".oculto");
+const imagenesmapa = document.querySelectorAll(".mapa");
+
+tituloZonas.forEach( element => element.addEventListener('click', visibilidad ) );
+
+/**
+ * Asigno evento click a todos los h1 con el título de la zona,
+ * al ejecutarlo funcion visivilidad muestra secciones con datos de esta zona, 
+ * y oculta seccion previamente clickada.
+ * Muestra la imagen mapa correspondiente a la zona, y oculta las demás.
+ */
+function visibilidad(event){
+
+    seccionesOcultas.forEach( section => section.classList.remove('visible') );
+    event.currentTarget.nextElementSibling.classList.add('visible');
+    event.currentTarget.nextElementSibling.nextElementSibling.classList.add('visible');
+
+    imagenesmapa.forEach( section => section.classList.add('oculto') );
+    let numimgmostrar = event.currentTarget.parentElement.id;
+    imagenesmapa[numimgmostrar].classList.remove('oculto');
+    imagenesmapa[numimgmostrar].classList.add('visible');
 }

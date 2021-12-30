@@ -1,3 +1,0 @@
-[ZoneTransfer]
-ZoneId=3
-HostUrl=https://s3.us-west-2.amazonaws.com/temporary.notion-static.com/Export-ae7c716c-5e68-4928-ab49-f0f6b3d102be/pr200_server_docker-alpine.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20211210%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20211210T194408Z&X-Amz-Expires=604800&X-Amz-Signature=3a9368da4b8823576a6425a2fadf7ce052b2a76538ad58a93047a621f2e7299a&X-Amz-SignedHeaders=host&x-id=GetObject

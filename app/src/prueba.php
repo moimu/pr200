@@ -69,7 +69,9 @@
                 <!-- <img src="images/pistachos290x85.png" alt="" class="img"/> -->
             </section>
         </article>
+        <img src="images/mapas/zonaAmazonia.jpg" alt="zonaAmazonia" />
     </main>
+   
     <footer class="footer">
         <section class="mercadosMateriasPrimas">
             <a href="#" class="imgfoot"> <img src="" alt="" /> </a>

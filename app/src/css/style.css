@@ -41,7 +41,7 @@
     box-sizing: border-box;
 }
 .header {
-    height: 10vh;
+    height: 20vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,18 +73,20 @@ a:hover, a:focus {
 }
 .main{
     display:flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     justify-content: center;
+    align-items: center;
     gap: 20px 20px;
 }
 .article{
-    border:1px solid var(--negro-grey);
+    border: 1px solid var(--negro-grey);
     border-radius: 0.5rem;
     box-sizing: border-box;
-    padding: 35px;
+    padding: 20px;
     background-color: var(--white);
-    box-shadow: 2px 2px 5px var(--grey-sombra);
-    min-width: 340px;
+    box-shadow: 4px 4px 7px var(--grey-sombra);
+    min-width: 350px;
+    margin-bottom: 10px;
 }
 /* .img{
     width: 280px;
@@ -92,12 +94,24 @@ a:hover, a:focus {
     border-radius: 0.3em;
 } */
 .mapa{
+    border-radius: 0.5rem;
+    width: 100%;
+    height: auto;
+}
+#contenedormapa{
+    display: flex;
+    border-radius: 0.5rem;
+    width: 100%;
+    height: auto;
     max-width: 100%;
+    margin: 0 auto;
 }
-.imgmap{
+
+
+/* .imgmap{
     max-width: 580px;
-}
-.iluminacion{
+} */
+/* .iluminacion{
     background-color: #e0e07f;
     padding:2px;
 }
@@ -117,14 +131,14 @@ a:hover, a:focus {
     background-color: #73d173;
     padding:2px;
 }
+.entradas{
+    background-color: pink;
+    padding:2px;
+} */
 .smsError{
     border : 1px solid red;
     padding: 1px;
     text-align: center;
-}
-.entradas{
-    background-color: pink;
-    padding:2px;
 }
 #divz{
     min-width: 260px;
@@ -136,9 +150,15 @@ a:hover, a:focus {
     display: flex;
     justify-content: space-between;
 }
-#h1{
-    font-size: xx-large;
+.tituloZonas{
+    font-size: x-large;
     padding: 0px 0px 6px 0px;
+}
+.oculto{
+    display: none;
+}
+.visible{
+    display: block;
 }
 #areaa{
     font-size: larger;
@@ -154,10 +174,18 @@ a:hover, a:focus {
 }
 
 /* Layout */
-@media (max-width:1140px){
+@media (max-width:1200px){
+   .contenedormapa{
+       display: none;
+   }
+   .mapa{
+        display: none;
+   }
+   .main{
+        display: block;
+   }
     
 }
-
 @media (max-width:660px){
     header h1{
         font-size: x-large;
