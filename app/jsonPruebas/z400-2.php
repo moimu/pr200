@@ -62,6 +62,16 @@ echo'{
             "magnitud": "fidelidad",
             "valor": "6",
             "cliente": "88Ij11B1"
+        },
+        {
+            "nombreZona": "Z400",
+            "tituloZona": "La Guarida de los Piratas",
+            "nombreArea": null,
+            "tituloArea": null,
+            "fecha": "2021-11-25 15:30",
+            "magnitud": "fidelidad",
+            "valor": "8",
+            "cliente": "777777FF"
         }
     ]
 }';

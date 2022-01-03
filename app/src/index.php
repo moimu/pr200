@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pr200</title>
+    <title>Isla Mágica</title>
     <meta name="description" content="Control Zonas">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,13 +31,19 @@
     </template>
 
     <header class="header">
-        <h1> Zonas de Almacenamiento </h1>
+
+        <h1> Isla Mágica </h1>
         <nav class="headernav">
             <ul>
                 <li> <a id="datequipo" href="index.php">Datos equipo ></a> </li>
                 <li> <a id="datprueba" href="prueba.php">Datos prueba ></a> </li>
             </ul>
         </nav>
+        <form onSubmit="return descuentosCliente()" name ="formularioContacto" method="get" action="index.php">
+            <label>UID cliente:<input type="text" name="uid" id="uid"></label>
+            <button type="submit"> Consultar descuentos </button>
+        </form>
+
     </header>
     <main class="main">
         <div id="contenedormapa">

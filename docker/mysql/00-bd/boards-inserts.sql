@@ -50,6 +50,15 @@ CREATE TABLE `servicios`(
     `url` VARCHAR(1000),
     PRIMARY KEY (idservicio)
 );
+CREATE TABLE `descuentosclima`(
+    `iddescuento` SMALLINT UNSIGNED AUTO_INCREMENT,
+    `cantluz` TINYINT,
+    `temperatura` TINYINT,
+    `humedad` TINYINT,
+    `descomida` VARCHAR(2),
+    `desbebida` VARCHAR(2),
+    PRIMARY KEY (iddescuento)
+);
 
 INSERT INTO `zonas`(`nombre`)
 VALUES ('Z100'),('Z200'),('Z300'),('Z400'),('Z500');
@@ -118,3 +127,13 @@ VALUES ('https://newflow.tech/pr-200-jsonPruebas/z100-1.php'),
 ('https://pr200.newflow.tech/api/api.php'),
 ('http://ismaeldaw080.me/apiIsmael.php'),
 ('ocete.......');
+
+INSERT INTO `descuentosclima`(`cantluz`,`temperatura`,`humedad`,`descomida`,`desbebida`)
+VALUES(49,19,49,'si','si'),
+(49,19,50,'no','si'),
+(49,20,49,'si','no'),
+(49,20,50,'si','no'),
+(50,19,49,'no','si'),
+(50,19,50,'si','si'),
+(50,20,49,'si','no'),
+(50,20,50,'si','si');

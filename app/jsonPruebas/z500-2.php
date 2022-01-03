@@ -83,6 +83,16 @@ echo'{
             "magnitud": "fidelidad",
             "valor": "6",
             "cliente": "FRCC8876"
+        },
+        {
+            "nombreZona": "Z500",
+            "tituloZona": "El Dorado",
+            "tituloArea": null,
+            "nombreArea": null,
+            "fecha": "2021-11-25 15:30",
+            "magnitud": "fidelidad",
+            "valor": "11",
+            "cliente": "888888FF"
         }
     ]
 } ';

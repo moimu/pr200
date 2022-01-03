@@ -62,6 +62,16 @@ echo'{
             "magnitud": "fidelidad",
             "valor": "7",
             "cliente": "SSFR787X"
+        },
+        {
+            "nombreZona": "Z300",
+            "tituloZona": "Amazonia",
+            "nombreArea": null,
+            "tituloArea": null,
+            "fecha": "2021-11-25 15:30",
+            "magnitud": "fidelidad",
+            "valor": "10",
+            "cliente": "888888FF"
         }
     ]
 } ';
