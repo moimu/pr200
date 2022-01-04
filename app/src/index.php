@@ -15,7 +15,7 @@
     <!-- Media de luz, humedad y temperatura -->
     <template id="templatezonaSensor">
         <div class="divz">
-            <!-- <fecha id="fechaz"> </fecha> -->
+            <img class="iconz"> </img>
             <magnitud id="magnitudz"> </magnitud>
             <valor id="valorz"> </valor>
         </div>
@@ -24,7 +24,6 @@
     <template id="templateareaSensor">
         <h3 id="areaa">  </h3> 
         <div class="diva">
-            <!-- <fecha id="fechaa"> </fecha> -->
             <magnitud id="magnituda"> </magnitud>
             <valor id="valora"> </valor>
         </div>

@@ -21,8 +21,13 @@ const templateareaSensor = document.querySelector('#templateareaSensor');
  * @return void
  */
 const calcFidelidad = [];
+let MedLuminosidad = 0;
+let MedTemperatura = 0;
+let MedHumedad = 0;
 function pintasolicitudes( solicitudes, article ){
 
+    const mediasMediciones = [];
+    
     for( let i = 0; i < 2; i++ ){
         promise = fetch(`${solicitudes[i]}`);
         promise
@@ -33,8 +38,8 @@ function pintasolicitudes( solicitudes, article ){
             let clon ="clon";
             
             data.mediciones.forEach( (medicion,index) => {
-                console.log(medicion);
-                unidad = "";
+                // console.log(medicion);
+                let unidad = "";
                 switch(medicion.magnitud){
                     case "luminosidad":
                         unidad = "%";
@@ -60,28 +65,44 @@ function pintasolicitudes( solicitudes, article ){
                     default:
                         unidad = "";
                 }
-                if( medicion.magnitud === "fidelidad" ){
-                    // Guardo objetos con valores uid Cliente y puntos fidelidad array calcFidelidad 
+                if( medicion.magnitud === "fidelidad" ){ // Guardo objetos magnitud fidelidad en calcFidelidad[]
+
                     calcFidelidad.push(medicion);
+
                 }
                 else if ( medicion.magnitud == "medLuminosidad" || medicion.magnitud == "medTemperatura"
-                           || medicion.magnitud == "medHumedad" || medicion.magnitud == "densidad"  ){
+                        || medicion.magnitud == "medHumedad" || medicion.magnitud == "densidad" ){
 
                     this[clon+solicitudes[0]+index] = templatezonaSensor.content.cloneNode(true);
                     this[clon+solicitudes[0]+index].querySelector('.divz').classList.add(medicion.magnitud);
-                    this[clon+solicitudes[0]+index].querySelector('#magnitudz').innerHTML = medicion.magnitud
+                    this[clon+solicitudes[0]+index].querySelector('.iconz').src = "images/icon/"+medicion.magnitud+".png"
+                    // this[clon+solicitudes[0]+index].querySelector('#magnitudz').innerHTML = medicion.magnitud
                     this[clon+solicitudes[0]+index].querySelector('#valorz').innerHTML = medicion.valor+unidad;
                     article.querySelector(".sectionZona").appendChild( this[clon+solicitudes[0]+index] );
 
-                    if( medicion.magnitud == "densidad" ){
+                    if( medicion.magnitud == "densidad" ){ // % descuento por densidad en Zona
 
                         this[clon+solicitudes[0]+index] = templatezonaSensor.content.cloneNode(true);
                         this[clon+solicitudes[0]+index].querySelector('.divz').classList.add("descuentoDensidad");
-                        this[clon+solicitudes[0]+index].querySelector('#magnitudz').innerHTML = "Descuento Densidad"
+                        this[clon+solicitudes[0]+index].querySelector('.iconz').src = "images/icon/descuento.png"
+                        // this[clon+solicitudes[0]+index].querySelector('#magnitudz').innerHTML = "Descuento Densidad"
                         this[clon+solicitudes[0]+index].querySelector('#valorz').innerHTML = descuentoPorDensidadZona(medicion.valor)+unidad;
                         article.querySelector(".sectionZona").appendChild( this[clon+solicitudes[0]+index] );
                         
                     }
+                    if( medicion.magnitud == "medLuminosidad" ){
+                        mediasMediciones.splice( 0 , 0, medicion.valor );
+                        MedLuminosidad = medicion.valor;
+                    }
+                    if( medicion.magnitud == "medTemperatura" ){
+                        mediasMediciones.splice( 1 , 0, medicion.valor );
+                        MedTemperatura = medicion.valor;
+                    }
+                    if( medicion.magnitud == "medHumedad" ){
+                        mediasMediciones.splice( 2 , 0, medicion.valor );
+                        MedHumedad = medicion.valor;
+                    }
+
                 }
                 else if ( medicion.tituloArea != null ){
                     
@@ -96,8 +117,26 @@ function pintasolicitudes( solicitudes, article ){
                     // this[clon+solicitudes[0]+index].querySelector('#valora').innerHTML = medicion.valor+unidad;
 
                     article.querySelector(".sectionArea").appendChild( this[clon+solicitudes[0]+index] );
+
                 }
             })
+            if( i == 1 ){ // cuando se haya completado los 2 peticiones Descuentos Climatología
+                
+                // descuentoAlimentos(  mediasMediciones[0], mediasMediciones[1], mediasMediciones[2] );
+                // console.log( desAlimentos(  mediasMediciones[0], mediasMediciones[1], mediasMediciones[2] ) );
+                const objetoDesAlimentacion = desAlimentos(  mediasMediciones[0], mediasMediciones[1], mediasMediciones[2] )
+
+                const imagen = document.createElement('img');
+                imagen.classList.add('iconz');
+                objetoDesAlimentacion.desBebida == true ? imagen.src = "/images/icon/bebida.png":imagen.src = "/images/icon/bebidaNO.png";
+                article.querySelector(".sectionZona").appendChild( imagen );
+
+                const imagen2 = document.createElement('img');
+                imagen2.classList.add('iconz');
+                objetoDesAlimentacion.desComida == true ? imagen2.src = "/images/icon/comida.png" : imagen2.src = "/images/icon/comidaNO.png";
+                article.querySelector(".sectionZona").appendChild( imagen2 );
+
+            }
         })
         .catch( function ( error ) {
             const pError = document.createElement("p");
@@ -108,8 +147,8 @@ function pintasolicitudes( solicitudes, article ){
             console.log(' Problema con la petición Fetch:' + error.message);
         });
     }
-}
 
+}
 
 const tituloZonas = document.querySelectorAll(".tituloZonas");
 const seccionesOcultas = document.querySelectorAll(".oculto");
@@ -153,7 +192,6 @@ function descuentosCliente(){
             // console.log(object.valor);
             puntosFidelidad += parseInt(object.valor);
         }
-        
     });
 
     if( puntosFidelidad === 0 ){
@@ -171,11 +209,12 @@ function descuentosCliente(){
         }
         window.alert( "Total puntos fidelidad: "+puntosFidelidad+" Descuento: "+descuento+"%" );
     }
-
     return (false);
 }
 
 /**
+ * Calculo descuento por densidad existente en la zona
+ * según condiciones requeridas en proyecto.
  * 
  * @param {int} densidad 
  * @returns descuentoDensidad
@@ -195,58 +234,76 @@ function descuentoPorDensidadZona( densidad ){
 }
 
 /**
+ * Consulta si la zona tieneescuento en comida y bebida 
+ * mediante api interna que retorna json de consultar a bd
  * 
- * @param {int} medluz 
- * @param {int} medtemperatura 
- * @param {int} medhumedad 
- * @returns {descuentobebida, descuentoComida}
+ * @param {*} medLuminosidad 
+ * @param {*} medTemperatura 
+ * @param {*} medHumedad 
+ * @returns object
  */
-function descuentoPorClimaZona( medluz, medtemperatura, medhumedad ){
-    
-    // Calculo % de descuento por densidad
-    let descuentoDensidad = 0;
-    if ( densidad < 50 ) {
-        descuentoDensidad = 15;
-    } else if ( densidad >= 50 && densidad < 75 ) {
-        descuentoDensidad = 10;
-    } else if ( densidad >= 75 && densidad < 100 ) {
-        descuentoDensidad = 5;
-    }
-    return descuentoDensidad;
-}
-
-// Descuento en comida y bebida api interna
-
-
 function descuentoAlimentos(medLuminosidad, medTemperatura, medHumedad){
 
     const endpoint = 'https://pr200.newflow.tech/api/apidescuentos.php';
     const promesa = fetch( `${endpoint}`, {
-
         method: 'POST',
         headers:
         {   'Content-Type': 'application/json',
-            // "x-api-key" : '043b1ef8-8333-4b98-b7a8-f35f26b15bcc'
+            'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
         },
-        body: {
+        body: JSON.stringify({
             "medcantluz": medLuminosidad,
             "medtemperatura": medTemperatura,
             "medhumedad": medHumedad
-        }
-        
+        })
     });
     promesa
     .then( response => {
-        return response.json();   
+        // console.log( response.json() );
+        // return response.json();   
+        return response.json();
     })
     .then( data => {
         console.log('descuentos alimentos: ');
         console.log(data);
     })
-    .catch( handleError );
+    .catch( function handleError( error ){ 
+        console.log(' Problema con la petición Fetch:' + error.message);
+    });
 
 }
 
-function handleError(){
-    console.log(' Problema con la petición Fetch:' + error.message);
+/**
+ * Calculo si clientes tienen descuentos en comida y bebida
+ * Según condiciones de climatología requeridas en proyecto.
+ * 
+ * @param {*} medLuminosidad 
+ * @param {*} medTemperatura 
+ * @param {*} medHumedad 
+ * @returns object
+ */
+function desAlimentos( medLuminosidad, medTemperatura, medHumedad ){
+
+    let desComida;
+    let desBebida;
+    if( medLuminosidad<50 && medTemperatura<20 && medHumedad<50){
+        desComida = true; desBebida = true;
+    }else if( medLuminosidad<50 && medTemperatura<20 && medHumedad>=50){
+        desComida = false; desBebida = true;
+    }else if( medLuminosidad<50 && medTemperatura>=20 && medHumedad<50){
+        desComida = true; desBebida = false;
+    }else if( medLuminosidad<50 && medTemperatura>=20 && medHumedad>=50){
+        desComida = true; desBebida = false;
+    }else if( medLuminosidad>=50 && medTemperatura<20 && medHumedad<50){
+        desComida = false; desBebida = true;
+    }else if( medLuminosidad>=50 && medTemperatura<20 && medHumedad>=50){
+        desComida = true; desBebida = true;
+    }else if( medLuminosidad>=50 && medTemperatura>=20 && medHumedad<50){
+        desComida = true; desBebida = false;
+    }else{
+        desComida = true; desBebida = true;
+    }
+
+    return {desComida, desBebida};
+
 }

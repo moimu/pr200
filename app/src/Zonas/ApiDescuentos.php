@@ -12,6 +12,7 @@ class ApiDescuentos extends Bd{
     public function __construct(){
         parent::__construct();
     }
+
     /**
      * Uso de base datos, consultas y construcción de array datos consulta
      * 
@@ -27,13 +28,14 @@ class ApiDescuentos extends Bd{
         if( $medtemperatura >= 20 ){   $signotemperatura = ">=";   }
         if( $medhumedad >= 50 ){   $signohumedad = ">=";   }
 
-        $sentencia1 = $this -> db ->prepare(" SELECT `descomida`,`desbebida` FROM `descuentosclima` 
-        WHERE `cantluz` $signocantluz (?) `temperatura` $signotemperatura (?) AND `humedad` $signohumedad (?) "); 
+        $sentencia1 = $this -> db ->prepare("SELECT `descomida`,`desbebida` FROM `descuentosclima` 
+        WHERE `cantluz` $signocantluz ? AND `temperatura` $signotemperatura ? AND `humedad` $signohumedad ?"); 
 
         $sentencia1 -> bind_param( 'iii', $param1, $param2, $param3 );
         $param1 = $medcantluz;
         $param2 = $medtemperatura;
         $param3 = $medhumedad;
+
         $sentencia1 -> execute(); 
         $sentencia1 -> bind_result( $descomida, $desbebida );
         while( $sentencia1 -> fetch() ){  
@@ -43,6 +45,7 @@ class ApiDescuentos extends Bd{
         
         return $descuentos;
     }
+    
     /**
      * Recibe array con datos de consulta devuelve json
      * 
