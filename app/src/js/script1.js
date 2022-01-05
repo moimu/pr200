@@ -78,7 +78,7 @@ function pintasolicitudes( solicitudes, article ){
                     this[clon+solicitudes[0]+index].querySelector('.iconz').src = "images/icon/"+medicion.magnitud+".png"
                     // this[clon+solicitudes[0]+index].querySelector('#magnitudz').innerHTML = medicion.magnitud
                     this[clon+solicitudes[0]+index].querySelector('#valorz').innerHTML = medicion.valor+unidad;
-                    article.querySelector(".sectionZona").appendChild( this[clon+solicitudes[0]+index] );
+                    article.querySelector(".mediciones").appendChild( this[clon+solicitudes[0]+index] );
 
                     if( medicion.magnitud == "densidad" ){ // % descuento por densidad en Zona
 
@@ -86,8 +86,8 @@ function pintasolicitudes( solicitudes, article ){
                         this[clon+solicitudes[0]+index].querySelector('.divz').classList.add("descuentoDensidad");
                         this[clon+solicitudes[0]+index].querySelector('.iconz').src = "images/icon/descuento.png"
                         // this[clon+solicitudes[0]+index].querySelector('#magnitudz').innerHTML = "Descuento Densidad"
-                        this[clon+solicitudes[0]+index].querySelector('#valorz').innerHTML = descuentoPorDensidadZona(medicion.valor)+unidad;
-                        article.querySelector(".sectionZona").appendChild( this[clon+solicitudes[0]+index] );
+                        this[clon+solicitudes[0]+index].querySelector('#valorz').innerHTML=descuentoPorDensidadZona(medicion.valor)+unidad+" + % descuento fidelidad";
+                        article.querySelector(".descuentos").appendChild( this[clon+solicitudes[0]+index] );
                         
                     }
                     if( medicion.magnitud == "medLuminosidad" ){
@@ -129,12 +129,12 @@ function pintasolicitudes( solicitudes, article ){
                 const imagen = document.createElement('img');
                 imagen.classList.add('iconz');
                 objetoDesAlimentacion.desBebida == true ? imagen.src = "/images/icon/bebida.png":imagen.src = "/images/icon/bebidaNO.png";
-                article.querySelector(".sectionZona").appendChild( imagen );
+                article.querySelector(".productos").appendChild( imagen );
 
                 const imagen2 = document.createElement('img');
                 imagen2.classList.add('iconz');
                 objetoDesAlimentacion.desComida == true ? imagen2.src = "/images/icon/comida.png" : imagen2.src = "/images/icon/comidaNO.png";
-                article.querySelector(".sectionZona").appendChild( imagen2 );
+                article.querySelector(".productos").appendChild( imagen2 );
 
             }
         })
@@ -175,40 +175,47 @@ function visibilidad(event){
 }
 
 /**
+ * Función usada por formulario en el evento onSubmit
+ * obtiene UID proporcionado por cliente , calcula fidelidad 
+ * sumando todos los puntos del cliente por numero zonas donde registró
+ * compras. calcula % descuento según fidelidad.
  * 
+ * Muestra datos a cliente con window.alert , no retorna para no refrescar.
  * @returns false
  */
 function descuentosCliente(){
 
     // Calculo fidelidad y % de descuento
-
-    let uidbuscado = document.forms[0].elements[0].value;
+    const uidbuscado = document.forms[0].elements[0].value;
     let puntosFidelidad = 0;
     let descuento = 0;
+    let zonasvisitadas = 0;
+
     calcFidelidad.forEach( function (object){
-        // console.log(object.cliente);
         if( object.cliente == uidbuscado ){
-            // console.log(object.cliente);
-            // console.log(object.valor);
             puntosFidelidad += parseInt(object.valor);
+            zonasvisitadas++;
         }
     });
+    const fidelidad = puntosFidelidad * zonasvisitadas;
 
     if( puntosFidelidad === 0 ){
         window.alert('Cliente no registrado');
     }
     else{
-        if( puntosFidelidad >= 2 ){
-            descuento = puntosFidelidad*0.5;
+        if( fidelidad >= 2 ){
+            descuento = fidelidad * 0.5;
+            if( descuento > 15 ){
+                descuento = 15;
+            }
         }
         else{
             descuento = 0;
         }
-        if( descuento > 15 ){
-            descuento = 15;
-        }
-        window.alert( "Total puntos fidelidad: "+puntosFidelidad+" Descuento: "+descuento+"%" );
+        
+        window.alert( "Fidelidad cliente: "+fidelidad+" Descuento: "+descuento+"%" );
     }
+
     return (false);
 }
 
@@ -234,15 +241,16 @@ function descuentoPorDensidadZona( densidad ){
 }
 
 /**
- * Consulta si la zona tieneescuento en comida y bebida 
+ * Consulta si la zona tiene descuento en comida y bebida 
  * mediante api interna que retorna json de consultar a bd
+ * AÚN NO FUNCIONA
  * 
- * @param {*} medLuminosidad 
- * @param {*} medTemperatura 
- * @param {*} medHumedad 
+ * @param {float} medLuminosidad 
+ * @param {float} medTemperatura 
+ * @param {float} medHumedad 
  * @returns object
  */
-function descuentoAlimentos(medLuminosidad, medTemperatura, medHumedad){
+function descuentoAlimentos( medLuminosidad, medTemperatura, medHumedad ){
 
     const endpoint = 'https://pr200.newflow.tech/api/apidescuentos.php';
     const promesa = fetch( `${endpoint}`, {
@@ -277,28 +285,29 @@ function descuentoAlimentos(medLuminosidad, medTemperatura, medHumedad){
  * Calculo si clientes tienen descuentos en comida y bebida
  * Según condiciones de climatología requeridas en proyecto.
  * 
- * @param {*} medLuminosidad 
- * @param {*} medTemperatura 
- * @param {*} medHumedad 
+ * @param {float} medLuminosidad 
+ * @param {float} medTemperatura 
+ * @param {float} medHumedad 
  * @returns object
  */
 function desAlimentos( medLuminosidad, medTemperatura, medHumedad ){
 
+    console.log(medLuminosidad, medTemperatura, medHumedad );
     let desComida;
     let desBebida;
     if( medLuminosidad<50 && medTemperatura<20 && medHumedad<50){
         desComida = true; desBebida = true;
-    }else if( medLuminosidad<50 && medTemperatura<20 && medHumedad>=50){
+    }else if( medLuminosidad<50 && medTemperatura<20 && medHumedad>=50 ){
         desComida = false; desBebida = true;
-    }else if( medLuminosidad<50 && medTemperatura>=20 && medHumedad<50){
+    }else if( medLuminosidad<50 && medTemperatura>=20 && medHumedad<50 ){
         desComida = true; desBebida = false;
-    }else if( medLuminosidad<50 && medTemperatura>=20 && medHumedad>=50){
+    }else if( medLuminosidad<50 && medTemperatura>=20 && medHumedad>=50 ){
         desComida = true; desBebida = false;
-    }else if( medLuminosidad>=50 && medTemperatura<20 && medHumedad<50){
+    }else if( medLuminosidad>=50 && medTemperatura<20 && medHumedad<50 ){
         desComida = false; desBebida = true;
-    }else if( medLuminosidad>=50 && medTemperatura<20 && medHumedad>=50){
+    }else if( medLuminosidad>=50 && medTemperatura<20 && medHumedad>=50 ){
         desComida = true; desBebida = true;
-    }else if( medLuminosidad>=50 && medTemperatura>=20 && medHumedad<50){
+    }else if( medLuminosidad>=50 && medTemperatura>=20 && medHumedad<50 ){
         desComida = true; desBebida = false;
     }else{
         desComida = true; desBebida = true;

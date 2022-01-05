@@ -31,7 +31,7 @@
     line-height: 1.5;
     outline: none;
     text-decoration: none; 
-    font-family: 'Roboto', -apple-system, Ubuntu, sans-serif;
+    /* font-family: 'Roboto', -apple-system, Ubuntu, sans-serif; */
 }
 .body{
     padding: 30px;
@@ -41,14 +41,27 @@
     box-sizing: border-box;
 }
 .header {
-    height: 40vh;
+    /* height: 40vh; */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .header h1{
+    font: 'manuskript_antiqua_dregular';
     font-weight: 500;
     font-size: xx-large;
+    font-weight: 700;
+    border: 1px solid black;
+    border-radius: 0.2em;
+    padding: 20px;
+}
+h1{
+    font-family: 'Tillana', cursive, sans-serif;
+    font-weight: 600;
+}
+.imglogo{
+    height: 80px;
+    width: 286;
 }
 .headernav{
     margin: 15px 0px;
@@ -70,6 +83,15 @@
 }
 a:hover, a:focus {
     text-decoration-line: underline;
+}
+form{
+    border: 1px solid black;
+    border-radius: 0.3em;
+    padding: 10px;
+}
+input{
+    border: 1px solid black;
+    border-radius: 0.3em;
 }
 .main{
     display:flex;
@@ -147,10 +169,12 @@ a:hover, a:focus {
     padding: 1px;
     text-align: center;
 }
-#divz{
-    min-width: 260px;
-    display: flex;
-    justify-content: space-between;
+.divz{
+    /* min-width: 260px; */
+    display: inline-flex;
+}
+h2{
+    padding: 10px 0px;
 }
 #diva{
     min-width: 260px;
