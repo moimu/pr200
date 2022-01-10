@@ -3,7 +3,6 @@
     require '../../vendor/autoload.php';
     use Moi\Zonas\ApiDescuentos;
 
-    // echo " Api Descuentos <br> ";
     $api = new ApiDescuentos();
 
     // Se mostrará un json donde se especifica si tiene descuento en comida y bebida
@@ -14,6 +13,5 @@
 
     }
 
-    $ar = $api -> descuentos( 50, 20, 50 );
-    echo $api -> json( $ar );
-
+    // $ar = $api -> descuentos( 50, 20, 50 );
+    // echo $api -> json( $ar );

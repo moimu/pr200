@@ -4,11 +4,13 @@ USE  `zonas`;
 CREATE TABLE `zonas`(
     `idzona` SMALLINT UNSIGNED AUTO_INCREMENT,
     `nombre` VARCHAR(100),
+    `titulo` VARCHAR(100),
     PRIMARY KEY (idzona)
 );
 CREATE TABLE `areas`(
     `idarea` SMALLINT UNSIGNED AUTO_INCREMENT,
     `nombre` VARCHAR(100),
+    `titulo` VARCHAR(100),
     `idzona` SMALLINT UNSIGNED,
     PRIMARY KEY (idarea),
     FOREIGN KEY (`idzona`) REFERENCES `zonas` (`idzona`)
@@ -60,15 +62,17 @@ CREATE TABLE `descuentosclima`(
     PRIMARY KEY (iddescuento)
 );
 
-INSERT INTO `zonas`(`nombre`)
-VALUES ('Z100'),('Z200'),('Z300'),('Z400'),('Z500');
+INSERT INTO `zonas`(`nombre`,`titulo`)
+VALUES ('Z100','Sevilla, Puerto de Indias'),('Z200','Puerta de América'),
+('Z300','Amazonia'),('Z400','La Guarida de los Piratas'),('Z500','El Dorado');
 
-INSERT INTO `areas`(`nombre`,`idzona`)
-VALUES ('','1'),('A101','1'),('B101','1'),
-('A201','2'),('A202','2'),('B201','2'),
-('A301','3'),('A302','3'),('A303','3'),('B301','3'),('B302','3'),
-('A401','4'),('A402','4'),('B401','4'),('B402','4'),
-('A501','5'),('B501','5'),('B502','5');
+INSERT INTO `areas`(`nombre`,`titulo`,`idzona`)
+VALUES ('','','1'),('A101','El Desafío','1'),('B101','La Venta del Puerto','1'),
+('A201','Anaconda','2'),('A202','Navío Barbarroja','2'),('B201','La Cabaña Criolla','2'),
+('A301','Jaguar','3'),('A302','Iguazú','3'),('A303','Topetazú','3'),
+('B301','El Fuerte','3'),('B302','El Arsenal','3'),
+('A401','Dimensión','4'),('A402','Los Toneles','4'),('B401','El Ancla','4'),('B402','La Taberna','4'),
+('A501','Rápidos del Orinoco','5'),('B501','Veracruz','5'),('B502','Come-come','5');
 
 INSERT INTO `sensores`(`nombre`) 
 VALUES ('pulsador'),('rfid'),('fotoresistencia'),('DHT11');
@@ -78,7 +82,7 @@ VALUES ('pulsaciones','1'),('entradas','2'),('luminosidad','3'),
 ('temperatura','4'),('humedad','4');
 
 INSERT INTO `clientes`(`nombre`,`uid`)
-VALUES ('nulo','nulo'),('Antonio','EC8F444A'),('José','JH6789HG');
+VALUES ('',''),('Antonio','EC8F444A'),('José','JH6789HG');
 
 -- Luminosidad para Zona Z400
 INSERT INTO `mediciones`(`valor`,`idzona`,`idarea`,`idmagnitud`) 

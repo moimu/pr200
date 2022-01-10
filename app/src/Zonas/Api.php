@@ -31,23 +31,28 @@ class Api extends Bd{
         // WHERE  med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?)
         // ORDER BY med.`idmedicion` DESC LIMIT 1
 
-        $sentencia1 = $this -> db ->prepare(" SELECT ROUND(AVG(`valor`), 2) as `mediaLuminosidad` FROM `mediciones` 
+        $sentencia1 = $this -> db ->prepare(" SELECT ROUND(AVG(`valor`), 2) as `medLuminosidad`, zon. `nombre`, zon.`titulo`, are.`nombre`, are.`titulo`, cli.`uid`
+        FROM `mediciones` med 
+        INNER JOIN `clientes` cli ON med.`idcliente` = cli.`idcliente`
+        INNER JOIN `areas` are ON med.`idarea` = are.`idarea`
+        INNER JOIN `zonas` zon ON med.`idzona` = zon.`idzona` 
         WHERE `fh`>= DATE_SUB(NOW(), INTERVAL 30 MINUTE)
-        AND `idzona` = (?) AND `idarea` = (?) AND idmagnitud = (?) "); 
-
+        AND med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?) "); 
         $sentencia1 -> bind_param( 'sss', $param1, $param2, $param3 );
         $param1 = "4";
         $param2 = "1";
         $param3 = "3";
         $sentencia1 -> execute(); 
-        $sentencia1 -> bind_result( $mediaLuminosidadZ400 );
+        $sentencia1 -> bind_result( $medLuminosidad, $nombreZona, $tituloZona, $nombreArea, $tituloArea, $uidCliente );
         while( $sentencia1 -> fetch() ){  
-            $ar[] = array( "nombreZona"=>"Z400",
-            "nombreArea"=>null,
-            "fecha"=>"$fh",
-            "magnitud"=>"luminosidad",
-            "valor"=>floatval($mediaLuminosidadZ400), 
-            "cliente"=>null );
+            $ar[] = array( "nombreZona"=> $nombreZona,
+            "tituloZona"=> $tituloZona,
+            "nombreArea"=> $nombreArea,
+            "tituloArea"=> $tituloArea,
+            "fecha"=> "$fh",
+            "magnitud"=> "medLuminosidad",
+            "valor"=>floatval($medLuminosidad), 
+            "cliente"=> $uidCliente );
         }
         $sentencia1 -> close();
         
@@ -55,29 +60,32 @@ class Api extends Bd{
         // FROM `mediciones` med 
         // WHERE  med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?)
 
-        $sentencia2 = $this -> db->prepare(" SELECT cli.`uid`, COUNT(med.`valor`)
+// Por cada cliente se generá un objeto con su UID y total de entradas en últimos 2 meses
+        $sentencia2 = $this -> db->prepare(" SELECT cli.`uid`, COUNT(med.`valor`), zon. `nombre`, zon.`titulo`, are.`nombre`, are.`titulo`
         FROM `mediciones` med 
         INNER JOIN `clientes` cli ON med.`idcliente` = cli.`idcliente`
+        INNER JOIN `areas` are ON med.`idarea` = are.`idarea`
+        INNER JOIN `zonas` zon ON med.`idzona` = zon.`idzona`
         WHERE cli.`nombre` <> (?) AND med.`fh` >= DATE_SUB(NOW(), INTERVAL 2 MONTH)
         AND med.`idzona` = (?) AND med.`idarea` >= (?) AND med.`idarea` <= (?) AND med.`idmagnitud` = (?) 
         GROUP BY med.`idcliente` "); 
-
         $sentencia2 -> bind_param( 'sssss', $param1, $param2, $param3, $param4, $param5 );
-        $param1 = "nulo";
+        $param1 = "";
         $param2 = "4";
         $param3 = "14";
         $param4 = "15";
         $param5 = "2";
         $sentencia2 -> execute(); 
-        $sentencia2 -> bind_result( $uidCliente, $entradasDosmesesCliente );
-        // Por cada cliente se generá un objeto con su UID y total de entradas en últimos 2 meses
+        $sentencia2 -> bind_result( $uidCliente, $entradasDosmesesCliente, $nombreZona, $tituloZona, $nombreArea, $tituloArea );
         while( $sentencia2 -> fetch() ){  
-            $ar[] = array( "nombreZona"=>"Z400",
-            "nombreArea"=>"fidelidad",
-            "fecha"=>"$fh",
-            "magnitud"=>"entradas",
-            "valor"=>$entradasDosmesesCliente,
-            "cliente"=>"$uidCliente" ); 
+            $ar[] = array( "nombreZona"=> $nombreZona,
+            "tituloZona"=> $tituloZona,
+            "nombreArea"=> $nombreArea,
+            "tituloArea"=> $tituloArea,
+            "fecha"=> "$fh",
+            "magnitud"=> "fidelidad",
+            "valor"=> $entradasDosmesesCliente,
+            "cliente"=> $uidCliente ); 
         }
         $sentencia2 -> close();
 

@@ -104,21 +104,21 @@ function pintasolicitudes( solicitudes, article ){
                     }
 
                 }
-                else if ( medicion.tituloArea != null ){
+                // else if ( medicion.tituloArea != null ){
                     
-                    this[clon+solicitudes[0]+index] = templateareaSensor.content.cloneNode(true);
+                //     this[clon+solicitudes[0]+index] = templateareaSensor.content.cloneNode(true);
 
-                    this[clon+solicitudes[0]+index].querySelector('.diva').classList.add(medicion.magnitud);
-                    // nombre de Area > Area == densidad (Densidad de Zona) Area == fidelidad (usosTarjetacliente)
-                    this[clon+solicitudes[0]+index].querySelector('#areaa').innerHTML = medicion.tituloArea;
-                    // this[clon+solicitudes[0]+index].querySelector('#fechaa').innerHTML = medicion.fecha;
+                //     this[clon+solicitudes[0]+index].querySelector('.diva').classList.add(medicion.magnitud);
+                //     // nombre de Area > Area == densidad (Densidad de Zona) Area == fidelidad (usosTarjetacliente)
+                //     this[clon+solicitudes[0]+index].querySelector('#areaa').innerHTML = medicion.tituloArea;
+                //     // this[clon+solicitudes[0]+index].querySelector('#fechaa').innerHTML = medicion.fecha;
 
-                    // this[clon+solicitudes[0]+index].querySelector('#magnituda').innerHTML = medicion.magnitud;
-                    // this[clon+solicitudes[0]+index].querySelector('#valora').innerHTML = medicion.valor+unidad;
+                //     // this[clon+solicitudes[0]+index].querySelector('#magnituda').innerHTML = medicion.magnitud;
+                //     // this[clon+solicitudes[0]+index].querySelector('#valora').innerHTML = medicion.valor+unidad;
 
-                    article.querySelector(".sectionArea").appendChild( this[clon+solicitudes[0]+index] );
+                //     article.querySelector(".sectionArea").appendChild( this[clon+solicitudes[0]+index] );
 
-                }
+                // }
             })
             if( i == 1 ){ // cuando se haya completado los 2 peticiones Descuentos Climatología
                 
@@ -150,15 +150,15 @@ function pintasolicitudes( solicitudes, article ){
 
 }
 
-const tituloZonas = document.querySelectorAll(".tituloZonas");
+const headerTituloZonas = document.querySelectorAll(".headerTituloZonas");
 const seccionesOcultas = document.querySelectorAll(".oculto");
 const imagenesmapa = document.querySelectorAll(".mapa");
 
-tituloZonas.forEach( element => element.addEventListener('click', visibilidad ) );
+headerTituloZonas.forEach( element => element.addEventListener('click', visibilidad ) );
 
 /**
- * Asigno evento click a todos los h1 con el título de la zona,
- * al ejecutarlo funcion visivilidad muestra secciones con datos de esta zona, 
+ * Asigno evento click a todos los header con el título de la zona,
+ * al ejecutarlo funcion visibilidad muestra secciones con datos de esta zona, 
  * y oculta seccion previamente clickada.
  * Muestra la imagen mapa correspondiente a la zona, y oculta las demás.
  */

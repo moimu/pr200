@@ -18,6 +18,7 @@
     --negro-grey:#32283B;
     --negro-texto:#1D1D1F;
     --azul-link:#2997FF;
+    --agua-mapa: rgb(127,180,186);
 }
 *{
     margin: 0;
@@ -26,12 +27,10 @@
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline; 
-    /* font-weight: 600; */
     list-style:none;
     line-height: 1.5;
     outline: none;
     text-decoration: none; 
-    /* font-family: 'Roboto', -apple-system, Ubuntu, sans-serif; */
 }
 .body{
     padding: 30px;
@@ -39,6 +38,7 @@
     color: var(--negro-texto);
     height: 100vh;
     box-sizing: border-box;
+    font-size: 12px;
 }
 .header {
     /* height: 40vh; */
@@ -49,7 +49,7 @@
 .header h1{
     font: 'manuskript_antiqua_dregular';
     font-weight: 500;
-    font-size: xx-large;
+    /* font-size: xx-large; */
     font-weight: 700;
     border: 1px solid black;
     border-radius: 0.2em;
@@ -63,8 +63,11 @@ h1{
     height: 80px;
     width: 286;
 }
-.headernav{
-    margin: 15px 0px;
+.headersection{
+    min-width: 100%;
+    display: flex;
+    padding: 40px;
+    justify-content: space-around;
 }
 .headernav ul{
     display: flex;
@@ -73,17 +76,16 @@ h1{
 }
 .headernav ul li{
     padding: 8px;
-    /* border: 1px solid black;
-    border-radius: 0.3em; */
     margin-left: 20px; 
 }
 .headernav ul li a{
     color: var(--azul-link);
-    font-size: 21px;
+    /* font-size: 21px; */
 }
 a:hover, a:focus {
     text-decoration-line: underline;
 }
+
 form{
     border: 1px solid black;
     border-radius: 0.3em;
@@ -95,10 +97,9 @@ input{
 }
 .main{
     display:flex;
-    /* flex-wrap: wrap; */
-    justify-content: center;
+    /* justify-content: center;
     align-items: center;
-    gap: 20px 20px;
+    gap: 20px 20px; */
 }
 .article{
     border: 1px solid var(--negro-grey);
@@ -110,6 +111,14 @@ input{
     min-width: 350px;
     margin-bottom: 10px;
 }
+.article header{
+    display: flex;
+    justify-content: space-between;
+}
+.flechadireccion{
+    width: 17px;
+    height: 17px;
+}
 /* .img{
     width: 280px;
     height: 80px;
@@ -117,16 +126,19 @@ input{
 } */
 .mapa{
     border-radius: 0.5rem;
-    width: 100%;
+    width: 95%;
     height: auto;
 }
-#contenedormapa{
+.contenedormapa{
     display: flex;
+    justify-content: center;
+    align-content: center;
     border-radius: 0.5rem;
     width: 100%;
     height: auto;
-    max-width: 100%;
-    margin: 0 auto;
+}
+.sectionZonas{
+
 }
 
 
@@ -182,8 +194,7 @@ h2{
     justify-content: space-between;
 }
 .tituloZonas{
-    font-size: x-large;
-    padding: 0px 0px 6px 0px;
+    font-size: 17px;
 }
 .oculto{
     display: none;
@@ -199,7 +210,8 @@ h2{
 .footer{
     display: flex;
     height: 50px;
-    margin-top: 100px;
+    margin-top: 50px;
+    margin-bottom: 10px;
     align-items: center;
     justify-content: center;
 }
