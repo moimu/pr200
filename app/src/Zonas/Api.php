@@ -89,6 +89,74 @@ class Api extends Bd{
         }
         $sentencia2 -> close();
 
+        // // consulta ultima medición luminosidad
+        // $sentencia3 = $this -> db ->prepare(" SELECT med.`fh`, med.`valor`
+        // FROM `mediciones` med 
+        // WHERE  med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?)
+        // ORDER BY med.`idmedicion` DESC LIMIT 1 "); 
+        // $sentencia3 -> bind_param( 'sss', $param1, $param2, $param3 );
+        // $param1 = "4";
+        // $param2 = "1";
+        // $param3 = "3";
+        // $sentencia3 -> execute(); 
+        // $sentencia3 -> bind_result( $fhZ400, $cantluzZ400 );
+        // while( $sentencia3 -> fetch() ){  
+        //     $ar[] = array( "nombreZona"=>"Z400",
+        //     "tituloZona"=> $tituloZona,,,,,,,,
+        //     "nombreArea"=>null,
+        //     "tituloArea"=> $tituloArea,,,,,,,
+        //     "fecha"=>"$fhZ400",
+        //     "magnitud"=>"iluminacion",
+        //     "valor"=>"$cantluzZ400",
+        //     "cliente"=> $uidCliente,,,,, );
+        // }
+        // $sentencia3 -> close();
+
+        // // total entradas area B401
+        // $sentencia4 = $this -> db->prepare(" SELECT count( med.`valor` )
+        // FROM `mediciones` med 
+        // WHERE  med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?) "); 
+        // $sentencia4 -> bind_param( 'sss', $param1, $param2, $param3 );
+        // $param1 = "4";
+        // $param2 = "14";
+        // $param3 = "2";
+        // $sentencia4 -> execute(); 
+        // $sentencia4 -> bind_result( $entradaB401 );
+        // while( $sentencia4 -> fetch() ){  
+        //     $ar[] = array( "nombreZona"=>"Z400",
+        //     "tituloZona"=> $tituloZona,,,,,,,,
+        //     "nombreArea"=>"B401",
+        //     "tituloArea"=> $tituloArea,,,,,,,
+        //     "fecha"=>"$fh",
+        //     "magnitud"=>"entradas",
+        //     "valor"=>"$entradaB401",
+        //     "cliente"=> $uidCliente,,,,,, ); 
+        // }
+        // $sentencia4 -> close();
+
+        // // total entradas area B402
+        // $sentencia5 = $this -> db->prepare(" SELECT count( med.`valor` )
+        // FROM `mediciones` med 
+        // WHERE  med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?) "); 
+        // $sentencia5 -> bind_param( 'sss', $param1, $param2, $param3 );
+        // $param1 = "4";
+        // $param2 = "15";
+        // $param3 = "2";
+        // $sentencia5 -> execute(); 
+        // $sentencia5 -> bind_result(  $entradaB402 );
+        // while( $sentencia5 -> fetch() ){  
+        //     $ar[] = array( "nombreZona"=>"Z400",
+        //     "tituloZona"=> $tituloZona,,,,,,,
+        //     "nombreArea"=>"B402",
+        //     "tituloArea"=> $tituloArea,,,,,,,
+        //     "fecha"=>"$fh",
+        //     "magnitud"=>"entradas",
+        //     "valor"=>"$entradaB402",
+        //     "cliente"=> $uidCliente,,,,,,,, );
+        // }
+        // $sentencia5 -> close();
+
+
         $this -> db -> close();
         $array = ["mediciones" => $ar]; 
         return $array;

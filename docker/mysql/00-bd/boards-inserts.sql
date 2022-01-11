@@ -29,7 +29,6 @@ CREATE TABLE `magnitudes`(
 );
 CREATE TABLE `clientes`(
     `idcliente` INT UNSIGNED AUTO_INCREMENT,
-    `nombre` VARCHAR(100),
     `uid` VARCHAR(20),
     PRIMARY KEY (idcliente)
 );
@@ -81,8 +80,8 @@ INSERT INTO `magnitudes` (`nombre`,`idsensor`)
 VALUES ('pulsaciones','1'),('entradas','2'),('luminosidad','3'),
 ('temperatura','4'),('humedad','4');
 
-INSERT INTO `clientes`(`nombre`,`uid`)
-VALUES ('',''),('Antonio','EC8F444A'),('José','JH6789HG');
+INSERT INTO `clientes`(`uid`)
+VALUES (''),('qq1r74yz'),('tyh5g6vb');
 
 -- Luminosidad para Zona Z400
 INSERT INTO `mediciones`(`valor`,`idzona`,`idarea`,`idmagnitud`) 
