@@ -81,7 +81,7 @@ VALUES ('pulsaciones','1'),('entradas','2'),('luminosidad','3'),
 ('temperatura','4'),('humedad','4');
 
 INSERT INTO `clientes`(`uid`)
-VALUES (''),('qq1r74yz'),('tyh5g6vb');
+VALUES (''),('ec8f444a'),('b3a2906');
 
 -- Luminosidad para Zona Z400
 INSERT INTO `mediciones`(`valor`,`idzona`,`idarea`,`idmagnitud`) 
