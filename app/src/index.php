@@ -17,8 +17,7 @@
     <template id="templatezonaSensor">
         <div class="divz">
             <img class="iconz"> </img>
-            <magnitud id="magnitudz"> </magnitud>
-            <valor id="valorz"> </valor>
+            <valor class="valorz"> </valor>
         </div>
     </template>
     <!-- densidad y fidelidad -->
@@ -26,7 +25,7 @@
         <h3 id="areaa">  </h3> 
         <div class="diva">
             <magnitud id="magnituda"> </magnitud>
-            <valor id="valora"> </valor>
+            <valor class="valora"> </valor>
         </div>
     </template>
 

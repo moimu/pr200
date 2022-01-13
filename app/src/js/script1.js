@@ -76,8 +76,7 @@ function pintasolicitudes( solicitudes, article ){
                     this[clon+solicitudes[0]+index] = templatezonaSensor.content.cloneNode(true);
                     this[clon+solicitudes[0]+index].querySelector('.divz').classList.add(medicion.magnitud);
                     this[clon+solicitudes[0]+index].querySelector('.iconz').src = "images/icon/"+medicion.magnitud+".png"
-                    // this[clon+solicitudes[0]+index].querySelector('#magnitudz').innerHTML = medicion.magnitud
-                    this[clon+solicitudes[0]+index].querySelector('#valorz').innerHTML = medicion.valor+unidad;
+                    this[clon+solicitudes[0]+index].querySelector('.valorz').innerHTML = medicion.valor+unidad;
                     article.querySelector(".mediciones").appendChild( this[clon+solicitudes[0]+index] );
 
                     if( medicion.magnitud == "densidad" ){ // % descuento por densidad en Zona
@@ -85,8 +84,7 @@ function pintasolicitudes( solicitudes, article ){
                         this[clon+solicitudes[0]+index] = templatezonaSensor.content.cloneNode(true);
                         this[clon+solicitudes[0]+index].querySelector('.divz').classList.add("descuentoDensidad");
                         this[clon+solicitudes[0]+index].querySelector('.iconz').src = "images/icon/descuento.png"
-                        // this[clon+solicitudes[0]+index].querySelector('#magnitudz').innerHTML = "Descuento Densidad"
-                        this[clon+solicitudes[0]+index].querySelector('#valorz').innerHTML=descuentoPorDensidadZona(medicion.valor)+unidad+" + % descuento fidelidad";
+                        this[clon+solicitudes[0]+index].querySelector('.valorz').innerHTML=descuentoPorDensidadZona(medicion.valor)+unidad+" + % descuento fidelidad";
                         article.querySelector(".descuentos").appendChild( this[clon+solicitudes[0]+index] );
                         
                     }
