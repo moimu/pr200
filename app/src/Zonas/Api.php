@@ -26,10 +26,6 @@ class Api extends Bd{
         // Calcularé la media de los valores de luminosidad de la ultima media hora
         // la consulta retornará NULL si no hay mediciones para este intervalo
 
-        // SELECT med.`fh`, med.`valor`
-        // FROM `mediciones` med 
-        // WHERE  med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?)
-        // ORDER BY med.`idmedicion` DESC LIMIT 1
 
         $sentencia1 = $this -> db ->prepare(" SELECT ROUND(AVG(`valor`), 2) as `medLuminosidad`, zon. `nombre`, zon.`titulo`, are.`nombre`, are.`titulo`, cli.`uid`
         FROM `mediciones` med 
@@ -38,10 +34,10 @@ class Api extends Bd{
         INNER JOIN `zonas` zon ON med.`idzona` = zon.`idzona` 
         WHERE `fh`>= DATE_SUB(NOW(), INTERVAL 30 MINUTE)
         AND med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?) "); 
-        $sentencia1 -> bind_param( 'sss', $param1, $param2, $param3 );
         $param1 = "4";
         $param2 = "1";
         $param3 = "3";
+        $sentencia1 -> bind_param( 'sss', $param1, $param2, $param3 );
         $sentencia1 -> execute(); 
         $sentencia1 -> bind_result( $medLuminosidad, $nombreZona, $tituloZona, $nombreArea, $tituloArea, $uidCliente );
         while( $sentencia1 -> fetch() ){  
@@ -56,25 +52,23 @@ class Api extends Bd{
         }
         $sentencia1 -> close();
         
-        // SELECT count( med.`valor` )
-        // FROM `mediciones` med 
-        // WHERE  med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?)
+        // Por cada cliente se generá un objeto con su UID y total de entradas en últimos 2 meses en areas B401 y B402
 
-// Por cada cliente se generá un objeto con su UID y total de entradas en últimos 2 meses
+
         $sentencia2 = $this -> db->prepare(" SELECT cli.`uid`, COUNT(med.`valor`), zon. `nombre`, zon.`titulo`, are.`nombre`, are.`titulo`
         FROM `mediciones` med 
         INNER JOIN `clientes` cli ON med.`idcliente` = cli.`idcliente`
         INNER JOIN `areas` are ON med.`idarea` = are.`idarea`
         INNER JOIN `zonas` zon ON med.`idzona` = zon.`idzona`
-        WHERE cli.`nombre` <> (?) AND med.`fh` >= DATE_SUB(NOW(), INTERVAL 2 MONTH)
+        WHERE cli.`uid` IS NOT NULL AND med.`fh` >= DATE_SUB(NOW(), INTERVAL 2 MONTH)
         AND med.`idzona` = (?) AND med.`idarea` >= (?) AND med.`idarea` <= (?) AND med.`idmagnitud` = (?) 
         GROUP BY med.`idcliente` "); 
-        $sentencia2 -> bind_param( 'sssss', $param1, $param2, $param3, $param4, $param5 );
-        $param1 = "";
+        // $param1 = null;
         $param2 = "4";
         $param3 = "14";
         $param4 = "15";
         $param5 = "2";
+        $sentencia2 -> bind_param( 'ssss', $param2, $param3, $param4, $param5 );
         $sentencia2 -> execute(); 
         $sentencia2 -> bind_result( $uidCliente, $entradasDosmesesCliente, $nombreZona, $tituloZona, $nombreArea, $tituloArea );
         while( $sentencia2 -> fetch() ){  
@@ -89,72 +83,89 @@ class Api extends Bd{
         }
         $sentencia2 -> close();
 
-        // // consulta ultima medición luminosidad
-        // $sentencia3 = $this -> db ->prepare(" SELECT med.`fh`, med.`valor`
-        // FROM `mediciones` med 
-        // WHERE  med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?)
-        // ORDER BY med.`idmedicion` DESC LIMIT 1 "); 
-        // $sentencia3 -> bind_param( 'sss', $param1, $param2, $param3 );
-        // $param1 = "4";
-        // $param2 = "1";
-        // $param3 = "3";
-        // $sentencia3 -> execute(); 
-        // $sentencia3 -> bind_result( $fhZ400, $cantluzZ400 );
-        // while( $sentencia3 -> fetch() ){  
-        //     $ar[] = array( "nombreZona"=>"Z400",
-        //     "tituloZona"=> $tituloZona,,,,,,,,
-        //     "nombreArea"=>null,
-        //     "tituloArea"=> $tituloArea,,,,,,,
-        //     "fecha"=>"$fhZ400",
-        //     "magnitud"=>"iluminacion",
-        //     "valor"=>"$cantluzZ400",
-        //     "cliente"=> $uidCliente,,,,, );
-        // }
-        // $sentencia3 -> close();
+        // consulta última medición luminosidad
 
-        // // total entradas area B401
-        // $sentencia4 = $this -> db->prepare(" SELECT count( med.`valor` )
-        // FROM `mediciones` med 
-        // WHERE  med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?) "); 
-        // $sentencia4 -> bind_param( 'sss', $param1, $param2, $param3 );
-        // $param1 = "4";
-        // $param2 = "14";
-        // $param3 = "2";
-        // $sentencia4 -> execute(); 
-        // $sentencia4 -> bind_result( $entradaB401 );
-        // while( $sentencia4 -> fetch() ){  
-        //     $ar[] = array( "nombreZona"=>"Z400",
-        //     "tituloZona"=> $tituloZona,,,,,,,,
-        //     "nombreArea"=>"B401",
-        //     "tituloArea"=> $tituloArea,,,,,,,
-        //     "fecha"=>"$fh",
-        //     "magnitud"=>"entradas",
-        //     "valor"=>"$entradaB401",
-        //     "cliente"=> $uidCliente,,,,,, ); 
-        // }
-        // $sentencia4 -> close();
 
-        // // total entradas area B402
-        // $sentencia5 = $this -> db->prepare(" SELECT count( med.`valor` )
-        // FROM `mediciones` med 
-        // WHERE  med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?) "); 
-        // $sentencia5 -> bind_param( 'sss', $param1, $param2, $param3 );
-        // $param1 = "4";
-        // $param2 = "15";
-        // $param3 = "2";
-        // $sentencia5 -> execute(); 
-        // $sentencia5 -> bind_result(  $entradaB402 );
-        // while( $sentencia5 -> fetch() ){  
-        //     $ar[] = array( "nombreZona"=>"Z400",
-        //     "tituloZona"=> $tituloZona,,,,,,,
-        //     "nombreArea"=>"B402",
-        //     "tituloArea"=> $tituloArea,,,,,,,
-        //     "fecha"=>"$fh",
-        //     "magnitud"=>"entradas",
-        //     "valor"=>"$entradaB402",
-        //     "cliente"=> $uidCliente,,,,,,,, );
-        // }
-        // $sentencia5 -> close();
+        $sentencia3 = $this -> db ->prepare(" SELECT med.`fh`, med.`valor`, zon. `nombre`, zon.`titulo`, are.`nombre`, are.`titulo`, mag.`nombre`, cli.`uid`
+        FROM `mediciones` med 
+        INNER JOIN `clientes` cli ON med.`idcliente` = cli.`idcliente`
+        INNER JOIN `areas` are ON med.`idarea` = are.`idarea`
+        INNER JOIN `zonas` zon ON med.`idzona` = zon.`idzona`
+        INNER JOIN `magnitudes` mag ON med.`idmagnitud` = mag.`idmagnitud`
+        WHERE  med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?)
+        ORDER BY med.`idmedicion` DESC LIMIT 1 "); 
+        $sentencia3 -> bind_param( 'sss', $param1, $param2, $param3 );
+        $param1 = "4";
+        $param2 = "1";
+        $param3 = "3";
+        $sentencia3 -> execute(); 
+        $sentencia3 -> bind_result( $fhZ400, $cantluzZ400, $nombreZona, $tituloZona, $nombreArea, $tituloArea, $magnitud, $uidCliente );
+        while( $sentencia3 -> fetch() ){  
+            $ar[] = array( "nombreZona"=>$nombreZona,
+            "tituloZona"=> $tituloZona,
+            "nombreArea"=>$nombreArea,
+            "tituloArea"=> $tituloArea,
+            "fecha"=>$fhZ400,
+            "magnitud"=>$magnitud,
+            "valor"=>$cantluzZ400,
+            "cliente"=> $uidCliente );
+        }
+        $sentencia3 -> close();
+
+        // Total entradas area B401
+
+        $sentencia4 = $this -> db->prepare(" SELECT count( med.`valor`), zon. `nombre`, zon.`titulo`, are.`nombre`, are.`titulo`, mag.`nombre`, cli.`uid` 
+        FROM `mediciones` med
+        INNER JOIN `clientes` cli ON med.`idcliente` = cli.`idcliente`
+        INNER JOIN `areas` are ON med.`idarea` = are.`idarea`
+        INNER JOIN `zonas` zon ON med.`idzona` = zon.`idzona`
+        INNER JOIN `magnitudes` mag ON med.`idmagnitud` = mag.`idmagnitud`
+        WHERE  med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?) "); 
+        $sentencia4 -> bind_param( 'sss', $param1, $param2, $param3 );
+        $param1 = "4";
+        $param2 = "14";
+        $param3 = "2";
+        $sentencia4 -> execute(); 
+        $sentencia4 -> bind_result( $entradaB401, $nombreZona, $tituloZona, $nombreArea, $tituloArea, $magnitud, $uidCliente );
+        while( $sentencia4 -> fetch() ){  
+            $ar[] = array( "nombreZona"=>$nombreZona,
+            "tituloZona"=> $tituloZona,
+            "nombreArea"=> $nombreArea,
+            "tituloArea"=> $tituloArea,
+            "fecha"=>"$fh",
+            "magnitud"=>$magnitud,
+            "valor"=>"$entradaB401",
+            "cliente"=> $uidCliente ); 
+        }
+        $sentencia4 -> close();
+
+        // Total entradas area B402
+
+
+        $sentencia5 = $this -> db->prepare(" SELECT count( med.`valor`), zon. `nombre`, zon.`titulo`, are.`nombre`, are.`titulo`, mag.`nombre`, cli.`uid` 
+        FROM `mediciones` med
+        INNER JOIN `clientes` cli ON med.`idcliente` = cli.`idcliente`
+        INNER JOIN `areas` are ON med.`idarea` = are.`idarea`
+        INNER JOIN `zonas` zon ON med.`idzona` = zon.`idzona`
+        INNER JOIN `magnitudes` mag ON med.`idmagnitud` = mag.`idmagnitud`
+        WHERE  med.`idzona` = (?) AND med.`idarea` = (?) AND med.`idmagnitud` = (?) "); 
+        $sentencia5 -> bind_param( 'sss', $param1, $param2, $param3 );
+        $param1 = "4";
+        $param2 = "15";
+        $param3 = "2";
+        $sentencia5 -> execute(); 
+        $sentencia5 -> bind_result( $entradaB401, $nombreZona, $tituloZona, $nombreArea, $tituloArea, $magnitud, $uidCliente );
+        while( $sentencia5 -> fetch() ){  
+            $ar[] = array( "nombreZona"=>$nombreZona,
+            "tituloZona"=> $tituloZona,
+            "nombreArea"=> $nombreArea,
+            "tituloArea"=> $tituloArea,
+            "fecha"=>"$fh",
+            "magnitud"=>$magnitud,
+            "valor"=>"$entradaB401",
+            "cliente"=> $uidCliente ); 
+        }
+        $sentencia5 -> close();
 
 
         $this -> db -> close();

@@ -26,6 +26,7 @@ class ApiReceive extends Bd{
 
         echo "Post RFID UID cliente : ".$uidCliente;
 
+        // Consulto el id correspondiente al uid del cliente para insertar registro
         $sentencia1 = $this -> db -> prepare(" SELECT `idcliente` FROM `clientes` WHERE `uid` = (?) "); 
         $param1 = $uidCliente; 
         $sentencia1 -> bind_param('s', $param1);
@@ -36,15 +37,16 @@ class ApiReceive extends Bd{
         }
         $sentencia1 -> close();
 
-        $sentencia = $this -> db -> prepare(" INSERT INTO `mediciones`(`idzona`,`idarea`,`idmagnitud`,`idcliente`) VALUES (?,?,?,?) "); 
+        // Inserto la entrada del cliente
+        $sentencia2 = $this -> db -> prepare(" INSERT INTO `mediciones`(`idzona`,`idarea`,`idmagnitud`,`idcliente`) VALUES (?,?,?,?) "); 
         $param1 = "4"; 
         $param2 = "14";
         $param3 = "2";
         $param4 = $idCliente;
-        $sentencia -> bind_param('ssss', $param1, $param2, $param3, $param4);
-        $sentencia -> execute();
-        echo ( $sentencia -> affected_rows > 0 )?" entrada registrada ":" Error registro entrada ";
-        $sentencia -> close();
+        $sentencia2 -> bind_param('ssss', $param1, $param2, $param3, $param4);
+        $sentencia2 -> execute();
+        echo ( $sentencia2 -> affected_rows > 0 )?" entrada registrada ":" Error registro entrada ";
+        $sentencia2 -> close();
 
         $this -> db -> close();
        

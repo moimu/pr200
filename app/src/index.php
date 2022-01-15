@@ -21,34 +21,39 @@
         </div>
     </template>
     <!-- densidad y fidelidad -->
-    <template id="templateareaSensor">
+    <!-- <template id="templateareaSensor">
         <h3 id="areaa">  </h3> 
         <div class="diva">
             <magnitud id="magnituda"> </magnitud>
             <valor class="valora"> </valor>
         </div>
-    </template>
+    </template> -->
 
     <header class="header">
 
         <!-- <h1> Isla Mágica </h1> -->
         <img src="images/LOGO_IM-RGB.png" class="imglogo"></img>
+
         <section class="headersection">
         
-            <!-- <img src="images/menu.png" class="imgmenu"></img> -->
-            <nav class="headernav">
-                <ul>
-                    <li> <a id="datequipo" href="index.php">Datos equipo ></a> </li>
-                    <li> <a id="datprueba" href="prueba.php">Datos prueba ></a> </li>
+            
+            <nav class="headernav">  
+                <img src="images/menu.png" class="imgmenu"></img> 
+                <ul class="menu">
+                    <li> <a id="datequipo" href="index.php">Datos equipo </a> </li>
+                    <li> <a id="datprueba" href="prueba.php">Datos prueba </a> </li>
                 </ul>
             </nav>
+
             <form onSubmit="return descuentosCliente()" name ="formularioContacto" method="get" action="index.php">
                 <label><input type="text" name="uid" id="uid" placeholder=" uid cliente"></label>
-                <button type="submit"> Consulta descuento </button>
+                <button type="submit" class="boton"> Descuento </button>
             </form>
 
         </section>
+
         
+
     </header>
     <main class="main">
         <div class="contenedormapa">
@@ -78,6 +83,7 @@
                     </div> 
                 </section>
                 <section class ="oculto sectionArea" id="sectionareas1">   </section>
+                <img src="images/mapas/zonaSevillaPuertoDeIndias.jpg" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
             <article class ="article" id="2">
@@ -98,6 +104,7 @@
                     </div>  
                 </section>
                 <section class ="oculto sectionArea" id="sectionareas2">   </section>
+                <img src="images/mapas/zonaSevillaPuertoDeIndias.jpg" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
             <article class ="article" id="3">
@@ -118,6 +125,7 @@
                     </div> 
                 </section>
                 <section class ="oculto sectionArea" id="sectionareas3">   </section>
+                <img src="images/mapas/zonaSevillaPuertoDeIndias.jpg" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
             <article class ="article" id="4">
@@ -138,6 +146,7 @@
                     </div>               
                 </section>
                 <section class ="oculto sectionArea" id="sectionareas4">   </section>
+                <img src="images/mapas/zonaSevillaPuertoDeIndias.jpg" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
             <article class ="article" id="5">
@@ -158,6 +167,7 @@
                     </div> 
                 </section>
                 <section class ="oculto sectionArea" id="sectionareas5">   </section>
+                <img src="images/mapas/zonaSevillaPuertoDeIndias.jpg" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
         </section>

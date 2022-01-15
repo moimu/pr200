@@ -151,25 +151,75 @@ function pintasolicitudes( solicitudes, article ){
 const headerTituloZonas = document.querySelectorAll(".headerTituloZonas");
 const seccionesOcultas = document.querySelectorAll(".oculto");
 const imagenesmapa = document.querySelectorAll(".mapa");
+const imgresponsive = document.querySelectorAll(".imgresponsive");
+const flechadireccion= document.querySelectorAll(".flechadireccion");
 
-headerTituloZonas.forEach( element => element.addEventListener('click', visibilidad ) );
+
+headerTituloZonas.forEach( element => element.addEventListener('click', visibilidadZonas ) );
 
 /**
  * Asigno evento click a todos los header con el título de la zona,
  * al ejecutarlo funcion visibilidad muestra secciones con datos de esta zona, 
  * y oculta seccion previamente clickada.
  * Muestra la imagen mapa correspondiente a la zona, y oculta las demás.
+ * Si el ancho de la pantalla es <= 1200 px muestra y oculta imágenes 
+ * más pequeñas definidas en clase .imgresponsive dentro de 
+ * la sección de Zona.
+ * La img flecha para la zona visible gira (añadiendo clase css)
  */
-function visibilidad(event){
+function visibilidadZonas(event){
 
-    seccionesOcultas.forEach( section => section.classList.remove('visible') );
-    event.currentTarget.nextElementSibling.classList.add('visible');
-    event.currentTarget.nextElementSibling.nextElementSibling.classList.add('visible');
-
-    imagenesmapa.forEach( section => section.classList.add('oculto') );
     let numimgmostrar = event.currentTarget.parentElement.id;
-    imagenesmapa[numimgmostrar].classList.remove('oculto');
-    imagenesmapa[numimgmostrar].classList.add('visible');
+
+    // ocultar si es visible 
+    if( event.currentTarget.nextElementSibling.classList.contains('visible') ){
+        console.log('ha qu oculatarlo');
+        event.currentTarget.nextElementSibling.classList.remove('visible');
+        flechadireccion.forEach( imgflecha => imgflecha.classList.remove('girararriba'));
+        imgresponsive.forEach( function (imagen){
+            imagen.classList.add('oculto');
+            imagen.classList.remove('visible');
+        });
+    }
+    else{ // visibilizar seccion Zona
+        seccionesOcultas.forEach( section => section.classList.remove('visible') );
+        event.currentTarget.nextElementSibling.classList.add('visible');
+        event.currentTarget.nextElementSibling.nextElementSibling.classList.add('visible');
+        //girar flecha
+        flechadireccion.forEach( imgflecha => imgflecha.classList.remove('girararriba'));
+        flechadireccion[numimgmostrar-1].classList.add('girararriba');
+
+        // imágenes grandes mapa o pequeñas dentro de sección de Zona
+        if( window.screen.width <= 900 ){
+            imgresponsive.forEach( imagen => imagen.classList.add('oculto') );
+            imgresponsive[numimgmostrar-1].classList.remove('oculto');
+            imgresponsive[numimgmostrar-1].classList.add('visible');
+        }
+        else{
+            imagenesmapa.forEach( imagen => imagen.classList.add('oculto') );
+            imagenesmapa[numimgmostrar].classList.remove('oculto');
+            imagenesmapa[numimgmostrar].classList.add('visible');
+        }
+    }
+
+}
+
+const imgmenu = document.querySelector(".imgmenu");
+imgmenu.addEventListener('click', muestraMenu);
+/**
+ * Al clicar sobre la imagen del menu lo muestra si esta oculto
+ * y lo oculta si esta visible.
+ */
+function muestraMenu(event){
+
+    console.log(event.currentTarget.nextSibling);
+    if(event.currentTarget.nextElementSibling.style.display=="flex"){
+        event.currentTarget.nextElementSibling.style.display="none";
+    }
+    else{
+        event.currentTarget.nextElementSibling.style.display="flex";
+    }
+
 }
 
 /**

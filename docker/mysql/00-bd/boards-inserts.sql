@@ -66,7 +66,7 @@ VALUES ('Z100','Sevilla, Puerto de Indias'),('Z200','Puerta de América'),
 ('Z300','Amazonia'),('Z400','La Guarida de los Piratas'),('Z500','El Dorado');
 
 INSERT INTO `areas`(`nombre`,`titulo`,`idzona`)
-VALUES ('','','1'),('A101','El Desafío','1'),('B101','La Venta del Puerto','1'),
+VALUES (null,null,'1'),('A101','El Desafío','1'),('B101','La Venta del Puerto','1'),
 ('A201','Anaconda','2'),('A202','Navío Barbarroja','2'),('B201','La Cabaña Criolla','2'),
 ('A301','Jaguar','3'),('A302','Iguazú','3'),('A303','Topetazú','3'),
 ('B301','El Fuerte','3'),('B302','El Arsenal','3'),
@@ -81,7 +81,7 @@ VALUES ('pulsaciones','1'),('entradas','2'),('luminosidad','3'),
 ('temperatura','4'),('humedad','4');
 
 INSERT INTO `clientes`(`uid`)
-VALUES (''),('ec8f444a'),('b3a2906');
+VALUES (null),('ec8f444a'),('b3a2906');
 
 -- Luminosidad para Zona Z400
 INSERT INTO `mediciones`(`valor`,`idzona`,`idarea`,`idmagnitud`) 

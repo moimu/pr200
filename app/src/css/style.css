@@ -69,24 +69,46 @@ h1{
     padding: 40px;
     justify-content: space-around;
 }
-.headernav ul{
+.imgmenu{
+    height: 30px;
+    width: 30px;
+    border-radius: 0.2em;
+    padding: 3px;
+}
+.imgmenu:hover{
+    cursor: pointer;
+    background: rgba(0,0,0,0.2);
+}
+.headernav{
+    position: relative;
     display: flex;
-    font-size: larger;
-
+}
+.headernav ul{
+    display: none;
+    border: 1px solid black;
+    border-radius: 0.3em;
 }
 .headernav ul li{
-    padding: 8px;
-    margin-left: 20px; 
+    margin-bottom: 2px;
+    display: flex;
+    /* background: rgb(186, 186, 223); */
+    padding: 4px;
 }
 .headernav ul li a{
-    color: var(--azul-link);
-    /* font-size: 21px; */
+    padding: 5px;
+    border-radius: 0.3em;
+    /* vertical-align: -webkit-baseline-middle; */
 }
-a:hover, a:focus {
-    text-decoration-line: underline;
+.headernav ul li a:hover{
+    color: white;
+    background-color: red;  
+}
+.hola{
+    color:darkgreen;
 }
 
 form{
+    margin-right: 0;
     border: 1px solid black;
     border-radius: 0.3em;
     padding: 10px;
@@ -94,6 +116,18 @@ form{
 input{
     border: 1px solid black;
     border-radius: 0.3em;
+}
+.boton{
+    padding: 0px 3px;
+    border: 1px solid black;
+    border-radius: 0.3em;
+    background: rgba(0,0,0,0.2); 
+    box-shadow: 3px 3px 7px var(--grey-sombra);
+}
+.boton:hover{
+    color: white;
+    background-color: red;  
+    cursor: pointer;
 }
 .main{
     display:flex;
@@ -115,15 +149,24 @@ input{
     display: flex;
     justify-content: space-between;
 }
+
+.mediciones, .descuentos, .productos{
+    display: inline-block;
+    margin-right: 20px;
+}
 .flechadireccion{
     width: 17px;
     height: 17px;
+    border-radius: 50%;
+    padding:3px;
 }
-/* .img{
-    width: 280px;
-    height: 80px;
-    border-radius: 0.3em;
-} */
+.flechadireccion:hover{
+    background-color: rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+.girararriba{
+    transform: rotate(180deg);
+}
 .mapa{
     border-radius: 0.5rem;
     width: 95%;
@@ -137,41 +180,14 @@ input{
     width: 100%;
     height: auto;
 }
-.sectionZonas{
-
+.imgresponsive{
+    border-radius: 0.5rem;
+    width: 65%;
+    margin: auto;
+    height: auto;
 }
 
 
-/* .imgmap{
-    max-width: 580px;
-} */
-/* .iluminacion{
-    background-color: #e0e07f;
-    padding:2px;
-}
-.luminosidad{
-    background-color: #e0e07f;
-    padding:2px;
-}
-.temperatura{
-    background-color:#ecc782;
-    padding:2px;
-}
-.humedad{
-    background-color: #77e2e2;
-    padding:2px;
-}
-.pulsaciones{
-    background-color: #73d173;
-    padding:2px;
-}
-.entradas{
-    background-color: pink;
-    padding:2px;
-} */
-.descuentoDensidad .descuentoClima{
-    background-color: #73d173;
-}
 .iconz{
     width: 25px;
     height: 25px;
@@ -182,7 +198,6 @@ input{
     text-align: center;
 }
 .divz{
-    /* min-width: 260px; */
     display: inline-flex;
 }
 h2{
@@ -217,7 +232,7 @@ h2{
 }
 
 /* Layout */
-@media (max-width:1200px){
+@media (max-width:900px){
    .contenedormapa{
        display: none;
    }
@@ -226,8 +241,7 @@ h2{
    }
    .main{
         display: block;
-   }
-    
+   }   
 }
 @media (max-width:660px){
     header h1{
@@ -238,8 +252,10 @@ h2{
     .headernav ul li a {
         font-size: 17px;
     }
+    .imgresponsive{
+        width: 100%;
+    }
 }
-
 @media (max-width:370px){
     #divz{
         min-width: 180px;
