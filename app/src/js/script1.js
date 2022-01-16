@@ -138,10 +138,10 @@ function pintasolicitudes( solicitudes, article ){
         })
         .catch( function ( error ) {
             const pError = document.createElement("p");
-            const smsError = document.createTextNode("Solicitud datos inaccesible.");
+            const smsError = document.createTextNode("datos inaccesibles");
             pError.appendChild(smsError);
             pError.className = "smsError";
-            article.firstElementChild.appendChild( pError );
+            article.querySelector(".mediciones").appendChild( pError );
             console.log(' Problema con la petición Fetch:' + error.message);
         });
     }
@@ -340,7 +340,6 @@ function descuentoAlimentos( medLuminosidad, medTemperatura, medHumedad ){
  */
 function desAlimentos( medLuminosidad, medTemperatura, medHumedad ){
 
-    console.log(medLuminosidad, medTemperatura, medHumedad );
     let desComida;
     let desBebida;
     if( medLuminosidad<50 && medTemperatura<20 && medHumedad<50){

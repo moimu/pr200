@@ -13,29 +13,19 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="body">
-    <!-- Media de luz, humedad y temperatura -->
+    <!-- Media de luz, humedad, temperatura y densidad-->
     <template id="templatezonaSensor">
         <div class="divz">
             <img class="iconz"> </img>
             <valor class="valorz"> </valor>
         </div>
     </template>
-    <!-- densidad y fidelidad -->
-    <!-- <template id="templateareaSensor">
-        <h3 id="areaa">  </h3> 
-        <div class="diva">
-            <magnitud id="magnituda"> </magnitud>
-            <valor class="valora"> </valor>
-        </div>
-    </template> -->
 
     <header class="header">
 
-        <!-- <h1> Isla Mágica </h1> -->
         <img src="images/LOGO_IM-RGB.png" class="imglogo"></img>
 
         <section class="headersection">
-        
             
             <nav class="headernav">  
                 <img src="images/menu.png" class="imgmenu"></img> 
@@ -52,10 +42,9 @@
 
         </section>
 
-        
-
     </header>
     <main class="main">
+
         <div class="contenedormapa">
             <img src="images/mapas/mapa.jpg" alt="mapaCompleto" class="mapa" id="img0"/>
             <img src="images/mapas/zonaSevillaPuertoDeIndias.jpg" alt="zonaSevillaPuertoDeIndias" class="mapa oculto" id="img1"/>
@@ -64,7 +53,9 @@
             <img src="images/mapas/zonaGuaridaDePiratas.jpg" alt="zonaGuaridaDePiratas" class="mapa oculto" id="img4"/>
             <img src="images/mapas/zonaElDorado.jpg" alt="zonaElDorado" class="mapa oculto" id="img5"/>
         </div>
+
         <section class="sectionZonas">
+
             <article class ="article" id="1">
                
                 <header class="headerTituloZonas">
@@ -83,7 +74,7 @@
                     </div> 
                 </section>
                 <section class ="oculto sectionArea" id="sectionareas1">   </section>
-                <img src="images/mapas/zonaSevillaPuertoDeIndias.jpg" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
+                <img src="images/mapas/responsive/SevillaPuertoDeIndias.png" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
             <article class ="article" id="2">
@@ -104,7 +95,7 @@
                     </div>  
                 </section>
                 <section class ="oculto sectionArea" id="sectionareas2">   </section>
-                <img src="images/mapas/zonaSevillaPuertoDeIndias.jpg" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
+                <img src="images/mapas/responsive/PuertaDeAmerica.png" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
             <article class ="article" id="3">
@@ -125,7 +116,7 @@
                     </div> 
                 </section>
                 <section class ="oculto sectionArea" id="sectionareas3">   </section>
-                <img src="images/mapas/zonaSevillaPuertoDeIndias.jpg" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
+                <img src="images/mapas/responsive/Amazonia.png" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
             <article class ="article" id="4">
@@ -146,7 +137,7 @@
                     </div>               
                 </section>
                 <section class ="oculto sectionArea" id="sectionareas4">   </section>
-                <img src="images/mapas/zonaSevillaPuertoDeIndias.jpg" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
+                <img src="images/mapas/responsive/GuaridaDePiratas.png" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
             <article class ="article" id="5">
@@ -167,18 +158,23 @@
                     </div> 
                 </section>
                 <section class ="oculto sectionArea" id="sectionareas5">   </section>
-                <img src="images/mapas/zonaSevillaPuertoDeIndias.jpg" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
+                <img src="images/mapas/responsive/ElDorado.png" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
+
         </section>
 
     </main>
 
     <footer class="footer">
+
         <section class="mercadosMateriasPrimas">
             <a href="#" class="imgfoot"> <img src="" alt="" /> </a>
+            <a href="https://github.com/moimu"><img src="images/GitHub-Mark-32px.png" alt="logoGithub" class="logofooter"/></a>
         </section>
-        <a href="api/docs/docapi.html">API</a>
+        
+        <a href="api/docs/docapi.html"><img src="images/api.png" alt="logoApi" class="logofooter"/></a>
+
     </footer>
 
     <script src="js/script1.js" language="javascript" ></script>
