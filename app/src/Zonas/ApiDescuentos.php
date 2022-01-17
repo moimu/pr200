@@ -19,7 +19,7 @@ class ApiDescuentos extends Bd{
      * @param object $this -> db (parent)
      * @return array $array dos valores descuento Comida y descuento Bebida
      */
-    public function descuentos($medcantluz, $medtemperatura, $medhumedad){
+    public function descuentos( $medcantluz, $medtemperatura, $medhumedad ){
         
         $signocantluz = "<";
         $signotemperatura = "<";
@@ -30,16 +30,17 @@ class ApiDescuentos extends Bd{
 
         $sentencia1 = $this -> db ->prepare("SELECT `descomida`,`desbebida` FROM `descuentosclima` 
         WHERE `cantluz` $signocantluz ? AND `temperatura` $signotemperatura ? AND `humedad` $signohumedad ?"); 
-
-        $sentencia1 -> bind_param( 'iii', $param1, $param2, $param3 );
         $param1 = $medcantluz;
         $param2 = $medtemperatura;
         $param3 = $medhumedad;
-
+        $sentencia1 -> bind_param( 'iii', $param1, $param2, $param3 );
+       
         $sentencia1 -> execute(); 
         $sentencia1 -> bind_result( $descomida, $desbebida );
         while( $sentencia1 -> fetch() ){  
-            $descuentos = array( "descomida"=> $descomida, "desbebida"=> $desbebida, );
+            $descuentos = array( 
+            "descomida"=> $descomida,
+            "desbebida"=> $desbebida );
         }
         $sentencia1 -> close();
         

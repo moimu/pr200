@@ -13,5 +13,5 @@
 
     }
 
-    // $ar = $api -> descuentos( 50, 20, 50 );
-    // echo $api -> json( $ar );
+    $ar = $api -> descuentos( 50, 20, 50 );
+    echo $api -> json( $ar );

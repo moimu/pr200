@@ -132,11 +132,11 @@ VALUES ('https://newflow.tech/pr-200-jsonPruebas/z100-1.php'),
 ('ocete.......');
 
 INSERT INTO `descuentosclima`(`cantluz`,`temperatura`,`humedad`,`descomida`,`desbebida`)
-VALUES(49,19,49,'si','si'),
-(49,19,50,'no','si'),
-(49,20,49,'si','no'),
-(49,20,50,'si','no'),
-(50,19,49,'no','si'),
-(50,19,50,'si','si'),
-(50,20,49,'si','no'),
-(50,20,50,'si','si');
+VALUES(49,19,49,'true','true'),
+(49,19,50,'false','true'),
+(49,20,49,'true','false'),
+(49,20,50,'true','false'),
+(50,19,49,'false','true'),
+(50,19,50,'true','true'),
+(50,20,49,'true','false'),
+(50,20,50,'true','true');

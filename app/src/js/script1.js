@@ -102,26 +102,13 @@ function pintasolicitudes( solicitudes, article ){
                     }
 
                 }
-                // else if ( medicion.tituloArea != null ){
-                    
-                //     this[clon+solicitudes[0]+index] = templateareaSensor.content.cloneNode(true);
-
-                //     this[clon+solicitudes[0]+index].querySelector('.diva').classList.add(medicion.magnitud);
-                //     // nombre de Area > Area == densidad (Densidad de Zona) Area == fidelidad (usosTarjetacliente)
-                //     this[clon+solicitudes[0]+index].querySelector('#areaa').innerHTML = medicion.tituloArea;
-                //     // this[clon+solicitudes[0]+index].querySelector('#fechaa').innerHTML = medicion.fecha;
-
-                //     // this[clon+solicitudes[0]+index].querySelector('#magnituda').innerHTML = medicion.magnitud;
-                //     // this[clon+solicitudes[0]+index].querySelector('#valora').innerHTML = medicion.valor+unidad;
-
-                //     article.querySelector(".sectionArea").appendChild( this[clon+solicitudes[0]+index] );
-
-                // }
+                
             })
             if( i == 1 ){ // cuando se haya completado los 2 peticiones Descuentos Climatología
                 
+                // funcion que usa promesa para obtener si Zona tiene descuento en comida o bebida, no funciona la promesa
                 // descuentoAlimentos(  mediasMediciones[0], mediasMediciones[1], mediasMediciones[2] );
-                // console.log( desAlimentos(  mediasMediciones[0], mediasMediciones[1], mediasMediciones[2] ) );
+
                 const objetoDesAlimentacion = desAlimentos(  mediasMediciones[0], mediasMediciones[1], mediasMediciones[2] )
 
                 const imagen = document.createElement('img');
@@ -171,9 +158,9 @@ function visibilidadZonas(event){
 
     let numimgmostrar = event.currentTarget.parentElement.id;
 
-    // ocultar si es visible 
+    // ocultar seccion si es visible 
     if( event.currentTarget.nextElementSibling.classList.contains('visible') ){
-        console.log('ha qu oculatarlo');
+
         event.currentTarget.nextElementSibling.classList.remove('visible');
         flechadireccion.forEach( imgflecha => imgflecha.classList.remove('girararriba'));
         imgresponsive.forEach( function (imagen){
@@ -182,9 +169,9 @@ function visibilidadZonas(event){
         });
     }
     else{ // visibilizar seccion Zona
+
         seccionesOcultas.forEach( section => section.classList.remove('visible') );
         event.currentTarget.nextElementSibling.classList.add('visible');
-        event.currentTarget.nextElementSibling.nextElementSibling.classList.add('visible');
         //girar flecha
         flechadireccion.forEach( imgflecha => imgflecha.classList.remove('girararriba'));
         flechadireccion[numimgmostrar-1].classList.add('girararriba');
@@ -200,24 +187,6 @@ function visibilidadZonas(event){
             imagenesmapa[numimgmostrar].classList.remove('oculto');
             imagenesmapa[numimgmostrar].classList.add('visible');
         }
-    }
-
-}
-
-const imgmenu = document.querySelector(".imgmenu");
-imgmenu.addEventListener('click', muestraMenu);
-/**
- * Al clicar sobre la imagen del menu lo muestra si esta oculto
- * y lo oculta si esta visible.
- */
-function muestraMenu(event){
-
-    console.log(event.currentTarget.nextSibling);
-    if(event.currentTarget.nextElementSibling.style.display=="flex"){
-        event.currentTarget.nextElementSibling.style.display="none";
-    }
-    else{
-        event.currentTarget.nextElementSibling.style.display="flex";
     }
 
 }
@@ -300,6 +269,8 @@ function descuentoPorDensidadZona( densidad ){
  */
 function descuentoAlimentos( medLuminosidad, medTemperatura, medHumedad ){
 
+    console.log(medLuminosidad, medTemperatura, medHumedad);
+
     const endpoint = 'https://pr200.newflow.tech/api/apidescuentos.php';
     const promesa = fetch( `${endpoint}`, {
         method: 'POST',
@@ -308,19 +279,18 @@ function descuentoAlimentos( medLuminosidad, medTemperatura, medHumedad ){
             'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
         },
         body: JSON.stringify({
-            "medcantluz": medLuminosidad,
-            "medtemperatura": medTemperatura,
-            "medhumedad": medHumedad
+            medcantluz: medLuminosidad,
+            medtemperatura: medTemperatura,
+            medhumedad: medHumedad
         })
     });
     promesa
     .then( response => {
         // console.log( response.json() );
-        // return response.json();   
         return response.json();
     })
     .then( data => {
-        console.log('descuentos alimentos: ');
+        // console.log('descuentos alimentos: ');
         console.log(data);
     })
     .catch( function handleError( error ){ 
@@ -339,7 +309,7 @@ function descuentoAlimentos( medLuminosidad, medTemperatura, medHumedad ){
  * @returns object
  */
 function desAlimentos( medLuminosidad, medTemperatura, medHumedad ){
-
+ 
     let desComida;
     let desBebida;
     if( medLuminosidad<50 && medTemperatura<20 && medHumedad<50){
@@ -363,3 +333,28 @@ function desAlimentos( medLuminosidad, medTemperatura, medHumedad ){
     return {desComida, desBebida};
 
 }
+
+/**
+ * Evento de click sobre boton para crear el modo oscuro 
+ * en la aplicación añade clase darkmode a elementos, 
+ * o la quita en cada click al boton.
+ */
+const button = document.getElementById("button");
+const elementosb =  document.querySelectorAll(".b") ;
+button.addEventListener('click', function(){
+    if(button.textContent == "Dark Mode"){
+        button.textContent = "White Mode";
+        color1 = "black";
+        color2 = "white";
+    }
+    else{
+        button.textContent = "Dark Mode";
+        color1 = "white";
+        color2 = "black";
+    }
+    document.body.classList.toggle("darkmode");
+    
+    elementosb.forEach(element => {
+        element.classList.toggle("whitemode");
+    });
+});

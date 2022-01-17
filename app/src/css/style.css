@@ -20,13 +20,15 @@
     --azul-link:#2997FF;
     --agua-mapa: rgb(127,180,186);
     --rojo-logoislamag: #e5282c;;
+    --fondo-isla:#F1E7D8;
+    --fondo-isla2:#D3CABD;
+    --fondo-isla3:#EDEDED;
 }
 *{
     margin: 0;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	/* font: inherit; */
 	vertical-align: baseline; 
     list-style:none;
     line-height: 1.5;
@@ -47,14 +49,7 @@
     flex-direction: column;
     align-items: center;
 }
-/* .header h1{
-    font: 'manuskript_antiqua_dregular';
-    font-weight: 500;
-    font-weight: 700;
-    border: 1px solid black;
-    border-radius: 0.2em;
-    padding: 20px;
-} */
+
 h1{
     font-family: 'Tillana', cursive, sans-serif;
     font-weight: 600;
@@ -66,39 +61,29 @@ h1{
 .headersection{
     min-width: 100%;
     display: flex;
-    padding: 40px;
+    padding: 20px 0px;
+    margin: 20px 0px;
     justify-content: space-around;
+    align-items: center;
 }
-.imgmenu{
-    height: 30px;
-    width: 30px;
-    border-radius: 0.2em;
-    padding: 3px;
-}
-.imgmenu:hover{
-    cursor: pointer;
-    background: rgba(0,0,0,0.2);
-}
-.headernav{
-    position: relative;
-    display: flex;
-}
+
 .headernav ul{
-    display: none;
+    display: flex;
     border-radius: 0.3em;
 }
 .headernav ul li{
     margin-bottom: 2px;
     display: flex;
-    /* background: rgb(186, 186, 223); */
     padding: 4px;
 }
-.headernav ul li a{
-    border: 1px solid black;
+.boton{
+    background: rgba(0,0,0,0.2);
     box-shadow: 3px 3px 7px var(--grey-sombra);
     padding: 5px;
     border-radius: 0.3em;
-    /* vertical-align: -webkit-baseline-middle; */
+}
+.headernav ul li a{
+    
 }
 .headernav ul li a:hover{
     color: white;
@@ -108,22 +93,21 @@ h1{
     color:darkgreen;
 }
 
-form{
-    margin-right: 0;
-    border: 1px solid black;
-    border-radius: 0.3em;
-    padding: 10px;
-}
 input{
     border: 1px solid black;
     border-radius: 0.3em;
+    height: 27px;
 }
-.boton{
-    padding: 0px 3px;
-    border: 1px solid black;
-    border-radius: 0.3em;
+.botonflecha{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
     background: rgba(0,0,0,0.2); 
     box-shadow: 3px 3px 7px var(--grey-sombra);
+}
+.botonflecha:hover{
+    background-color: var(--rojo-logoislamag);  
+    cursor: pointer;
 }
 .boton:hover{
     color: white;
@@ -132,9 +116,6 @@ input{
 }
 .main{
     display:flex;
-    /* justify-content: center;
-    align-items: center;
-    gap: 20px 20px; */
 }
 .article{
     border: 1px solid var(--negro-grey);
@@ -146,9 +127,10 @@ input{
     min-width: 350px;
     margin-bottom: 10px;
 }
-.article header{
+.headerTituloZonas{
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .mediciones, .descuentos, .productos{
@@ -161,10 +143,6 @@ input{
     height: 17px;
     border-radius: 50%;
     padding:3px;
-}
-.flechadireccion:hover{
-    background-color: rgba(0,0,0,0.2);
-    cursor: pointer;
 }
 .girararriba{
     transform: rotate(180deg);
@@ -226,11 +204,10 @@ h2{
 }
 .footer{
     display: flex;
-    height: 50px;
     margin-top: 50px;
-    margin-bottom: 10px;
-    align-items: center;
+    padding: 20px;
     justify-content: center;
+    border-radius: 0.3em;
 }
 .logofooter{
     margin-right: 4px;
@@ -238,13 +215,26 @@ h2{
     width: 32px;
 }
 
+.darkmode {
+    background-color: black;
+    color: white;
+}
+.whitemode {
+    background-color: white;
+    color: black;
+}
+#button{
+    width: 80px;
+    height: 30px;
+    background-color: var(--rojo-logoislamag);
+    cursor: pointer;
+    
+    box-shadow: 3px 3px 7px var(--grey-sombra);
+    border-radius: 0.3em;
+}
+
 /* Layout */
 
-/* @media (min-width:1100px){
-    .article{
-        min-width: 0px;  
-   }
-} */
 
 @media (max-width:900px){
    .contenedormapa{
@@ -259,16 +249,12 @@ h2{
    
 }
 @media (max-width:660px){
-    header h1{
-        font-size: x-large;
-    }
-}
-@media (max-width:660px){
-    .headernav ul li a {
-        font-size: 17px;
-    }
+    
     .imgresponsive{
         width: 100%;
+    }
+    .headersection{
+        justify-content: normal;
     }
 }
 @media (max-width:370px){
@@ -281,6 +267,9 @@ h2{
         flex-direction: column;
     }
     
+    .headersection{
+        justify-content: normal;
+    }
     .header{
         display: block;
     }

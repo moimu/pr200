@@ -4,11 +4,13 @@ USE  `zonas`;
 CREATE TABLE `zonas`(
     `idzona` SMALLINT UNSIGNED AUTO_INCREMENT,
     `nombre` VARCHAR(100),
+    `titulo` VARCHAR(100),
     PRIMARY KEY (idzona)
 );
 CREATE TABLE `areas`(
     `idarea` SMALLINT UNSIGNED AUTO_INCREMENT,
     `nombre` VARCHAR(100),
+    `titulo` VARCHAR(100),
     `idzona` SMALLINT UNSIGNED,
     PRIMARY KEY (idarea),
     FOREIGN KEY (`idzona`) REFERENCES `zonas` (`idzona`)
@@ -27,7 +29,6 @@ CREATE TABLE `magnitudes`(
 );
 CREATE TABLE `clientes`(
     `idcliente` INT UNSIGNED AUTO_INCREMENT,
-    `nombre` VARCHAR(100),
     `uid` VARCHAR(20),
     PRIMARY KEY (idcliente)
 );
@@ -50,16 +51,27 @@ CREATE TABLE `servicios`(
     `url` VARCHAR(1000),
     PRIMARY KEY (idservicio)
 );
+CREATE TABLE `descuentosclima`(
+    `iddescuento` SMALLINT UNSIGNED AUTO_INCREMENT,
+    `cantluz` TINYINT,
+    `temperatura` TINYINT,
+    `humedad` TINYINT,
+    `descomida` VARCHAR(2),
+    `desbebida` VARCHAR(2),
+    PRIMARY KEY (iddescuento)
+);
 
-INSERT INTO `zonas`(`nombre`)
-VALUES ('Z100'),('Z200'),('Z300'),('Z400'),('Z500');
+INSERT INTO `zonas`(`nombre`,`titulo`)
+VALUES ('Z100','Sevilla, Puerto de Indias'),('Z200','Puerta de América'),
+('Z300','Amazonia'),('Z400','La Guarida de los Piratas'),('Z500','El Dorado');
 
-INSERT INTO `areas`(`nombre`,`idzona`)
-VALUES ('','1'),('A101','1'),('B101','1'),
-('A201','2'),('A202','2'),('B201','2'),
-('A301','3'),('A302','3'),('A303','3'),('B301','3'),('B302','3'),
-('A401','4'),('A402','4'),('B401','4'),('B402','4'),
-('A501','5'),('B501','5'),('B502','5');
+INSERT INTO `areas`(`nombre`,`titulo`,`idzona`)
+VALUES (null,null,'1'),('A101','El Desafío','1'),('B101','La Venta del Puerto','1'),
+('A201','Anaconda','2'),('A202','Navío Barbarroja','2'),('B201','La Cabaña Criolla','2'),
+('A301','Jaguar','3'),('A302','Iguazú','3'),('A303','Topetazú','3'),
+('B301','El Fuerte','3'),('B302','El Arsenal','3'),
+('A401','Dimensión','4'),('A402','Los Toneles','4'),('B401','El Ancla','4'),('B402','La Taberna','4'),
+('A501','Rápidos del Orinoco','5'),('B501','Veracruz','5'),('B502','Come-come','5');
 
 INSERT INTO `sensores`(`nombre`) 
 VALUES ('pulsador'),('rfid'),('fotoresistencia'),('DHT11');
@@ -68,19 +80,19 @@ INSERT INTO `magnitudes` (`nombre`,`idsensor`)
 VALUES ('pulsaciones','1'),('entradas','2'),('luminosidad','3'),
 ('temperatura','4'),('humedad','4');
 
-INSERT INTO `clientes`(`nombre`,`uid`)
-VALUES ('nulo','nulo'),('Antonio','EC8F444A'),('José','JH6789HG');
+INSERT INTO `clientes`(`uid`)
+VALUES (null),('ec8f444a'),('b3a2906');
 
 -- Luminosidad para Zona Z400
 INSERT INTO `mediciones`(`valor`,`idzona`,`idarea`,`idmagnitud`) 
-VALUES ('4.02','4','1','3'),('5.50','4','1','3'),('8.66','4','1','3'),
-('20.55','4','1','3'),('41.08','4','1','3'),('2.00','4','1','3'),
-('77.66','4','1','3'),('41.74','4','1','3'),('4.88','4','1','3'),
-('5.51','4','1','3'),('8.55','4','1','3'),('20.95','4','1','3'),
-('41.00','4','1','3'),('2.00','4','1','3'),('77.11','4','1','3'),
-('41.15','4','1','3'),('4.11','4','1','3'),('5.31','4','1','3'),
-('8.41','4','1','3'),('20.99','4','1','3'),('41.22','4','1','3'),
-('2.65','4','1','3'),('77.10','4','1','3'),('41.87','4','1','3');
+VALUES (4.02,'4','1','3'),(5.50,'4','1','3'),(8.66,'4','1','3'),
+(20.55,'4','1','3'),(41.08,'4','1','3'),(2.00,'4','1','3'),
+(77.66,'4','1','3'),(41.74,'4','1','3'),(4.88,'4','1','3'),
+(5.51,'4','1','3'),(8.55,'4','1','3'),(20.95,'4','1','3'),
+(41.00,'4','1','3'),(2.00,'4','1','3'),(77.11,'4','1','3'),
+(41.15,'4','1','3'),(4.11,'4','1','3'),(5.31,'4','1','3'),
+(8.41,'4','1','3'),(20.99,'4','1','3'),(41.22,'4','1','3'),
+(2.65,'4','1','3'),(77.10,'4','1','3'),(41.87,'4','1','3');
 
 -- Entradas para área B401
 INSERT INTO `mediciones`(`idzona`,`idarea`,`idmagnitud`,`idcliente`) 
@@ -118,3 +130,13 @@ VALUES ('https://newflow.tech/pr-200-jsonPruebas/z100-1.php'),
 ('https://pr200.newflow.tech/api/api.php'),
 ('http://ismaeldaw080.me/apiIsmael.php'),
 ('ocete.......');
+
+INSERT INTO `descuentosclima`(`cantluz`,`temperatura`,`humedad`,`descomida`,`desbebida`)
+VALUES(49,19,49,'true','true'),
+(49,19,50,'false','true'),
+(49,20,49,'true','false'),
+(49,20,50,'true','false'),
+(50,19,49,'false','true'),
+(50,19,50,'true','true'),
+(50,20,49,'true','false'),
+(50,20,50,'true','true');

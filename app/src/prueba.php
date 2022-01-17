@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tillana:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="body">
+<body class="body a">
     <!-- Media de luz, humedad, temperatura y densidad-->
     <template id="templatezonaSensor">
         <div class="divz">
@@ -21,29 +21,29 @@
         </div>
     </template>
 
-    <header class="header">
+    <header class="header ">
 
         <img src="images/LOGO_IM-RGB.png" class="imglogo"></img>
 
         <section class="headersection">
             
             <nav class="headernav">  
-                <img src="images/menu.png" class="imgmenu"></img> 
                 <ul class="menu">
-                    <li> <a id="datequipo" href="index.php">Datos equipo </a> </li>
-                    <li> <a id="datprueba" href="prueba.php">Datos prueba </a> </li>
+                    <li> <a href="index.php" class="b boton" tabindex="1">Datos equipo </a> </li>
+                    <li> <a href="prueba.php" class="b boton" tabindex="2">Datos prueba </a> </li>
+                    <li> <button id="button" tabindex="3">Dark Mode</button> </li>
                 </ul>
             </nav>
 
             <form onSubmit="return descuentosCliente()" name ="formularioContacto" method="get" action="index.php">
-                <label><input type="text" name="uid" id="uid" placeholder=" uid cliente"></label>
-                <button type="submit" class="boton"> Descuento </button>
+                <label><input type="text" name="uid" id="uid" placeholder=" uid cliente" tabindex="4"></label>
+                <button type="submit" class="boton b" tabindex="5"> Descuento </button>
             </form>
 
         </section>
 
     </header>
-    <main class="main">
+    <main class="main ">
 
         <div class="contenedormapa">
             <img src="images/mapas/mapa.jpg" alt="mapaCompleto" class="mapa" id="img0"/>
@@ -56,11 +56,13 @@
 
         <section class="sectionZonas">
 
-            <article class ="article" id="1">
+            <article class ="article b" id="1">
                
-                <header class="headerTituloZonas">
+                <header class="headerTituloZonas" >
                     <h1 class="tituloZonas"> Sevilla, Puerto de Indias </h1>
-                    <img src="images/flecha-abajo.png" alt="flecha-direccion" class="flechadireccion">
+                    <button tabindex="6" class="botonflecha">
+                        <img src="images/flecha-abajo.png" alt="flecha-direccion" class="flechadireccion" >
+                    </button>
                 </header>
                 <section class ="oculto sectionZona" id="section1">
                     <div class="mediciones">
@@ -73,16 +75,16 @@
                         <h2> Productos </h2>
                     </div> 
                 </section>
-                <section class ="oculto sectionArea" id="sectionareas1">   </section>
                 <img src="images/mapas/responsive/SevillaPuertoDeIndias.png" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
-            <article class ="article" id="2">
+            <article class ="article b" id="2">
                 
-                <header class="headerTituloZonas">
+                <header class="headerTituloZonas" >
                     <h1 class="tituloZonas"> Puerta de América </h1>
-                    <img src="images/flecha-abajo.png" alt="flecha-direccion" class="flechadireccion">
-                </header>
+                    <button tabindex="7" class="botonflecha">
+                        <img src="images/flecha-abajo.png" alt="flecha-direccion" class="flechadireccion" >
+                    </button>                </header>
                 <section class ="oculto sectionZona" id="section2"> 
                     <div class="mediciones">
                         <h2> Mediciones </h2>
@@ -94,16 +96,16 @@
                         <h2> Productos </h2>
                     </div>  
                 </section>
-                <section class ="oculto sectionArea" id="sectionareas2">   </section>
                 <img src="images/mapas/responsive/PuertaDeAmerica.png" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
-            <article class ="article" id="3">
+            <article class ="article b" id="3">
                 
                 <header class="headerTituloZonas">
                     <h1 class="tituloZonas"> Amazonia </h1>
-                    <img src="images/flecha-abajo.png" alt="flecha-direccion" class="flechadireccion">
-                </header>
+                    <button tabindex="8" class="botonflecha">
+                        <img src="images/flecha-abajo.png" alt="flecha-direccion" class="flechadireccion" >
+                    </button>                </header>
                 <section class ="oculto sectionZona" id="section3">   
                     <div class="mediciones">
                         <h2> Mediciones </h2>
@@ -115,16 +117,16 @@
                         <h2> Productos </h2>
                     </div> 
                 </section>
-                <section class ="oculto sectionArea" id="sectionareas3">   </section>
                 <img src="images/mapas/responsive/Amazonia.png" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
-            <article class ="article" id="4">
+            <article class ="article b" id="4">
 
                 <header class="headerTituloZonas">
                     <h1 class="tituloZonas"> La Guarida de los Piratas </h1>
-                    <img src="images/flecha-abajo.png" alt="flecha-direccion" class="flechadireccion">
-                </header>
+                    <button tabindex="9" class="botonflecha">
+                        <img src="images/flecha-abajo.png" alt="flecha-direccion" class="flechadireccion" >
+                    </button>                </header>
                 <section class ="oculto sectionZona" id="section4"> 
                     <div class="mediciones">
                         <h2> Mediciones </h2>
@@ -136,16 +138,16 @@
                         <h2> Productos </h2>
                     </div>               
                 </section>
-                <section class ="oculto sectionArea" id="sectionareas4">   </section>
                 <img src="images/mapas/responsive/GuaridaDePiratas.png" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
-            <article class ="article" id="5">
+            <article class ="article b" id="5">
 
                 <header class="headerTituloZonas">
                     <h1 class="tituloZonas"> El Dorado </h1>
-                    <img src="images/flecha-abajo.png" alt="flecha-direccion" class="flechadireccion">
-                </header>
+                    <button tabindex="10" class="botonflecha">
+                        <img src="images/flecha-abajo.png" alt="flecha-direccion" class="flechadireccion" >
+                    </button>                </header>
                 <section class ="oculto sectionZona" id="section5">  
                     <div class="mediciones">
                         <h2> Mediciones </h2>
@@ -157,7 +159,6 @@
                         <h2> Productos </h2>
                     </div> 
                 </section>
-                <section class ="oculto sectionArea" id="sectionareas5">   </section>
                 <img src="images/mapas/responsive/ElDorado.png" alt="zonaSevillaPuertoDeIndias" class="imgresponsive oculto"/>
 
             </article>
@@ -166,19 +167,15 @@
 
     </main>
 
-    <footer class="footer">
+    <footer class="footer b">
 
-        <section class="mercadosMateriasPrimas">
-            <a href="#" class="imgfoot"> <img src="" alt="" /> </a>
-            <a href="https://github.com/moimu"><img src="images/GitHub-Mark-32px.png" alt="logoGithub" class="logofooter"/></a>
-        </section>
-        
+        <a href="https://github.com/moimu"><img src="images/GitHub-Mark-32px.png" alt="logoGithub" class="logofooter"/></a>
         <a href="api/docs/docapi.html"><img src="images/api.png" alt="logoApi" class="logofooter"/></a>
 
     </footer>
 
     <script src="js/script1.js" language="javascript" ></script>
-    <script src="js/script3.js" language="javascript" ></script>
+    <script src="js/script2.js" language="javascript" ></script>
     
 </body>
 </html>
