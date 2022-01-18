@@ -1,6 +1,7 @@
 DROP DATABASE IF EXISTS  `zonas`;
 CREATE DATABASE `zonas`;
 USE  `zonas`;
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 CREATE TABLE `zonas`(
     `idzona` SMALLINT UNSIGNED AUTO_INCREMENT,
     `nombre` VARCHAR(100),
