@@ -269,8 +269,6 @@ function descuentoPorDensidadZona( densidad ){
  */
 function descuentoAlimentos( medLuminosidad, medTemperatura, medHumedad ){
 
-    console.log(medLuminosidad, medTemperatura, medHumedad);
-
     const endpoint = 'https://pr200.newflow.tech/api/apidescuentos.php';
     const promesa = fetch( `${endpoint}`, {
         method: 'POST',

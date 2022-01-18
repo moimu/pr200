@@ -1,0 +1,78 @@
+DAW-IT20037-Proyecto PR200-Fase 2
+Vence hoy a las 23:59Se cierra hoy a las 23:59
+Instrucciones
+
+
+Introducción: 
+
+ 
+
+El cliente está satisfecho con el trabajo elaborado hasta ahora por el equipo de desarrollo, de manera, que nos da más información ,que quiere que sea compartida con el equipo, para poder abarcar la siguiente fase del proyecto.
+
+
+
+El proyecto tiene como centro el conocido parque de atracciones Isla Mágica ubicado en Sevilla. A continuación detallamos con qué Zonas, Atracciones y Restaurantes estamos trabajando: 
+
+
+
+Consulta el anexo zonaAreas.docx 
+
+
+Y a continuación explicamos los distintos sensores empleados:
+
+S1) cantidad de pulsaciones realizadas en las áreas Axxx. En cada atracción existe un jefe de atracción con un cuentapersonas (cada vez que sube una persona a la atracción, realiza una pulsación)
+S2) registro de entrada a algún área Bxxx. En cada restaurante existe un modo de entrada usando una tarjeta de fidelización. Más adelante se explicará para qué.
+S3) cantidad de luz que incide en la zona (Zxxx), tomando 1 muestra cada minuto. Importante para saber la condiciones climatológicas de la zona.
+S4) temperatura y humedad en la zona (Zxxx), tomando 1 muestra cada minuto y medio. Importante para saber la condiciones climatológicas de la zona.
+
+La finalidad de este proyecto I+D+i es la de poder realizar acciones de marketing en función de distintos aspectos que han estudiado los expertos. El proyecto implementa una serie de descuentos adaptativos para la venta de determinados productos de restauración. Entre las dimensiones utilizadas para obtener los descuentos están las siguientes: 
+densidad de zona: es la cantidad de personas que han sido contabilizadas en todas las atracciones de una zona en la última media hora entre el número máximo de plazas que hay en las atracciones de la zona.
+fidelidad: cuenta el número de veces que el cliente ha usado la tarjeta en los últimos 2 meses, multiplicado por el número de zonas dónde la ha usado
+cantidad de luz, humedad y temperatura: en función las condiciones climatológicas del día, los clientes tienden a tomar unos productos u otros, se intenta ofrecer ofertas para incentivar la venta.
+Los descuentos se aplican genéricamente sobre dos tipos de productos: comida o bebida. 
+
+Consulta el documento anexo reglasDescuentos.docx
+
+Se desea que la aplicación:
+muestre de forma agradable y que quede clara, en un momento dado la densidad de cada zona, así como la media de la cantidad de luz, humedad y temperatura para el mismo periodo que abarca la densidad.
+dada la identificación de un cliente, mediante su tarjeta de fidelización, que indique qué descuento y sobre qué productos aplica
+
+Este desarrollo, debe cumplir con el siguiente listado de requisitos no funcionales: 
+Orientación a objetos
+RWD
+Batería de pruebas automatizadas
+Modelado y diseño de base de datos
+Presentación y maquetado profesional, se valorará el uso de presentación con el que los usuarios están familiarizados con las zonas/áreas (mapa)
+Uso de herramientas de control de versiones para el desarrollo del proyecto (desde su inicio)
+Publicación y puesta en producción en el subdominio im.tudominio.zzz .
+Estará debidamente documentado con bloques de documentación entendibles por phpDocumentor
+La documentación del código estará generada y desplegada en producción en la carpeta 02-docphp
+Uso de contenedores docker para todos los procesos que se necesiten, debidamente documentados y explicados.
+
+
+
+¿Qué tienes que entregar?
+En el repositorio git:
+Acceso a un repositorio git llamado pr200 donde estarán todos los ficheros necesarios para probar el proyecto (*.php o *.html, *.txt, Dockerfile, docker-compose.yml ...). 
+El acceso se dará añadiendo como colaboradores al repositorio en github a los usuarios jcadaw y mjadaw
+Habrá una rama diferenciada con nombre fase2 
+En la rama estarán los ficheros necesarios para verificar su buen funcionamiento, además de los scripts necesarios para BD (creación BD, tablas) para poder verificar su funcionamiento), ubicados en un directorio llamado 00-bd.
+Los ficheros php estarán debidamente documentados, y estará generada la documentación en una carpeta llamada 02-docphp:
+Crear el usuario en el servidor jca con contraseña daw y que pertenezca al grupo sudo.
+Cargar la clave pública "jca_daw_rsa.pub" suministrada aquí en el ~/.ssh/authorized_keys del usuario jca.
+Crear el usuario jca con acceso a mysql y permisos para poder trabajar en la base de datos donde está el proyecto.
+La aplicación debe estar desplegada y operativa en el servidor de aws academy.
+Documentación (en el directorio 01_doc)
+Documentación técnica. 
+Obligatorio: aparecerá un checklist en la primera página con todos los requisitos establecidos en este proyecto, estando debidamente marcados aquellos que está cubiertos en el proyecto entregado.
+Deberá de explicarse qué solución se ha aportado y cómo se ha resuelto, además de aportar los modelos conceptual, lógico y físico y su debida justificación de por qué se ha optado por esa solución, todo ello en el propio documento, y habiendo utilizado una herramienta para tal fin (por ejemplo draw.io) pero aportando sólo las imágenes de los diagramas en el propio documento.
+Diagramas de Clases del proyecto, debidamente explicado y justificado
+Justificación del diseño de la aplicación web
+Manual de usuario. 
+Cómo utilizar cada uno de los servicios y que quede bien explicado.
+Detalle del dominio para poder acceder al servidor y contraseñas necesarias.
+Manual de instalación:
+Requisitos de sistema
+Scripts que hay que ejecutar y orden
+
+La excel recoge todos los criterios de evaluación evaluados en este proyecto. Léelo detenidamente.

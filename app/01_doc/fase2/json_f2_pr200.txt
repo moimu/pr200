@@ -1,0 +1,113 @@
+// {
+//     "mediciones":[
+//         {
+//         "nombreZona": [string: nombre de la zona con la letra en mayúscula],
+//	       "tituloZona": [string: nombre de la zona que pertenezca en el mapa de la isla mágica  | null],
+//         "nombreArea": [string: nombre del area mayusculas A101 | null],
+//	       "tituloArea": [string: nombre de la área que pertenezca en el mapa de la isla mágica  | null],
+//         "magnitud": [string: pulsaciones|entradas|luminosidad|temperatura|humedad|medLuminosidad|medTemperatura|medHumedad|densidad|fidelidad],
+//         "valor": [float: valor medido más reciente y sin unidad. (pulsaciones|entradas|luminosidad|temperatura|humedad de la misma manera que en fase1) 
+//               	( fidelidad del cliente suma TOTALENTRADAS RFID del cliente !ultimos2meses! AreasBxxx )
+//              	( densidad suma total en la !ultima media hora! anterior a la consulta todas las pulsaciones / sumatotalPlazasAtraccionesAreasAxxx de tu Zona) 
+//                	( medLuminosidad|medTemperatura|medHumedad DEVOLVER LA MEDIA DE LOS REGISTROS almacenados de la media hora anterior a la consulta redondeado a 2 decimales)],
+//          "fecha": [datetime: fecha de la medición más reciente con formato "AAAA-MM-DD HH:MM".    última medición],
+//        	"cliente": null | HEX // por cada cliente enviare un objeto con propiedades "magnitud" : "fidelidad", "valor" : "totalEntradasEsteclienteUltimos2meses" (desde momento de consulta)
+//			"cliente": "EC8F444A"  ( valor UID hexadecimal de su tarjeta sin 0x)
+//         }    
+//     ]             
+// }     
+
+ 
+// EJEMPLO:
+
+// { "mediciones":[
+//     {   "nombreZona": "Z100",
+//	       "tituloZona": "Sevilla puerto de Indias"
+//         "nombreArea": "A101",
+//	       "tituloArea": "El desafio"
+//         "fecha": "2021-11-25 15:30",
+//         "magnitud": "pulsaciones",
+//         "valor": 20.00,
+//         "cliente": null
+//     },
+//     {   "nombreZona": "Z100",
+//	       "tituloZona": "Sevilla puerto de Indias"
+//         "nombreArea": "B201",
+//	       "tituloArea": "La venta del Puerto"
+//         "fecha": "2021-11-25 15:30",
+//         "magnitud": "entradas",
+//         "valor": 21.00,
+//         "cliente": null
+//     },
+//     {   "nombreZona": "Z100",
+//	       "tituloZona": "Sevilla puerto de Indias",
+//         "nombreArea": null,
+//	       "tituloArea": null,
+//         "fecha": "2021-11-25 15:30",
+//         "magnitud": "luminosidad",
+//         "valor": 20.22,
+//         "cliente": null
+//     },
+//     {   "nombreZona": "Z100",
+//	       "tituloZona": "Sevilla puerto de Indias",
+//         "nombreArea": null,
+//	       "tituloArea": null,
+//         "fecha": "2021-11-25 15:30",
+//         "magnitud": "temperatura",
+//         "valor": 21.10,
+//         "cliente": null
+//     },
+//     {   "nombreZona": "Z100",
+//         "nombreArea": null,
+//         "fecha": "2021-11-25 15:30",
+//         "magnitud": "humedad",
+//         "valor": 22.31,
+//         "cliente": null
+//     },
+//     {   "nombreZona": "Z100",
+//         "nombreArea": null,
+//         "fecha": "2021-11-25 15:30",
+//         "magnitud": "medLuminosidad",
+//         "valor": 20.77,
+//         "cliente": null
+//     },
+//     {   "nombreZona": "Z100",
+//         "nombreArea": null,
+//         "fecha": "2021-11-25 15:30",
+//         "magnitud": "medTemperatura",
+//         "valor": 21.55,
+//         "cliente": null
+//     },
+//     {   "nombreZona": "Z100",
+//         "nombreArea": null,
+//         "fecha": "2021-11-25 15:30",
+//         "magnitud": "medHumedad",
+//         "valor": 22.11,
+//         "cliente": null
+//     },
+//     {   "nombreZona": "Z100",
+//	 	   "tituloZona": "Sevilla puerto de Indias"
+//         "nombreArea": null,
+//	  	   "tituloArea": null,
+//         "fecha": "2021-11-25 15:30",
+//         "magnitud": "densidad",
+//         "valor": 50,
+//         "cliente": null
+//     },
+//     {  "nombreZona": "Z100",
+//         "nombreArea": null,
+//         "fecha": "2021-11-25 15:30",
+//         "magnitud": "fidelidad",
+//         "valor": 5, 
+//         "cliente": "EC8F444A"   
+//     },
+//     {  "nombreZona": "Z100",
+//         "nombreArea": null,
+//         "fecha": "2021-11-25 15:30",
+//         "magnitud": "fidelidad",
+//         "valor": 10, 
+//         "cliente": "FC1R4TTT"   
+//     }
+//     
+//     etc..
+// ] }
